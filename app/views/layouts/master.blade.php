@@ -423,6 +423,7 @@
 						</a>
 
 						<ul class="submenu">
+							<!--
 							<li>
 								<a href={{ URL::to('proyectos/nuevo') }}>
 									<i class="fa fa-angle-double-right"></i>
@@ -436,7 +437,7 @@
 									Ver/Editar
 								</a>
 							</li>
-
+							-->
 
 							<li id='obraactive'>
 						<a href="#" class="dropdown-toggle">
