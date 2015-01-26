@@ -56,19 +56,37 @@
 Panel de control
 							</div>
 
+
+
+							<div class="alert alert-block alert-danger">
+								<button type="button" class="close" data-dismiss="alert">
+									<i class="fa fa-remove"></i>
+								</button>
+
+								<i class="fa fa-ok green"></i>
+
+								<strong>Primero debes seleccionar un proyecto, haz click en la imagen.</strong>
+								
+
+							</div>
+
 					
 
 
 							<div class="hr hr32 hr-dotted"></div>
 
 							<div class="row-fluid">
+
 								<div class="span5">
+									Puente los peumos<br>
 									
-								</div>
+									
+									<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='200'></a>
+																	</div>
 
 								<div class="span7">
-									
-								</div>
+							
+									</div>
 							</div>
 
 							<div class="hr hr32 hr-dotted"></div>

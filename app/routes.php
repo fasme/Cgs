@@ -25,7 +25,7 @@ Route::filter('old', function()
 			//return Redirect::to('proyectos')->with("mensaje","Debes seleccionar un proyecto primero");
 			$proyectos = Proyecto::all();
 
-	return View::make("proyectos.lista")->with("proyectos",$proyectos)->with("mensaje","Primero debe seleccionar un proyecto");
+	return View::make("dashboard.lista")->with("proyectos",$proyectos)->with("mensaje","Primero debe seleccionar un proyecto");
 		}
 });
 
@@ -149,7 +149,8 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('partidas', array('uses'=>'PartidaController@mostrar'));
 			Route::get('partidas/nuevo', array('uses'=>'PartidaController@nuevo'));
 			Route::post('partidas/crear', array('uses'=>'PartidaController@nuevo2'));
-
+			Route::get('partidas/editar/{id}', array('uses' => 'PartidaController@editar'));
+			Route::post('partidas/editar/{id}', array('uses' => 'PartidaController@editar2'));
 
 
 			// APU

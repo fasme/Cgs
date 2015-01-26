@@ -67,12 +67,9 @@
 
   <td class="td-actions">
                        
-                          <a class="blue" href={{'usuarios/'.$partida->id }}>
-                            <i class='fa fa-zoom-in bigger-130'></i>
-                          </a>
+                      
 
-
-                          <a class="green" href= {{ 'usuarios/editar/'.$partida->id }}>
+                          <a class="green" href= {{ 'partidas/editar/'.$partida->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
@@ -99,7 +96,8 @@ $('#example').DataTable( {
     } );
 
 
-$( "#obraactive" ).addClass( "active" );
+$( "#proyectoactive" ).addClass( "active" );
+$( "#partidaactive" ).addClass( "active" );
 });
  </script>
 

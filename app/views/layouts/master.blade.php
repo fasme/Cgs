@@ -417,7 +417,7 @@
 					<li id="proyectoactive" >
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-desktop"></i>
-							<span class="menu-text"> Proyecto </span>
+							<span class="menu-text"> Proyecto {{ isset(Session::get('proyecto')->nombre) ? Session::get('proyecto')->nombre : ""}} </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -528,24 +528,7 @@
 
 
 
-
-
-
-							
-						</ul>
-					</li>
-
-				
-					
-
-
-
-					
-
-
-					
-
-					<li id="gastogeneralactive">
+<li id="gastogeneralactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
 							<span class="menu-text"> Gastos Generales </span>
@@ -571,6 +554,23 @@
 							
 						</ul>
 					</li>
+
+
+							
+						</ul>
+					</li>
+
+				
+					
+
+
+
+					
+
+
+					
+
+					
 
 
 

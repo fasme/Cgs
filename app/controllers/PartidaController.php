@@ -1,7 +1,7 @@
 <?php
 class PartidaController extends BaseController {
 
-public function mostrarPartida(){
+public function mostrar(){
 
 	$partidas = Partida::all();
 	//$partidas = Partida::where('proyecto_id','=',Session::get("proyecto")->id)->get();
@@ -9,25 +9,76 @@ public function mostrarPartida(){
 
 }
 
-public function nuevoPartida(){
+public function nuevo(){
 
+	$partida = new Partida;
+	$categorias = Partidacategoria::all()->lists("nombre","id");
+
+	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
+	$selected = array();
+	return View::make("partidas.crear")->with("obras",$obras)->with("categorias",$categorias)->with("partida",$partida);
+	//return "ho";
+}
+
+
+public function nuevo2(){
+
+	//$partida = Partida::Create(Input::all());
+	//
+	
+
+	$data = Input::all();
+	$partida = new Partida;
+
+	if($partida->isValid($data))
+	{
+		$partida->fill($data);
+		$partida->save();
+		return Redirect::to('partidas/nuevo');
+	}
+	else
+	{
+		return Redirect::to('partidas/nuevo')->withInput()->withErrors($partida->errors);
+	}
+	
+}
+
+
+public function editar($id){
+
+	$partida = Partida::find($id);
 
 	$categorias = Partidacategoria::all()->lists("nombre","id");
 
 	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
 	$selected = array();
-	return View::make("partidas.crear", compact('obras', 'selected'), compact('categorias','selected'));
+	return View::make("partidas.crear")->with("obras",$obras)->with("categorias",$categorias)->with("partida",$partida);
 	//return "ho";
 }
 
 
-public function crearPartida(){
+public function editar2($id){
 
-	$partida = Partida::Create(Input::all());
-	return Redirect::to('partidas/nuevo');
-	//return Redirect::to('partidas/nuevo')->withInput()->withErrors($partida->errors);
+
+$data = Input::all();
+	$partida = Partida::find($id);
+
+	if($partida->isValid($data))
+	{
+		$partida->fill($data);
+		$partida->save();
+		return Redirect::to('partidas/nuevo');
+	}
+	else
+	{
+		return Redirect::to('partidas/nuevo')->withInput()->withErrors($partida->errors);
+	}
 }
 
+
+public function eliminar(){
+
+}
 
 
 
