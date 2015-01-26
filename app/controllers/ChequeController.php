@@ -1,0 +1,107 @@
+<?php
+class ChequeController extends BaseController {
+
+public function mostrar(){ // vista
+
+	 $cheques = Cheque::all();
+
+	// echo $obra = Obra::find($cheques->obra);
+	 $cheques->proveedor = 1;
+
+	// $cheques->id;
+	//$input = array_filter(Cheque::all(), 'strlen');
+	return View::make("cheques.lista", array("cheques"=>$cheques));
+	 //return View::make("cheques.lista")->with("cheques", $cheques,"ola",'iipo');
+
+}
+
+public function nuevo(){  //vista
+
+	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
+	array_unshift($obras, ' --- Seleccione una Obra --- ');
+	$selected = array();
+
+	$partidas = Partida::all()->lists("nombre","id");
+  array_unshift($partidas, ' --- Seleccione una Partida --- ');
+	$selected2 = array();
+
+	return View::make("cheques.crear", compact('obras', 'selected'), compact("partidas", "selected2","1"));
+	//return "ho";
+}
+
+
+public function nuevo2(){  //post
+
+
+	 $cheque = new Cheque;
+
+	$data = Input::all();
+
+	 if ($cheque->isValid($data))
+        {
+            // Si la data es valida se la asignamos al usuario
+            $cheque->fill($data);
+            // Guardamos el usuario
+             $fechapago = $cheque->fechapago;
+            list($dia,$mes,$ano) = explode("/",$fechapago);
+			$fechapago = "$ano-$mes-$dia";
+
+
+			$cheque->fechapago = $fechapago;
+			
+            $cheque->save();
+
+            // Y Devolvemos una redirección a la acción show para mostrar el usuario
+            return Redirect::action('ChequeController@mostrarCheques');
+            
+        }
+        else
+        {
+            // En caso de error regresa a la acción create con los datos y los errores encontrados
+return Redirect::route('cheques/nuevo')->withInput()->withErrors($cheque->errors);
+        	//return "mal2";
+        }
+	//$cheques->save();
+
+
+
+	//return Redirect::to("cheques");
+
+
+}
+
+
+
+public function editar($id)
+{
+
+	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
+	array_unshift($obras, ' --- Seleccione una Obra --- ');
+	$selected = array();
+
+	$partidas = Partida::all()->lists("nombre","id");
+  array_unshift($partidas, ' --- Seleccione una Partida --- ');
+	$selected2 = array();
+
+	return View::make("cheques.crear", compact('obras', 'selected'), compact("partidas", "selected2","1"));
+
+
+}
+
+
+
+
+public function eliminar()
+{
+	$id = Input::get("id");
+	$cheque = Cheque::find($id);
+	$cheque->delete();
+
+
+}
+
+
+
+
+
+}
