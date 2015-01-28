@@ -40,8 +40,20 @@
 <div class="row-fluid">
   <div class="span4">
 
-        {{ Form::open(array('url' => 'obras/crear')) }}
+
+           <?php
+  // si existe el usuario carga los datos
+    if ($obra->exists):
+        $form_data = array('url' => 'obras/editar/'.$obra->id);
+        $action    = 'Editar';
+    else:
+        $form_data = array('url' => 'obras/crear');
+        $action    = 'Crear';        
+    endif;
+
+?>
         
+       {{ Form::open($form_data) }}
        
         
 
@@ -50,7 +62,7 @@
             
 
             {{Form::label('Nombre', 'Nombre')}}
-            {{Form::text('nombre', '')}}
+            {{Form::text('nombre', $obra->nombre)}}
             
 
              {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}

@@ -55,33 +55,50 @@ public function nuevo()
 public function nuevo2()
 {
 
-
-      $fecha = Input::get('fecha');
-	list($dia,$mes,$ano) = explode("/",$fecha);
-	 $fecha = "$ano-$mes-$dia";
-
-$ordencompra = Ordencompra::create(array('proveedor_id'=>Input::get('proveedor_id'),'fecha'=>$fecha));
-$lastid =  $ordencompra->id;
-
-  $input = Input::get('oc');
+$data = Input::all();
+$ordencompra = new Ordencompra;
 
 
-for($i=0;$i<count($input);$i++)
+if($ordencompra->isValid($data))
+{
+
+	 list($dia,$mes,$ano) = explode("/",$data['fecha']);
+     $data['fecha'] = "$ano-$mes-$dia";
+
+     if($data['fechaentrega'] != "")
+     {
+
+     list($dia,$mes,$ano) = explode("/",$data['fechaentrega']);
+     $data['fechaentrega'] = "$ano-$mes-$dia";
+ 	 }
+
+
+
+	$ordencompra->fill($data);
+	$ordencompra->save();
+	$lastid =  $ordencompra->id;
+
+
+
+	for($i=0;$i<count($data["oc"]);$i++)
 {
 	
-	if($input[$i]["nombre"] != "")
+	if($data["oc"][$i]["nombre"] != "")
 	{
-	//echo $input[$i]["nombre"];
 
-		//array_push($input[$i], "ordencompra_id",$lastid);
-		//dd($input[$i]);
-	Ordencompradetalle::create(array("nombre"=>$input[$i]["nombre"],"cantidad"=>$input[$i]["cantidad"],"medida"=>$input[$i]["medida"],"valoru"=>$input[$i]["valoru"],"ordencompra_id"=>$lastid));
+	Ordencompradetalle::create(array("nombre"=>$data["oc"][$i]["nombre"],"cantidad"=>$data["oc"][$i]["cantidad"],"medida"=>$data["oc"][$i]["medida"],"valoru"=>$data["oc"][$i]["valoru"],"ordencompra_id"=>$lastid));
 
 	}
 }
 
 
-return Redirect::to('ordencompra');
+	return Redirect::to('ordencompra');
+}
+ else
+        {
+            return Redirect::to('ordencompra/nuevo')->withInput()->withErrors($ordencompra->errors);
+        }
+
  
 
 
@@ -113,15 +130,30 @@ public function editar2($id)
 
  $data = Input::all();
 
+if($ordencompra->isValid($data))
+{
+
+ list($dia,$mes,$ano) = explode("/",$data['fecha']);
+     $data['fecha'] = "$ano-$mes-$dia";
+
+     if($data['fechaentrega'] != "")
+     {
+
+     list($dia,$mes,$ano) = explode("/",$data['fechaentrega']);
+     $data['fechaentrega'] = "$ano-$mes-$dia";
+ 	 }
 
 
- $fecha = Input::get('fecha');
-	list($dia,$mes,$ano) = explode("/",$fecha);
-	 $fecha = "$ano-$mes-$dia";
-	 $data["fecha"] = $fecha;
 
- $ordencompra->fill($data);
- $ordencompra->save();
+	$ordencompra->fill($data);
+	$ordencompra->save();
+
+
+
+}
+
+
+
 
 //$ordencompra = Ordencompra::create(array('proveedor_id'=>Input::get('proveedor_id'),'fecha'=>$fecha));
 //$lastid =  $ordencompra->id;

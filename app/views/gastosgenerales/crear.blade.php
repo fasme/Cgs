@@ -162,6 +162,8 @@ $('.input-mask-date').mask('99/99/9999');
 
 
 $( "#gastogeneralactive" ).addClass( "active" );
+$( "#proyectoactive" ).addClass( "active" );
+
 
 
 

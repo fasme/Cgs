@@ -12,7 +12,7 @@
             </li>
 
             <li>
-              <a href={{ URL::to('cheques') }}>Control de gasto</a>
+              <a href={{ URL::to('controlgasto') }}>Control de gasto</a>
 
               <span class="divider">
                 <i class="icon-angle-right arrow-icon"></i>
@@ -47,11 +47,11 @@
 
                       <div class="widget-toolbar no-border">
                         <ul class="nav nav-tabs" id="myTab">
-                          <li class="active">
+                          <li id="gastoactivetab">
                             <a data-toggle="tab" href="#home">Gasto</a>
                           </li>
 
-                          <li>
+                          <li id="chequeactivetab">
                             <a data-toggle="tab" href="#profile">Cheque</a>
                           </li>
 
@@ -123,8 +123,12 @@
             {{Form::label('Proveedor','Proveedor')}}
             {{Form::text('proveedor',$controlgasto->proveedor)}}
             
-            {{Form::label('Documento','Documento')}}
-            {{Form::text('documento',$controlgasto->documento)}}
+            {{Form::label('Tipo de Documento','Tipo de Documento')}}
+           
+            {{Form::select('documento',array("1"=>"Boleta","2"=>"Factura","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
+
+            {{Form::label('Numero de Documento','Numero de Documento')}}
+            {{Form::text('numdocumento',$controlgasto->numdocumento)}}
 
             {{Form::label('Neto','Neto')}}
             {{Form::text('neto',$controlgasto->neto)}}
@@ -132,7 +136,7 @@
 
             {{Form::label('Tipo de pago')}}
         
-            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque"),$controlgasto->tipopago)}}
+            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
             
 
        
@@ -173,10 +177,7 @@
             {{Form::label('N Cheque','N Cheque')}}
             {{Form::text('numero',$numero)}}
 
-           
-            {{Form::label('N Factura', 'N Factura')}}
-            {{Form::text('factura', $factura)}}
-         
+    
           
          
       
@@ -281,7 +282,7 @@
 
 $("#partidas").chosen(); 
 $('.input-mask-date').mask('99/99/9999');
-$( "#controlgastoactive" ).addClass( "active" );
+
 
 $("#partidadiv").hide();
 $("#categoriadiv").hide();
@@ -303,6 +304,7 @@ $("#categoriadiv").hide();
       }
 
 
+// FUNCION para cargar en el espacio verde los items
 $("#categorias").change(function(){
 $("#cargaGastosGenerales").empty();
 $.get("{{ url('controlgasto/buscarcategoriasgg')}}",
@@ -320,6 +322,22 @@ $.get("{{ url('controlgasto/buscarcategoriasgg')}}",
       }
       );
       
+});
+
+
+
+// FUNCION para mostrar el tab cheque
+$("#gastoactivetab").addClass("active");
+$("#tipopago").change(function(){
+
+if($(this).val() == "2")
+{
+
+$("#chequeactivetab").addClass("active");
+$("#profile").addClass("in active");
+$("#home").removeClass("in active");
+$("#gastoactivetab").removeClass("active");
+}
 });
 
 

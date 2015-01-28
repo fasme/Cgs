@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
  
 
@@ -46,7 +45,7 @@
             <th>Unidad</th>
             <th>Cantidad</th>
             <th>Precio</th>
-         
+         <th>Total</th>
             <th>Acciones</th>
             
           </tr>
@@ -60,7 +59,7 @@
   <td>{{ $gastos->unidad }}</td>
   <td>{{ $gastos->cantidad }}</td>
   <td class="number1">{{$gastos->precio}}</td>
-
+<td class="number1">{{$gastos->precio * $gastos->cantidad}}</td>
   <td class="td-actions">
                        
                           <a class="blue" href={{'gastogeneral/'.$gastos->id }}>
@@ -87,6 +86,7 @@
  $(document).ready(function() {
 
 $('#example').DataTable( {
+"iDisplayLength": 100,
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "TableTools/swf/copy_csv_xls_pdf.swf"
@@ -95,6 +95,8 @@ $('#example').DataTable( {
 
 
 $( "#gastogeneralactive" ).addClass( "active" );
+$( "#proyectoactive" ).addClass( "active" );
+
 
 
 $(".bootbox-confirm").on(ace.click_event, function() {

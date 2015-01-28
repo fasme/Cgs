@@ -50,8 +50,7 @@
             {{Form::select('partida_id', $partidas, $selected2,array('id' => 'partidas'))}}
             {{Form::label('Proveedor', 'Proveedor')}}
             {{Form::text('proveedor', '')}}
-            {{Form::label('N Factura', 'N Factura')}}
-            {{Form::text('factura', '')}}
+      
          
             {{Form::label('Monto', 'Monto')}}
         

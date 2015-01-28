@@ -1,5 +1,5 @@
 @extends('layouts.master')
- 
+
 @section('breadcrumb')
 <ul class="breadcrumb">
             <li>
@@ -12,7 +12,7 @@
             </li>
 
             <li>
-              <a href={{ URL::to('ordencompra') }}>Cheques</a>
+              <a href={{ URL::to('ordencompra') }}>Orden</a>
 
               <span class="divider">
                 <i class="icon-angle-right arrow-icon"></i>
@@ -316,8 +316,32 @@ Total
 
 
 
+<div class="row-fluid">
+<div class="span12">
+{{Form::label("Tel. Cel.")}}
+{{Form::text("telcel",'')}}
+{{Form::label("Mercaderia puesta en")}}
+{{Form::text("mercaderia",'')}}
+{{Form::label("Fecha Entrega.")}}
+{{Form::text("fechaentrega",'',array('class'=>'input-mask-date'))}}
+{{Form::label("cond. de pago")}}
+{{Form::text("pago",'')}}
+</div>
+</div>
 {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}
         {{ Form::close() }}
+
+             @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+  @endif
 
 
 <script>

@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
  
 
@@ -21,7 +20,7 @@
                 <i class="fa fa-angle-right arrow-fa fa"></i>
               </span>
             </li>
-            <li>Ver Obras</li>
+            <li>Ver Partidas</li>
           </ul><!--.breadcrumb-->
 
           @stop
@@ -33,7 +32,7 @@
 
 
         <h1>
-  Obras
+  Partidas
 
 </h1>
 
@@ -97,7 +96,7 @@ $('#example').DataTable( {
 
 
 $( "#proyectoactive" ).addClass( "active" );
-$( "#partidaactive" ).addClass( "active" );
+$( "#partidasactive" ).addClass( "active" );
 });
  </script>
 

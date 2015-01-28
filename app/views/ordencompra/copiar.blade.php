@@ -281,6 +281,18 @@ Total
 </div>
    </div>
 
+   <div class="row-fluid">
+<div class="span12">
+{{Form::label("Tel. Cel.")}}
+{{Form::text("telcel",$ordencompra->telcel)}}
+{{Form::label("Mercaderia puesta en")}}
+{{Form::text("mercaderia",$ordencompra->mercaderia)}}
+{{Form::label("Fecha Entrega.")}}
+{{Form::text("fechaentrega",date_format(date_create($ordencompra->fechaentrega),'d/m/Y'),array('class'=>'input-mask-date'))}}
+{{Form::label("cond. de pago")}}
+{{Form::text("pago",$ordencompra->pago)}}
+</div>
+</div>
 
 
 {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}

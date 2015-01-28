@@ -32,11 +32,27 @@
 							<small>
 								<i class="fa fa-angle-double-right"></i>
 
-								Resumen &amp; Estadisticas
+								
 							</small>
 						</h1>
 					</div>
 
+
+
+@if(isset(Session::get('proyecto')->nombre))
+<div class="alert alert-block alert-success">
+								<button type="button" class="close" data-dismiss="alert">
+									<i class="fa fa-remove"></i>
+								</button>
+
+				
+
+							Has seleccionado el proyecto {{Session::get('proyecto')->nombre}}
+							
+
+							</div>
+
+@else
 
 
 
@@ -70,7 +86,7 @@ Panel de control
 
 							</div>
 
-					
+	@endif				
 
 
 							<div class="hr hr32 hr-dotted"></div>
@@ -100,6 +116,10 @@ Panel de control
 									
 								</div><!--/span-->
 							</div><!--/row-->
+
+
+
+
 
 
 

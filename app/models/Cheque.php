@@ -1,7 +1,7 @@
 <?php
 class Cheque extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'cheque';
-    protected $fillable = array('obra_id','factura','pendiente','numero','fechapago','observaciones','revision','proyecto_id','controlgasto_id');
+    protected $fillable = array('obra_id','pendiente','numero','fechapago','observaciones','revision','proyecto_id','controlgasto_id');
    
 
 
@@ -23,7 +23,7 @@ class Cheque extends Eloquent { //Todos los modelos deben extender la clase Eloq
     {
         $rules = array(
                        
-            'factura'     => 'required|integer',
+          
             'numero' => 'required|integer'
             
         );

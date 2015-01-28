@@ -68,11 +68,11 @@
                        
                
 
-                          <a class="green" href= {{ 'usuarios/editar/'.$obra->id }}>
+                          <a class="green" href= {{ 'obras/editar/'.$obra->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                          <a class="red" href="#">
+                          <a class="red bootbox-confirm" data-id={{ $obra->id }}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
      
@@ -96,6 +96,29 @@ $('#example').DataTable( {
 
 
 $( "#obraactive" ).addClass( "active" );
+$( "#proyectoactive" ).addClass( "active" );
+
+
+$(".bootbox-confirm").on(ace.click_event, function() {
+  var id = $(this).data('id');
+var tr = $(this).parents('tr'); 
+
+          bootbox.confirm("Deseas Eliminar el registro "+id, function(result) {
+            if(result) {
+             // bootbox.alert("You are sure!");
+             tr.fadeOut(1000);
+             $.get("{{ url('obras/eliminar')}}",
+              { id: id },
+    
+      function(data) {
+        
+      });
+            }
+          });
+        });
+
+
+
 });
  </script>
 

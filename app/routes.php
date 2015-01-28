@@ -142,7 +142,9 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('obras', array('uses'=>'ObraController@mostrar'));
 			Route::get('obras/nuevo', array('uses'=>'ObraController@nuevo'));
 			Route::post('obras/crear', array('uses'=>'ObraController@nuevo2'));
-
+			Route::get('obras/editar/{id}', array('uses'=>'ObraController@editar'));
+			Route::post('obras/editar/{id}', array('uses'=>'ObraController@editar2'));
+			Route::get('obras/eliminar', array('uses'=>'ObraController@eliminar'));
 
 			// PARTIDAS
 
