@@ -156,10 +156,12 @@ $sql = Proyecto::leftJoin("gg","proyecto.id","=", "gg.proyecto_id")
 ->get();
 */
 
+/*
+ultima comentario
 $sql = Proyecto::leftJoin("gg","proyecto.id","=", "gg.proyecto_id")
-->leftJoin("ggcategoria","ggcategoria.id", "=", "gg.ggcategoria_id" )
-->leftJoin("controlgastogg","controlgastogg.ggcategoria_id", "=", "ggcategoria.id")
-->leftJoin("controlgasto","controlgasto.proyecto_id","=","proyecto.id")
+->join("ggcategoria","ggcategoria.id", "=", "gg.ggcategoria_id" )
+->join("controlgastogg","controlgastogg.ggcategoria_id", "=", "ggcategoria.id")
+->join("controlgasto","controlgasto.proyecto_id","=","proyecto.id")
 
 //->leftJoin("ggcategoria","ggcategoria.id", "=", "gg.ggcategoria_id" )
 //->leftJoin("controlgastogg","controlgastogg.ggcategoria_id", "=", "ggcategoria.id")
@@ -170,6 +172,9 @@ $sql = Proyecto::leftJoin("gg","proyecto.id","=", "gg.proyecto_id")
 //->groupBy('ggcategoria.id')
 ->select(DB::raw("*,SUM(DISTINCT(precio*cantidad)) as valorneto,SUM(DISTINCT(neto*1.19)) as valorneto2"))
 ->get();
+*/
+
+$sql = Gastogeneral::where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("*, SUM(precio*cantidad) as valorneto"))->get();
 
 
 //print_r(DB::getQueryLog());

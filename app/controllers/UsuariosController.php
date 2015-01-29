@@ -4,7 +4,7 @@ class UsuariosController extends BaseController {
     /**
      * Mustra la lista con todos los usuarios
      */
-    public function mostrarUsuarios()
+    public function mostrar()
     {
         $usuarios = Usuario::all();
         
@@ -19,7 +19,7 @@ class UsuariosController extends BaseController {
     }
 
 
-     public function nuevoUsuario()
+     public function nuevo()
     {
         return View::make('usuarios.crear');
     }
@@ -28,7 +28,7 @@ class UsuariosController extends BaseController {
     /**
      * Crear el usuario nuevo
      */
-    public function crearUsuario()
+    public function crear()
     {
         //Usuario::create(Input::all());
 
@@ -64,7 +64,7 @@ class UsuariosController extends BaseController {
     return View::make('usuarios.ver', array('usuario' => $usuario));
     }
 
-    public function editarUsuario($id) //get
+    public function editar($id) //get
     {
         //echo $id;
             
@@ -80,7 +80,7 @@ class UsuariosController extends BaseController {
     }
 
 
-    public function editarDatos($id) //post
+    public function editar2($id) //post
     {
         
          $user = Usuario::find($id);

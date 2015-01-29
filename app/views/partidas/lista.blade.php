@@ -45,6 +45,8 @@
             <th>Item</th>
             <th>Obra</th>
             <th>Cantidad</th>
+             <th>Unidad</th>
+            <th>Orden</th>
             <th>Acciones</th>
   
             
@@ -60,7 +62,8 @@
             <td> {{  $partida->item }} </td>
              <td> {{  $partida->obra->nombre }} </td>
               <td> {{  $partida->cantidad }} </td>
-
+              <td> {{  $partida->unidad }} </td>
+<td> {{  $partida->orden }} </td>
  
 
 
@@ -72,10 +75,9 @@
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                          <a class="red" href="#">
+                         <a class="red bootbox-confirm" data-id={{ $partida->id }}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
-     
                       </td>
 </tr>
           @endforeach
@@ -97,7 +99,36 @@ $('#example').DataTable( {
 
 $( "#proyectoactive" ).addClass( "active" );
 $( "#partidasactive" ).addClass( "active" );
-});
+
+
+
+
+$(".bootbox-confirm").on(ace.click_event, function() {
+  var id = $(this).data('id');
+var tr = $(this).parents('tr'); 
+
+          bootbox.confirm("Deseas Eliminar el registro "+id, function(result) {
+            if(result) { // si se seleccion OK
+              
+           
+             
+             $.get("{{ url('partidas/eliminar')}}",
+              { id: id },
+
+              function(data,status){ tr.fadeOut(1000); }
+).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});
+
+     
+            }
+           
+          });
+        });
+
+
+
+
+
+}); // fin ready
  </script>
 
 

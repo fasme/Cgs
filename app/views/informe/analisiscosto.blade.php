@@ -18,12 +18,12 @@
 
         var data = google.visualization.arrayToDataTable([
 
-          ['Categoria', 'Teorico', 'Real'],
+          ['Categoria', 'Teorico', 'Real', { role: 'annotation' }],
           <?php for($i=0;$i<count($teorico);$i++) { 
             
             ?>
 
-          ["<?php echo $teorico[$i]->nombre;?>", {{ $teorico[$i]->valorneto ? $teorico[$i]->valorneto : 0 }}, {{$teorico[$i]->valorneto2 ? $teorico[$i]->valorneto2 : 0}}],
+          ["<?php echo 'resumen';?>", {{ $teorico[$i]->valorneto ? $teorico[$i]->valorneto : 0 }}, {{$teorico[$i]->valorneto2 ? $teorico[$i]->valorneto2 : 0}},10],
           
           <?php } ?>
 
@@ -35,10 +35,29 @@
           chart: {
             title: '',
             subtitle: '',
+            hAxis:  {title: 'Hello',  titleTextStyle: {color: '#FF0000'}}
+
           }
         };
 
+        var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+
+
+
+
+  
+  //table.draw(data, {allowHtml: true, showRowNumber: true});
+
+
 
         chart.draw(data, options);
       }

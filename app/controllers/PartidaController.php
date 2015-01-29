@@ -12,9 +12,10 @@ public function mostrar(){
 public function nuevo(){
 
 	$partida = new Partida;
-	$categorias = Partidacategoria::all()->lists("nombre","id");
-
+	//$categorias = Partidacategoria::all()->lists("nombre","id");
+	$categorias = Partidacategoria::where('proyecto_id','=',Session::get('proyecto')->id)->get()->lists("nombre","id");
 	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
+	  array_unshift($obras, ' --- Seleccione una obra --- ');
 	$selected = array();
 	return View::make("partidas.crear")->with("obras",$obras)->with("categorias",$categorias)->with("partida",$partida);
 	//return "ho";
@@ -51,6 +52,7 @@ public function editar($id){
 	$categorias = Partidacategoria::all()->lists("nombre","id");
 
 	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
+	 // array_unshift($obras, ' --- Seleccione una obra --- ');
 	$selected = array();
 	return View::make("partidas.crear")->with("obras",$obras)->with("categorias",$categorias)->with("partida",$partida);
 	//return "ho";
@@ -78,6 +80,10 @@ $data = Input::all();
 
 public function eliminar(){
 
+	$id = Input::get("id");
+	$partida = Partida::find($id);
+
+	$partida->delete();
 }
 
 

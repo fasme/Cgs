@@ -35,6 +35,22 @@
             </h1>
           </div><!--/.page-header-->
 
+<div class="row-fluid">
+
+   @if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+  @endif
+
+  
+  </div>
 
 <div class="row-fluid">
   <div class="span4">
@@ -55,10 +71,10 @@
         
        
             {{Form::label('Obra', 'Obra')}}
-            {{Form::select('obra_id', $obras, $partida->obra_id,array('id' => 'obra'))}}
+            {{Form::select('obra_id', $obras, $partida->obra_id,array('id' => 'obras'))}}
 
             {{Form::label('Categoria', 'Categoria')}}
-            {{Form::select('categoria_id', $categorias, $partida->categoria_id,array('id' => 'obra'))}}
+            {{Form::select('categoria_id', $categorias, $partida->categoria_id,array('id' => 'categoria'))}}
 
             {{Form::label('Item', 'Item')}}
             {{Form::text('item', $partida->item)}}
@@ -86,22 +102,6 @@
 </div>
 
    </div><!--/row-->
-<div class="row-fluid">
-
-   @if ($errors->any())
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Por favor corrige los siguentes errores:</strong>
-      <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-      </ul>
-    </div>
-  @endif
-
-  
-  </div>
 
 
 <script>
@@ -115,6 +115,37 @@ $( "#partidasactive" ).addClass( "active" );
 $( "#proyectoactive" ).addClass( "active" );
 
     
+
+
+    $('#obras').change(function(){
+      
+       $('#categoria').empty();
+       $('#categoria').append("<option value='" + "0" + "'>" + "seleccione una categoria" + "</option>");
+       $("#categoria").trigger("liszt:updated");
+
+      $.get("{{ url('partidas/buscarcategorias')}}",
+      { option: $(this).val() },
+      function(data) {
+
+        
+        $('#categoria').empty();
+
+        $('#categoria').append("<option value='" + "0" + "'>" + "seleccione una categoria" + "</option>");
+
+        $.each(data, function(key, element) {
+
+          $('#categoria').append("<option value='" + key + "'>" + element + "</option>");
+          $("#categoria").trigger("liszt:updated");
+
+        });
+        
+
+      });
+    });  // fin obras change
+
+
+
+
   });   
 </script>
 

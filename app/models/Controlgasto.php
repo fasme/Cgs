@@ -39,7 +39,7 @@ public $errors;
         $rules = array(
             'desc' => 'required',
             'proveedor'     => 'required',
-            'numdocumento' => 'integer',
+            'numdocumento' => 'integer|unique:controlgasto,numdocumento',
             'neto' => 'required|integer',
             'obra_id' => 'exists:obra,id'
         );

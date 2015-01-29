@@ -8,5 +8,10 @@ class Partidacategoria extends Eloquent { //Todos los modelos deben extender la 
     {
         return $this->hasMany('Partida');
     }
+
+    public function obra()
+    {
+    	return $this->hasMany('Obra');
+    }
 }
 ?>

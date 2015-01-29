@@ -42,7 +42,7 @@
           <tr >
             <th>Obra</th>
             <th>Proveedor</th>
-            <th>Factura</th>
+            
             <th>Monto</th>
             <th>N Cheque</th>
             <th>Fecha Pago</th>
@@ -78,7 +78,7 @@
   <td> {{ $cheque->controlgasto->proveedor }}
  
 </td>
-  <td>{{ $cheque->factura }}</td>
+ 
   <td class="number1">{{$cheque->controlgasto->neto}}</td>
 <td>{{ $cheque->numero }}</td>
   <td> {{ date_format(date_create($cheque->fechapago),'d/m/Y')  }} </td>
@@ -131,7 +131,7 @@
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                          <a class="red bootbox-confirm" data-id={{ $cheque->id }}>
+                          <a class="red bootbox-confirm" data-id={{$cheque->id}}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
      
@@ -147,6 +147,7 @@
  $(document).ready(function() {
 
 $('#example').DataTable( {
+  "iDisplayLength": 100,
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf"

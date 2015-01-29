@@ -24,7 +24,8 @@ class Cheque extends Eloquent { //Todos los modelos deben extender la clase Eloq
         $rules = array(
                        
           
-            'numero' => 'required|integer'
+            'numero' => 'required|integer',
+            'fechapago' => 'required|date_format:d/m/Y'
             
         );
         

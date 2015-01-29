@@ -36,6 +36,18 @@
           </div><!--/.page-header-->
 
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Por favor corrige los siguentes errores:</strong>
+      <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+      </ul>
+    </div>
+  @endif
+
 
 <div class="row-fluid">
 
@@ -154,7 +166,7 @@
                             if($controlgasto->cheque){
                             
                               $numero = $controlgasto->cheque->numero;
-                              $factura = $controlgasto->cheque->factura;
+                             
                               $fechapago = $controlgasto->cheque->fechapago;
                               $observaciones = $controlgasto->cheque->observaciones;
                               $revision = $controlgasto->cheque->revision;
@@ -163,7 +175,7 @@
                             else
                             {
                               $numero = '';
-                              $factura = '';
+                            
                               $fechapago ='';
                               $observaciones = '';
                               $revision ='';
@@ -184,7 +196,7 @@
             {{Form::label('Fecha Pago', 'Fecha Pago')}}
 
 
-            {{Form::text('fechapago', $fechapago,array('id' => 'form-field-mask-1', 'class'=>'input-mask-date'))}} 
+            {{Form::text('fechapago', date_format(date_create($fechapago),'d/m/Y'),array('id' => 'form-field-mask-1', 'class'=>'input-mask-date'))}} 
             <small class="text-success">99/99/9999</small>
 
 
@@ -341,6 +353,8 @@ $("#gastoactivetab").removeClass("active");
 });
 
 
+//
+$( "#controlgastoactive" ).addClass( "active" );
 
     
   });   

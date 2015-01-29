@@ -24,5 +24,10 @@ class Obra extends Eloquent { //Todos los modelos deben extender la clase Eloque
         return $this->hasMany('Controlgasto');
     }
 
+    public function partidacategoria()
+    {
+        return $this->hasMany("Partidacategoria");
+    }
+
 }
 ?>

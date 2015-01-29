@@ -107,6 +107,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('cheques/crear', array('uses' => 'ChequeController@nuevo2'));
 	Route::get('cheques/eliminar', array('uses' => 'ChequeController@eliminar'));
 	Route::get('cheques/editar/{id}', array('uses' => 'ChequeController@editar'));
+	Route::get('cheques/eliminar', array('uses'=>'ChequeController@eliminar'));
 
 	// funcion para select dinamico
 	Route::get('dropdown', function(){
@@ -153,6 +154,12 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('partidas/crear', array('uses'=>'PartidaController@nuevo2'));
 			Route::get('partidas/editar/{id}', array('uses' => 'PartidaController@editar'));
 			Route::post('partidas/editar/{id}', array('uses' => 'PartidaController@editar2'));
+			Route::get('partidas/eliminar', array('uses' =>'PartidaController@eliminar'));
+			Route::get('partidas/buscarcategorias', function(){
+	    $id = Input::get('option');
+	    $obras = Obra::find($id)->partidacategoria;
+	    return $obras->lists('nombre', 'id');
+	});
 
 
 			// APU

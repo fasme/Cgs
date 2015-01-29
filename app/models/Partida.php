@@ -31,7 +31,10 @@ class Partida extends Eloquent { //Todos los modelos deben extender la clase Elo
             'nombre' => 'required',
             'unidad' => 'required',
             'cantidad' => 'required|numeric',
-            'orden' => 'required|integer'
+            'orden' => 'required|integer',
+            'obra_id' => 'required|exists:obra,id',
+            'categoria_id' => 'required|exists:partidacategoria,id',
+            'orden' => 'unique:partida,orden'
             
         );
         
