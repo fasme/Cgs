@@ -103,6 +103,12 @@
   <script type="text/javascript">
  $(document).ready(function() {
 
+
+
+$("#example tfoot th").eq(1).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+
+
 var table = $('#example').DataTable( {
 "iDisplayLength": 100,
         dom: 'T<"clear">lfrtip',
@@ -180,6 +186,17 @@ var table = $('#example').DataTable( {
          }
 
     } );
+
+
+table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+             table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+        } );
+
+      });
 
 
 $( "#gastogeneralactive" ).addClass( "active" );
