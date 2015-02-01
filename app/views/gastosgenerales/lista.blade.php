@@ -39,7 +39,7 @@
 <table id="example" class="table table-striped table-bordered table-hover">
   <thead>
           <tr >
-            <th>Proyecto</th>
+          
             <th>Categoria</th>
             <th>Nombre</th>
             <th>Unidad</th>
@@ -54,7 +54,7 @@
 
         <tfoot>
             <tr>
-                <th></th>
+             
                 <th></th>
                 <th class=""></th>
                 <th class=""></th>
@@ -71,7 +71,7 @@
         <tbody>
   @foreach($gg as $gastos)
   <tr>
-    <td>{{ $gastos->proyecto->nombre }}</td>
+ 
     <td>{{ $gastos->ggcategoria->nombre }}</td>
   <td> {{ $gastos->nombre }}</td>
   <td>{{ $gastos->unidad }}</td>
@@ -105,8 +105,8 @@
 
 
 
+$("#example tfoot th").eq(0).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 $("#example tfoot th").eq(1).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-$("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 
 
 var table = $('#example').DataTable( {
