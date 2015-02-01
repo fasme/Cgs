@@ -52,6 +52,23 @@
             
           </tr>
         </thead>
+
+
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              
+              
+            </tr>
+        </tfoot>
+
+
         <tbody>
 
 
@@ -88,13 +105,81 @@
   <script type="text/javascript">
  $(document).ready(function() {
 
+$("#example tfoot th").eq(0).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(1).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 
-$('#example').DataTable( {
+
+
+var table = $('#example').DataTable( {
+  "iDisplayLength": 100,
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf"
-        }
+        },
+        "footerCallback": function ( row, data, start, end, display ) {
+      
+          var api = this.api(), data;
+     
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+ 
+            // Total over all pages
+            total = api
+                .column( 3 )
+                .data()
+                .reduce( function (a, b) {
+                    
+                  //  alert(a + b);
+                   // $.fn.dataTable.render.number( '\'', '.', 0, '$' );
+
+                    return intVal(a) + intVal(b);
+
+
+                } );
+ 
+            // Total over this page
+            pageTotal = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+              pageTotal = pageTotal.toFixed(3);                          //-> "1.10"
+
+ 
+            // Update footer
+            $( api.column( 3 ).footer() ).html(
+                pageTotal
+            );
+          // $(api.column(6).footer()).removeClass("number1");
+          // $(api.column(6).footer()).addClass("number1");
+           
+
+
+
+
+
+         }
     } );
+
+
+table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+             table
+                .column( colIdx )
+                .search( this.value )
+                .draw();
+        } );
+
+      });
+
 
 
 $( "#proyectoactive" ).addClass( "active" );

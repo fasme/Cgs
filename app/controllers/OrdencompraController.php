@@ -202,7 +202,7 @@ public function generarOrdenPDF($id){
 
 	   $html =  View::make("ordencompra.pdf")->with("ordenes",$ordenes);
 
-      return PDF::load($html, 'A4', 'portrait')->show();
+      return PDF::load($html, 'A4', 'portrait')->download();
 
 
 }
@@ -248,6 +248,57 @@ $ordencompra = Ordencompra::find($id);
 
 
 }
+
+
+public function informecontabilidad(){
+
+
+
+	return View::make("ordencompra.informecontabilidad");
+
+
+}
+
+public function informecontabilidad2(){
+
+	$data = Input::all();
+
+	//return $data["desde"];
+
+
+    
+
+ 	
+
+
+
+	$rules = array(
+			'desde' => 'required|date_format:d/m/Y',
+            'hasta' => 'required|date_format:d/m/Y'
+	);
+ 
+$validator = Validator::make($data, $rules);
+
+
+if ( $validator->fails() ){
+
+	return Redirect::to('ordencompra/informecontabilidad')->withInput()->withErrors($validator->errors());
+}
+else
+{
+	 list($dia,$mes,$ano) = explode("/",$data['desde']);
+     $data['desde'] = "$ano-$mes-$dia";
+
+     list($dia,$mes,$ano) = explode("/",$data['hasta']);
+     $data['hasta'] = "$ano-$mes-$dia";
+	$ordenes = Ordencompra::whereBetween('fecha', array($data["desde"], $data["hasta"]))->get();
+	 $html =  View::make("ordencompra.informecontabilidadpdf")->with("ordenes",$ordenes);
+
+      return PDF::load($html, 'A4', 'portrait')->show();
+
+}
+	  
+}	
 
 
 

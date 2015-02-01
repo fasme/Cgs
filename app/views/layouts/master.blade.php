@@ -663,7 +663,7 @@
 
 					<li id="ordencompraactive">
 						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-list-alt"></i>
+							<i class="fa fa-book"></i>
 					<span class="menu-text"> Orden de compra </span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -683,6 +683,45 @@
 									Ver/Editar
 								</a>
 							</li>
+
+							<li>
+								<a href={{ URL::to('ordencompra/informecontabilidad') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Informe Contabilidad
+								</a>
+							</li>
+
+							<li id="proveedoractive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-user"></i>
+					<span class="menu-text"> Proveedor </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href={{ URL::to('proveedor/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('proveedor') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+
+							
+						</ul>
+					</li>
+
+
+					
 
 							
 						</ul>

@@ -91,8 +91,8 @@ table, th, td{
 	<td class="oli"> {{ $orden->nombre }}</td>
 	<td class="oli"> {{ $orden->cantidad }}</td>
 	<td class="oli"> {{ $orden->medida }}</td>
-	<td class="oli"> {{ $orden->valoru }}</td>
-	<td class="oli"> {{ $orden->cantidad * $orden->valoru }}</td>
+	<td class="oli"> {{ number_format($orden->valoru,0,",",".") }}</td>
+	<td class="oli"> {{ number_format($orden->cantidad * $orden->valoru,0,",",".") }}</td>
 
 	<?php $neto += $orden->cantidad * $orden->valoru ?>
 	
@@ -103,17 +103,17 @@ table, th, td{
 	<tr>
 			<td colspan='4'></td>
 			<td class="oli"><b>Neto</b></td>
-			<td class="oli">{{$neto}}</td>
+			<td class="oli">{{number_format($neto,0,",",".")}}</td>
 	</tr>
 	<tr>
 			<td colspan='4'></td>
 			<td class="oli"><b>IVA</b></td>
-			<td class="oli">{{($neto*19)/100}}</td>
+			<td class="oli">{{number_format(($neto*19)/100,0,",",".")}}</td>
 	</tr>
 	<tr>
 			<td colspan='4'></td>
 			<td class="oli"><b>TOTAL</b></td>
-			<td class="oli"><b>{{($neto*19)/100 + $neto}}</b></td>
+			<td class="oli"><b>{{number_format(($neto*19)/100 + $neto,0,",",".")}}</b></td>
 	</tr>
 </table>
 

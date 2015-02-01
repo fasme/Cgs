@@ -53,12 +53,13 @@
 
  
 
-
+--
 <table border='0'>
 @foreach (Session::get("proyecto")->obra as $teoricos)
-<tr>
+<!--<tr>
 <td><a href={{ URL::to('informes/analisiscosto/'.$teoricos->id) }}>Ver informe de {{ $teoricos->nombre }}</a></td>
 </tr>
+-->
 @endforeach
 <tr>
   <td><a href={{ URL::to('informes/analisiscosto/resumen') }}>Ver informe de Gastos Generales Resumen</a></td>

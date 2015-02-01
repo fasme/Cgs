@@ -187,7 +187,15 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('controlgasto/buscarcategoriasgg', array('uses'=>'ControlgastoController@buscarcategoriasgg'));
 
 
+			// PROVEEDOR
 
+			Route::get("proveedor",array("uses"=>"ProveedorController@mostrar"));
+			Route::get('proveedor/nuevo', array('uses'=>'ProveedorController@nuevo'));
+			Route::post('proveedor/crear', array('uses'=>'ProveedorController@nuevo2'));
+			Route::get('proveedor/editar/{id}', array('uses' => 'ProveedorController@editar'));
+			Route::post('proveedor/editar/{id}', array('uses' => 'ProveedorController@editar2'));
+			Route::get('proveedor/eliminar', array('uses' => 'ProveedorController@eliminar'));
+		
 
 
 			// ORDEN DE COMPRA 
@@ -202,8 +210,8 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('ordencompra/xls/{id}', array('uses'=>'OrdencompraController@generarOrdenXLS'));
 					Route::get('ordencompra/pdf/{id}', array('uses'=>'OrdencompraController@generarOrdenPDF'));
 					Route::get('ordencompra/copiar/{id}', array("uses"=>"OrdencompraController@copiarOrden"));
-
-
+					Route::get('ordencompra/informecontabilidad', array("uses"=>"OrdencompraController@informecontabilidad"));
+					Route::post('ordencompra/informecontabilidad', array("uses"=>"OrdencompraController@informecontabilidad2"));
 
 					// INFORMES
 					Route::get('informes/analisiscosto', array('uses'=>'InformeController@lista'));

@@ -56,5 +56,27 @@ class Ordencompra extends Eloquent { //Todos los modelos deben extender la clase
         return false;
     }
 
+
+    public function isValid2($data) // funcion para validar las fechas del informe
+    {
+        $rules = array(
+            'desde' => 'required|date_format:d/m/Y',
+            'hasta' => 'required|date_format:d/m/Y'
+           
+            
+        );
+        
+        $validator = Validator::make($data, $rules);
+        
+        if ($validator->passes())
+        {
+            return true;
+        }
+        
+        $this->errors = $validator->errors();
+        
+        return false;
+    }
+
 }
 ?>
