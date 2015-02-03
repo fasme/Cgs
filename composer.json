@@ -6,9 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"chumper/datatable": "2.*",
-		"thujohn/pdf": "dev-master",
-		"maatwebsite/excel": "1.*"
+		"thujohn/pdf": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -633,6 +633,14 @@
 					</li>
 
 
+					<li>
+								<a href={{ URL::to('controlgasto/informecontabilidad') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Informe de Contabilidad
+								</a>
+							</li>
+
+
 					<li id="presupuestoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-list-alt"></i>
@@ -684,12 +692,7 @@
 								</a>
 							</li>
 
-							<li>
-								<a href={{ URL::to('ordencompra/informecontabilidad') }}>
-									<i class="fa fa-angle-double-right"></i>
-									Informe Contabilidad
-								</a>
-							</li>
+						
 
 							<li id="proveedoractive">
 						<a href="#" class="dropdown-toggle">

@@ -53,20 +53,20 @@
 
  
 
---
-<table border='0'>
+
+<table border='0' width="100%">
 @foreach (Session::get("proyecto")->obra as $teoricos)
 <!--<tr>
 <td><a href={{ URL::to('informes/analisiscosto/'.$teoricos->id) }}>Ver informe de {{ $teoricos->nombre }}</a></td>
 </tr>
 -->
 @endforeach
+
 <tr>
-  <td><a href={{ URL::to('informes/analisiscosto/resumen') }}>Ver informe de Gastos Generales Resumen</a></td>
-  </tr>
-  <tr>
-  <td><a href={{ URL::to('informes/analisiscosto/detalle') }}>Ver informe de Gastos Generales Detalle</a></td>
-  </tr>
+  <td><a href="{{URL::to('informes/analisiscosto/resumen')}}"><img src={{asset('img/graph/ggresumen.png')}} alt="Logo"></a></td>
+ <td><a href="{{URL::to('informes/analisiscosto/detalle')}}"><img src={{asset('img/graph/ggdetalle.png')}} alt="Logo"></a></td>
+  
+</tr>
 </table>
 
 

@@ -31,7 +31,7 @@ public function nuevo2(){
 	$data = Input::all();
 	$partida = new Partida;
 
-	if($partida->isValid($data))
+	if($partida->isValid($data,""))
 	{
 		$partida->fill($data);
 		$partida->save();
@@ -65,7 +65,7 @@ public function editar2($id){
 $data = Input::all();
 	$partida = Partida::find($id);
 
-	if($partida->isValid($data))
+	if($partida->isValid($data, $id))
 	{
 		$partida->fill($data);
 		$partida->save();

@@ -60,7 +60,7 @@
   <div class="row-fluid">
   <div class="span4">
 
-    {{ Form::open(array('url' => 'ordencompra/informecontabilidad')) }}
+    {{ Form::open(array('url' => 'controlgasto/informecontabilidad')) }}
 
     {{Form::label("Desde")}}
     {{Form::text("desde","",array("class"=>"input-mask-date"))}}

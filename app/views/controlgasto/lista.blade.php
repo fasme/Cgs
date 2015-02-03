@@ -83,7 +83,17 @@
   <td>  {{ date_format(date_create($controlgasto->fecha),'d/m/Y')  }}</td>
   <td>{{ $controlgasto->desc }}</td>
   <td>{{ $controlgasto->proveedor }}</td>
-<td>{{ $controlgasto->documento }}</td>
+<td>
+  @if($controlgasto->documento == 1)
+  {{ "Boleta" }}
+  @endif
+  @if($controlgasto->documento == 2)
+  {{ "Factura" }}
+  @endif
+  @if($controlgasto->documento == 3)
+  {{ "Otro" }}
+  @endif
+</td>
   <td class="number1">{{$controlgasto->neto}}</td>
   <td class="number1">{{ round($controlgasto->neto*1.19) }}</td>
   <td>{{ $controlgasto->obra->nombre }} </td>

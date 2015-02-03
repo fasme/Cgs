@@ -101,6 +101,27 @@ public function eliminar()
 }
 
 
+public function cron()
+{
+	$hoy = date("Y-m-d");
+
+	$cheques = Cheque::whereRaw("DATEDIFF(fechapago,'$hoy') > 0")
+	->whereRaw("DATEDIFF(fechapago,'$hoy') < 3")
+	->get();
+
+
+//return View::make("cheques.mail")->with("cheques",$cheques);
+
+
+	Mail::send('cheques.mail', array('cheques' => $cheques), function($message)
+{
+    $message->to('fasme2h@gmail.com', 'Daniel')->cc('dagabol@gmail.com','Daniel')->subject('Tienes cheques por vencer!');
+});
+
+
+}
+
+
 
 
 

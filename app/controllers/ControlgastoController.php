@@ -169,9 +169,11 @@ public function editar2($id)
         $cheque->fill($data);
         $cheque->save();
 
-  return Redirect::to('controlgasto');
+ 
  
     }
+
+     return Redirect::to('controlgasto');
 
 
 
@@ -196,6 +198,63 @@ public function eliminar()
     return "o";
 
 }
+
+
+
+public function informecontabilidad(){
+
+
+
+    return View::make("controlgasto.informecontabilidad");
+
+
+}
+
+public function informecontabilidad2(){
+
+    $data = Input::all();
+
+    //return $data["desde"];
+
+
+    
+
+    
+
+
+
+    $rules = array(
+            'desde' => 'required|date_format:d/m/Y',
+            'hasta' => 'required|date_format:d/m/Y'
+    );
+ 
+$validator = Validator::make($data, $rules);
+
+
+if ( $validator->fails() ){
+
+    return Redirect::to('controlgasto/informecontabilidad')->withInput()->withErrors($validator->errors());
+}
+else
+{
+     list($dia,$mes,$ano) = explode("/",$data['desde']);
+     $data['desde'] = "$ano-$mes-$dia";
+
+     list($dia,$mes,$ano) = explode("/",$data['hasta']);
+
+     $data['hasta'] = "$ano-$mes-$dia";
+
+    $controlgastos = Controlgasto::whereBetween('fecha', array($data["desde"], $data["hasta"]))
+    ->where('documento',"=",2)
+    ->get();
+     $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos);
+
+      return PDF::load($html, 'A4', 'portrait')->show();
+
+}
+      
+}   
+
 
 
 }

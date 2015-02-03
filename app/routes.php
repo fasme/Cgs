@@ -11,7 +11,7 @@
 |
 */
 
-
+Route::get('cheques/cron', array('uses'=>'ChequeController@cron'));
 
 Route::filter('old', function()
 {
@@ -108,6 +108,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('cheques/eliminar', array('uses' => 'ChequeController@eliminar'));
 	Route::get('cheques/editar/{id}', array('uses' => 'ChequeController@editar'));
 	Route::get('cheques/eliminar', array('uses'=>'ChequeController@eliminar'));
+	//Route::get('cheques/cron', array('uses'=>'ChequeController@cron'));
 
 	// funcion para select dinamico
 	Route::get('dropdown', function(){
@@ -167,6 +168,7 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('apu', array('uses'=>'ApuController@mostrar'));
 			Route::get('apu/nuevo', array('uses'=>'ApuController@nuevo'));
 			Route::post('apu/crear', array('uses'=>'ApuController@nuevo2'));
+			Route::get('apu/buscarPartidas', array('uses'=>'ApuController@buscarPartidas'));
 
 
 			// PRESUPUESTO
@@ -185,6 +187,8 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('controlgasto/editar/{id}', array('uses' => 'ControlgastoController@editar2'));
 			Route::get('controlgasto/eliminar', array('uses' => 'ControlgastoController@eliminar'));
 			Route::get('controlgasto/buscarcategoriasgg', array('uses'=>'ControlgastoController@buscarcategoriasgg'));
+			Route::get('controlgasto/informecontabilidad', array("uses"=>"ControlgastoController@informecontabilidad"));
+			Route::post('controlgasto/informecontabilidad', array("uses"=>"ControlgastoController@informecontabilidad2"));
 
 
 			// PROVEEDOR
@@ -210,9 +214,7 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('ordencompra/xls/{id}', array('uses'=>'OrdencompraController@generarOrdenXLS'));
 					Route::get('ordencompra/pdf/{id}', array('uses'=>'OrdencompraController@generarOrdenPDF'));
 					Route::get('ordencompra/copiar/{id}', array("uses"=>"OrdencompraController@copiarOrden"));
-					Route::get('ordencompra/informecontabilidad', array("uses"=>"OrdencompraController@informecontabilidad"));
-					Route::post('ordencompra/informecontabilidad', array("uses"=>"OrdencompraController@informecontabilidad2"));
-
+					
 					// INFORMES
 					Route::get('informes/analisiscosto', array('uses'=>'InformeController@lista'));
 					Route::get('informes/analisiscosto/detalle', array('uses'=>'InformeController@analisisCostoDetalle'));

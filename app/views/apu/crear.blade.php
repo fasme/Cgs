@@ -34,7 +34,13 @@
               </small>
             </h1>
           </div><!--/.page-header-->
+ {{ Form::open(array('url' => 'apu/crear', 'class'=>'form-inline')) }}
 
+<div class="row-fluid">
+
+  {{Form::select("partida_id",$partidas,"",array("class"=>"partidas", "id"=>"partida_id"))}}
+  {{Form::text("cantidadpartida","",array("class"=>"span2", "readonly"=>"readonly","id"=>"cantidadpartida"))}}
+</div>
 
 <div class="row-fluid">
 
@@ -63,7 +69,7 @@
                     </div> <!--div header -->
 
 
-  {{ Form::open(array('url' => 'gastogeneral/crear', 'class'=>'form-inline')) }}
+ 
 
 <div class="widget-body">
   <div class="widget-main padding-6">
@@ -76,10 +82,12 @@
     <table id="tabla">
       <thead>
         <tr>
-          <th>Item</th>
+          <th>Nombre</th>
+          <th>Unidad</th>
+          <th>Preciu Unitario</th>
           <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Total</th>
+          <th>Rendimiento</th>
+          <th>Costo Unitario</th>
         </tr>
       </thead>
       <tbody>
@@ -87,10 +95,10 @@
       </tbody>
       <tfoot>
         <tr>
-          <td>Total</td>
+          <td></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-          <td><span id="total">0</span></td>
+          <td></td>
         </tr>
       </tfoot>
     </table>
@@ -103,17 +111,79 @@
        <div id="linea">
      </div>
        
-        <input type="button" id="nuevo" value="Nueva l&iacute;nea"/>
-        <input type="button" id="calcular" value="Calcular"/>
+
            
       </div>
 
       <div id="material" class="tab-pane">
-        material
+        <div class="row-fluid">
+
+           <div id="contenedor">
+    <table id="tabla2">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Unidad</th>
+          <th>Preciu Unitario</th>
+          <th>Cantidad</th>
+          <th>Rendimiento</th>
+          <th>Costo Unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    <button type="button" onClick="AddItem2();">Agregar item.</button>
+  </div>
+
+
+
+       </div>
+
       </div>
 
       <div id="manoobra" class="tab-pane">
-        mobar
+        <div class="row-fluid">
+
+           <div id="contenedor">
+    <table id="tabla3">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Unidad</th>
+          <th>Preciu Unitario</th>
+          <th>Cantidad</th>
+          <th>Rendimiento</th>
+          <th>Costo Unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+    <button type="button" onClick="AddItem3();">Agregar item.</button>
+  </div>
+
+
+
+       </div>
       </div>
     </div>
   </div>
@@ -126,7 +196,7 @@
 
 </div> <!--div row -->
 
-
+{{Form::submit("Guardar")}}
 
 
  </div>
@@ -148,54 +218,88 @@ function AddItem() {
   }
   if (tbody != null) {
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><input type="text" name="item[]"/></td><td><input type="text" name="cantidad[]" onChange="Calcular(this);" value="1" /></td><td><input type="text" name="precunit[]" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="totalitem[]" readonly /></td>';
+    tr.innerHTML = '<td><input type="text" name="nombremaquinaria[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
+    tbody.appendChild(tr);
+  }
+}
+
+
+function AddItem2() {
+  var tbody = null;
+  var tabla = document.getElementById("tabla2");
+  var nodes = tabla.childNodes;
+  for (var x = 0; x<nodes.length;x++) {
+    if (nodes[x].nodeName == 'TBODY') {
+      tbody = nodes[x];
+      break;
+    }
+  }
+  if (tbody != null) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><input type="text" name="nombrematerial[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
+    tbody.appendChild(tr);
+  }
+}
+
+
+function AddItem3() {
+  var tbody = null;
+  var tabla = document.getElementById("tabla3");
+  var nodes = tabla.childNodes;
+  for (var x = 0; x<nodes.length;x++) {
+    if (nodes[x].nodeName == 'TBODY') {
+      tbody = nodes[x];
+      break;
+    }
+  }
+  if (tbody != null) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><input type="text" name="nombremanoobra[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
     tbody.appendChild(tr);
   }
 }
 
 function Calcular(ele) {
-  var cantidad = 0, precunit = 0, totalitem = 0;
+  var cantidad = 0, precunit = 0, totalitem = 0, cantidadpartida=0;
   var tr = ele.parentNode.parentNode;
   var nodes = tr.childNodes;
   for (var x = 0; x<nodes.length;x++) {
     if (nodes[x].firstChild.name == 'cantidad[]') {
-      cantidad = parseFloat(nodes[x].firstChild.value,10);
+      cantidad = parseFloat(nodes[x].firstChild.value,6);
     }
-    if (nodes[x].firstChild.name == 'precunit[]') {
-      precunit = parseFloat(nodes[x].firstChild.value,10);
+    if (nodes[x].firstChild.name == 'preciou[]') {
+      precunit = parseFloat(nodes[x].firstChild.value,6);
     }
-    if (nodes[x].firstChild.name == 'totalitem[]') {
-      totalitem = parseFloat((precunit*cantidad),10);
-      nodes[x].firstChild.value = totalitem;
+    
+
+    if (nodes[x].firstChild.name == 'rendimiento[]') {
+      cantidadpartida = document.getElementById("cantidadpartida").value;
+      
+      rendimiento = parseFloat((1/cantidadpartida));
+      nodes[x].firstChild.value = rendimiento.toFixed(6);
+    }
+
+    if (nodes[x].firstChild.name == 'costo[]') {
+      totalitem = parseFloat((precunit*cantidad*rendimiento),6);
+      nodes[x].firstChild.value = totalitem.toFixed(0);
     }
   }
-  var total = document.getElementById("total");
-  if (total.innerHTML == 'NaN') {
-    total.innerHTML = 0;
-  }
-  total.innerHTML = parseFloat(total.innerHTML)+totalitem;
+  
+
+ 
 }
 
 
   $(document).ready(function(){
    
-    $('#obra').change(function(){
-
-      $.get("{{ url('dropdown')}}",
+    $('#partida_id').change(function(){
+     
+      $.get("{{ url('apu/buscarPartidas')}}",
       { option: $(this).val() },
       function(data) {
-
-        
-        $('#partidas').empty();
-
-        $('#partidas').append("<option value='" + "0" + "'>" + "seleccione una partida" + "</option>");
-
-        $.each(data, function(key, element) {
-
-          $('#partidas').append("<option value='" + key + "'>" + element + "</option>");
-          $("#partidas").trigger("liszt:updated");
-
-        });
+    
+        $("#cantidadpartida").val(data);
+    
         
 
       });
@@ -213,14 +317,6 @@ $( "#proyectoactive" ).addClass( "active" );
 
 
 
-
-$("#nuevo").click(function() {
-  var i =0;
-  $("#linea").append("<div class='row-fluid' id='campos'><div class='span2'><input type='text' class='span15' name='descripcion' id='descripcion'></div><div class='span2'><input type='text' class='span5' name='cantidad'></div><div class='span2'><input type='text' class='span5' name='total'></div></div>");
-
-  i = i+1;
-  
-});
 
 
 

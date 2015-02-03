@@ -21,10 +21,17 @@ class Partida extends Eloquent { //Todos los modelos deben extender la clase Elo
     }
 
 
-
-
-    public function isValid($data)
+    public function apu()
     {
+        return $this->hasMany("Apu");
+    }
+
+
+
+
+    public function isValid($data, $id)
+    {
+      
         $rules = array(
                        
             'item'     => 'required',
@@ -34,7 +41,7 @@ class Partida extends Eloquent { //Todos los modelos deben extender la clase Elo
             'orden' => 'required|integer',
             'obra_id' => 'required|exists:obra,id',
             'categoria_id' => 'required|exists:partidacategoria,id',
-            'orden' => 'unique:partida,orden'
+            'orden' => 'unique:partida,orden,'.$id
             
         );
         
