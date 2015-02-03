@@ -47,6 +47,7 @@
             <th>Cantidad</th>
              <th>Unidad</th>
             <th>Orden</th>
+            <th>PU cd oferta</th>
             <th>Acciones</th>
   
             
@@ -63,7 +64,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-              
+              <th></th>
               
             </tr>
         </tfoot>
@@ -81,6 +82,16 @@
               <td> {{  $partida->cantidad }} </td>
               <td> {{  $partida->unidad }} </td>
 <td> {{  $partida->orden }} </td>
+<td>
+<?php  $suma =0; ?>
+  @foreach($partida->apu as $apu)
+ 
+    <?php $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad)); ?>
+    
+ @endforeach
+
+ {{ $suma }}
+   </td>
  
 
 

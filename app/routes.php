@@ -168,6 +168,9 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('apu', array('uses'=>'ApuController@mostrar'));
 			Route::get('apu/nuevo', array('uses'=>'ApuController@nuevo'));
 			Route::post('apu/crear', array('uses'=>'ApuController@nuevo2'));
+			Route::get('apu/editar/{id}', array('uses'=>'ApuController@editar'));
+			Route::post('apu/editar/{id}', array('uses'=>'ApuController@editar2'));
+			Route::get('apu/eliminar', array('uses'=>'ApuController@eliminar'));
 			Route::get('apu/buscarPartidas', array('uses'=>'ApuController@buscarPartidas'));
 
 

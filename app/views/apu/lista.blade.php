@@ -124,7 +124,7 @@ var tr = $(this).parents('tr');
             if(result) {
              // bootbox.alert("You are sure!");
              tr.fadeOut(1000);
-             $.get("{{ url('cheques/eliminar')}}",
+             $.get("{{ url('apu/eliminar')}}",
               { id: id },
     
       function(data) {

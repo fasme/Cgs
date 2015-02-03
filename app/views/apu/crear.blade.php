@@ -218,7 +218,7 @@ function AddItem() {
   }
   if (tbody != null) {
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><input type="text" name="nombremaquinaria[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
+    tr.innerHTML = '<td><input type="text" name="nombremaquinaria[]" class="span16"/></td><td><input type="text" class="span10" name="unidadmaquinaria[]"   /></td><td><input type="text" name="precioumaquinaria[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidadmaquinaria[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimientomaquinaria[]"  /></td><td><input type="text" name="costomaquinaria[]" class="span10"  /></td>';
     tbody.appendChild(tr);
   }
 }
@@ -236,7 +236,7 @@ function AddItem2() {
   }
   if (tbody != null) {
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><input type="text" name="nombrematerial[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
+    tr.innerHTML = '<td><input type="text" name="nombrematerial[]" class="span16"/></td><td><input type="text" class="span10" name="unidadmaterial[]"   /></td><td><input type="text" name="precioumaterial[]" class="span10" onChange="Calcular2(this);" value="0"/></td><td><input type="text" name="cantidadmaterial[]" class="span10" onChange="Calcular2(this);" value="1" /></td><td><input class="span10" type="text" name="rendimientomaterial[]"  /></td><td><input type="text" name="costomaterial[]" class="span10"  /></td>';
     tbody.appendChild(tr);
   }
 }
@@ -254,7 +254,7 @@ function AddItem3() {
   }
   if (tbody != null) {
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><input type="text" name="nombremanoobra[]" class="span16"/></td><td><input type="text" class="span10" name="unidad[]"   /></td><td><input type="text" name="preciou[]" class="span10" onChange="Calcular(this);" value="0"/></td><td><input type="text" name="cantidad[]" class="span10" onChange="Calcular(this);" value="1" /></td><td><input class="span10" type="text" name="rendimiento[]"  /></td><td><input type="text" name="costo[]" class="span10"  /></td>';
+    tr.innerHTML = '<td><input type="text" name="nombremanoobra[]" class="span16"/></td><td><input type="text" class="span10" name="unidadmanoobra[]"   /></td><td><input type="text" name="precioumanoobra[]" class="span10" onChange="Calcular3(this);" value="0"/></td><td><input type="text" name="cantidadmanoobra[]" class="span10" onChange="Calcular3(this);" value="1" /></td><td><input class="span10" type="text" name="rendimientomanoobra[]"  /></td><td><input type="text" name="costomanoobra[]" class="span10"  /></td>';
     tbody.appendChild(tr);
   }
 }
@@ -264,22 +264,22 @@ function Calcular(ele) {
   var tr = ele.parentNode.parentNode;
   var nodes = tr.childNodes;
   for (var x = 0; x<nodes.length;x++) {
-    if (nodes[x].firstChild.name == 'cantidad[]') {
+    if (nodes[x].firstChild.name == 'cantidadmaquinaria[]') {
       cantidad = parseFloat(nodes[x].firstChild.value,6);
     }
-    if (nodes[x].firstChild.name == 'preciou[]') {
+    if (nodes[x].firstChild.name == 'precioumaquinaria[]') {
       precunit = parseFloat(nodes[x].firstChild.value,6);
     }
     
 
-    if (nodes[x].firstChild.name == 'rendimiento[]') {
+    if (nodes[x].firstChild.name == 'rendimientomaquinaria[]') {
       cantidadpartida = document.getElementById("cantidadpartida").value;
       
       rendimiento = parseFloat((1/cantidadpartida));
       nodes[x].firstChild.value = rendimiento.toFixed(6);
     }
 
-    if (nodes[x].firstChild.name == 'costo[]') {
+    if (nodes[x].firstChild.name == 'costomaquinaria[]') {
       totalitem = parseFloat((precunit*cantidad*rendimiento),6);
       nodes[x].firstChild.value = totalitem.toFixed(0);
     }
@@ -288,6 +288,72 @@ function Calcular(ele) {
 
  
 }
+
+
+
+function Calcular2(ele) {
+  var cantidad = 0, precunit = 0, totalitem = 0, cantidadpartida=0;
+  var tr = ele.parentNode.parentNode;
+  var nodes = tr.childNodes;
+  for (var x = 0; x<nodes.length;x++) {
+    if (nodes[x].firstChild.name == 'cantidadmaterial[]') {
+      cantidad = parseFloat(nodes[x].firstChild.value,6);
+    }
+    if (nodes[x].firstChild.name == 'precioumaterial[]') {
+      precunit = parseFloat(nodes[x].firstChild.value,6);
+    }
+    
+
+    if (nodes[x].firstChild.name == 'rendimientomaterial[]') {
+      cantidadpartida = document.getElementById("cantidadpartida").value;
+      
+      rendimiento = parseFloat((1/cantidadpartida));
+      nodes[x].firstChild.value = rendimiento.toFixed(6);
+    }
+
+    if (nodes[x].firstChild.name == 'costomaterial[]') {
+      totalitem = parseFloat((precunit*cantidad*rendimiento),6);
+      nodes[x].firstChild.value = totalitem.toFixed(0);
+    }
+  }
+  
+
+ 
+}
+
+
+
+function Calcular3(ele) {
+  var cantidad = 0, precunit = 0, totalitem = 0, cantidadpartida=0;
+  var tr = ele.parentNode.parentNode;
+  var nodes = tr.childNodes;
+  for (var x = 0; x<nodes.length;x++) {
+    if (nodes[x].firstChild.name == 'cantidadmanoobra[]') {
+      cantidad = parseFloat(nodes[x].firstChild.value,6);
+    }
+    if (nodes[x].firstChild.name == 'precioumanoobra[]') {
+      precunit = parseFloat(nodes[x].firstChild.value,6);
+    }
+    
+
+    if (nodes[x].firstChild.name == 'rendimientomanoobra[]') {
+      cantidadpartida = document.getElementById("cantidadpartida").value;
+      
+      rendimiento = parseFloat((1/cantidadpartida));
+      nodes[x].firstChild.value = rendimiento.toFixed(6);
+    }
+
+    if (nodes[x].firstChild.name == 'costomanoobra[]') {
+      totalitem = parseFloat((precunit*cantidad*rendimiento),6);
+      nodes[x].firstChild.value = totalitem.toFixed(0);
+    }
+  }
+  
+
+ 
+}
+
+
 
 
   $(document).ready(function(){
