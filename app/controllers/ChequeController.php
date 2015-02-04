@@ -106,17 +106,22 @@ public function cron()
 	$hoy = date("Y-m-d");
 
 	$cheques = Cheque::whereRaw("DATEDIFF(fechapago,'$hoy') > 0")
-	->whereRaw("DATEDIFF(fechapago,'$hoy') < 3")
+	->whereRaw("DATEDIFF(fechapago,'$hoy') < 2")
 	->get();
 
 
 //return View::make("cheques.mail")->with("cheques",$cheques);
-
-
+if(count($cheques) >0)
+{
 	Mail::send('cheques.mail', array('cheques' => $cheques), function($message)
 {
     $message->to('fasme2h@gmail.com', 'Daniel')->cc('dagabol@gmail.com','Daniel')->subject('Tienes cheques por vencer!');
 });
+	
+}
+
+	
+
 
 
 }
