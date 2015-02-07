@@ -20,8 +20,8 @@ public function nuevo()
 {
 
 
-	//$partidas  = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-	$partidas = Array();
+	$partidas  = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
+	//$partidas = Array();
 	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 	 array_unshift($obras, ' --- Seleccione una obra --- ');
 
