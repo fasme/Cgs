@@ -108,15 +108,85 @@ else // si no existe guarda en la bd
 public function editar($id){
 
 
-	$partidas = Partida::all()->lists("nombre","id");
-	$selected = array();
- return View::make('apu.editar')->with("partidas",$partidas);
+
+		$partidas  = Partida::find($id);
+
+	//$partidas = Array();
+	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
+	 array_unshift($obras, ' --- Seleccione una obra --- ');
+
+ return View::make('apu.editar')->with("partidas",$partidas)->with("obras",$obras);
 
 }
 
 
 public function editar2($id){
 
+
+
+
+$data = Input::all();
+
+$arreglo = Array();
+
+print_r($data["apu"]);
+//echo count($data["apu"]);
+//echo $data["apu"][0]["nombre"];
+for($i=0;$i<count($data["apu"]);$i++)
+{
+	$apu = new Apu;
+	if($data["apu"][$i]["nombre"] != "")
+		
+	if($apu->isValid($data["apu"][$i]))
+	{
+
+		echo "valido ";
+		
+		array_push($arreglo, "valido");
+	}
+	else
+	{
+		
+		array_push($arreglo, "invalido");
+		return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
+	}
+
+}
+
+
+
+
+
+if(in_array("invalido", $arreglo))  // si existe invalido es error
+{
+	
+}
+else // si no existe guarda en la bd
+{
+	$partida = Partida::find($id);
+	$apus = Apu::Where("partida_id","=",$partida->id);
+	$apus->delete();
+	for($i=0;$i<count($data["apu"]);$i++)
+	{
+		$apu = new Apu;
+		if($data["apu"][$i]["nombre"] != "")
+		{
+			
+
+			$apu->fill(array("partida_id"=>$data["partida_id"],"nombre"=>$data["apu"][$i]["nombre"],"unidad"=>$data["apu"][$i]["nombre"],"preciou"=>$data["apu"][$i]["preciou"],"cantidad"=>$data["apu"][$i]["cantidad"],"rend"=>$data["apu"][$i]["rendimiento"],"costo"=>$data["apu"][$i]["costo"],"proyecto_id"=>Session::get("proyecto")->id,"categoria"=>$data["apu"][$i]["categoria"]));
+			$apu->save();
+		}
+			
+
+
+	}
+	
+	
+	//return Redirect::to("apu");
+}
+
+
+//$apus->delete();
 
 }
 
