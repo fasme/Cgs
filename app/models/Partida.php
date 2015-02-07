@@ -4,9 +4,9 @@ class Partida extends Eloquent { //Todos los modelos deben extender la clase Elo
    protected $fillable = array('nombre','item','unidad','cantidad','orden','obra_id','categoria_id','proyecto_id');
 
 
-   public function partidaCategoria()
+   public function partidacategoria()
     {
-        return $this->belongsTo('Partidacategoria');
+        return $this->belongsTo('Partidacategoria','categoria_id');
     }
 
     public function obra()

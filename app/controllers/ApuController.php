@@ -4,7 +4,9 @@ class ApuController extends BaseController {
 
 public function mostrar(){
 
-$apus = Apu::all();
+
+$apus = Apu::where("proyecto_id",'=',Session::get("proyecto")->id)->get();
+
         
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
@@ -17,9 +19,13 @@ $apus = Apu::all();
 public function nuevo()
 {
 
-	$partidas = Partida::all()->lists("nombre","id");
-	$selected = array();
- return View::make('apu.crear', compact('partidas','selected'));
+
+	//$partidas  = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
+	$partidas = Array();
+	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
+	 array_unshift($obras, ' --- Seleccione una obra --- ');
+
+ return View::make('apu.crear')->with("partidas",$partidas)->with("obras",$obras);
 }
 
 
@@ -27,62 +33,75 @@ public function nuevo2()
 {
 
 	
-	
-if (Input::has("nombremaquinaria"))
+	$data = Input::all();
+
+	//print_r($data["apu"]);
+	$arreglo = Array();
+	//echo count($data["apu"]);
+
+for($i=0;$i<count($data["apu"]);$i++)
 {
+	$apu = new Apu;
+	if($data["apu"][$i]["nombre"] != "")
+		
+	if($apu->isValid($data["apu"][$i]))
+	{
 
+		echo $apu;
+		
+		array_push($arreglo, "valido");
+	}
+	else
+	{
+		echo $apu;
+		array_push($arreglo, "invalido");
+		return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
+	}
 
-	$quantities = Input::get('nombremaquinaria');
-foreach($quantities as $key=>$value) {
-
-$apu = new Apu;
-	 $data = array("partida_id"=>Input::get("partida_id"),"nombre"=>Input::get("nombremaquinaria.$key"),"unidad"=>Input::get("unidadmaquinaria.$key"),"preciou"=>Input::get("precioumaquinaria.$key"),"cantidad"=>Input::get("cantidadmaquinaria.$key"),"rend"=>Input::get("rendimientomaquinaria.$key"),"costo"=>Input::get("costomaquinaria.$key"),"proyecto_id"=>Session::get("proyecto")->id,"categoria"=>1);
-	 print_r($data);
-    $apu->fill($data);
-    $apu->save();
 }
 
-}
 
 
- if (Input::has("nombrematerial"))
+if(in_array("invalido", $arreglo))  // si existe invalido es error
 {
-
-	$quantities = Input::get('nombrematerial');
-foreach($quantities as $key=>$value) {
-
-$apu = new Apu;
-	 $data = array("partida_id"=>Input::get("partida_id"),"nombre"=>Input::get("nombrematerial.$key"),"unidad"=>Input::get("unidadmaterial.$key"),"preciou"=>Input::get("precioumaterial.$key"),"cantidad"=>Input::get("cantidadmaterial.$key"),"rend"=>Input::get("rendimientomaterial.$key"),"costo"=>Input::get("costomaterial.$key"),"proyecto_id"=>Session::get("proyecto")->id,"categoria"=>2);
-	 print_r($data);
-    $apu->fill($data);
-    $apu->save();
-}
-
-}
-
-
-
-if (Input::has("nombremanoobra"))
-{
-
-	$quantities = Input::get('nombremanoobra');
-foreach($quantities as $key=>$value) {
-
-$apu = new Apu;
-	 $data = array("partida_id"=>Input::get("partida_id"),"nombre"=>Input::get("nombremanoobra.$key"),"unidad"=>Input::get("unidadmanoobra.$key"),"preciou"=>Input::get("precioumanoobra.$key"),"cantidad"=>Input::get("cantidadmanoobra.$key"),"rend"=>Input::get("rendimientomanoobra.$key"),"costo"=>Input::get("costomanoobra.$key"),"proyecto_id"=>Session::get("proyecto")->id,"categoria"=>3);
-	 print_r($data);
-    $apu->fill($data);
-    $apu->save();
-}
-}
-
-
-return Redirect::to("apu");
 	
 
+}
+else // si no existe guarda en la bd
+{
+	for($i=0;$i<count($data["apu"]);$i++)
+	{
+		$apu = new Apu;
+		if($data["apu"][$i]["nombre"] != "")
+		{
+			
+
+			$apu->fill(array("partida_id"=>$data["partida_id"],"nombre"=>$data["apu"][$i]["nombre"],"unidad"=>$data["apu"][$i]["nombre"],"preciou"=>$data["apu"][$i]["preciou"],"cantidad"=>$data["apu"][$i]["cantidad"],"rend"=>$data["apu"][$i]["rendimiento"],"costo"=>$data["apu"][$i]["costo"],"proyecto_id"=>Session::get("proyecto")->id,"categoria"=>$data["apu"][$i]["categoria"]));
+			$apu->save();
+		}
+			
+
+
+	}
+	
+	
+	return Redirect::to("apu");
+}
+
+
+
+
+	
+
+
+//return Redirect::to("apu");
+	
+
 
 
 }
+
+
 
 
 

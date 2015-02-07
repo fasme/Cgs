@@ -123,7 +123,13 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('dropdown2', function(){
 	    $id = Input::get('option');
 	    $obras = Obra::find($id)->partida;
-	    return $obras->lists('nombre', 'id');
+	    $arreglin = Array(""=>"");
+	    foreach ($obras as $obra) {
+	    	$arreglin = array_add($arreglin, $obra->id, $obra->nombre."/".$obra->partidacategoria->nombre);
+	    }
+
+	    //return $obras->lists('nombre', 'id');
+	    return $arreglin;
 	});
 
 
@@ -159,6 +165,7 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('partidas/buscarcategorias', function(){
 	    $id = Input::get('option');
 	    $obras = Obra::find($id)->partidacategoria;
+	    
 	    return $obras->lists('nombre', 'id');
 	});
 

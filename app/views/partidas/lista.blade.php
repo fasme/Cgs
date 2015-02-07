@@ -48,6 +48,7 @@
              <th>Unidad</th>
             <th>Orden</th>
             <th>PU cd oferta</th>
+         
             <th>Acciones</th>
   
             
@@ -65,6 +66,7 @@
                 <th></th>
                 <th></th>
               <th></th>
+ 
               
             </tr>
         </tfoot>
@@ -76,7 +78,7 @@
   @foreach($partidas as $partida)
            <tr>
 
-             <td> {{ $partida->nombre}}</td>
+             <td> {{ $partida->nombre}} <small class="text-success">{{$partida->partidacategoria->nombre}}</small> </td>
             <td> {{  $partida->item }} </td>
              <td> {{  $partida->obra->nombre }} </td>
               <td> {{  $partida->cantidad }} </td>

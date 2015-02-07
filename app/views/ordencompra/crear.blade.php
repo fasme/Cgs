@@ -349,6 +349,7 @@ Total
   $(document).ready(function(){
    
     $('input').change(function(){
+      alert("oli");
       
     var total0 = parseInt($('#cantidad0').val()) * parseInt($('#valoru0').val()) ;
     if(isNaN(total0))

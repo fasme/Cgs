@@ -10,7 +10,34 @@ class Apu extends Eloquent { //Todos los modelos deben extender la clase Eloquen
         return $this->belongsTo('Partida');
     }
 
+public $errors;
+    
+    public function isValid($data)
+    {
+        $rules = array(
+                       
+          
+            'unidad' => 'required',
+            'preciou' => 'required|numeric',
+            'cantidad' => 'required|numeric'
+            
 
+            
+        );
+        
+        $validator = Validator::make($data, $rules);
+
+
+        
+        if ($validator->passes())
+        {
+            return true;
+        }
+        
+        $this->errors = $validator->errors();
+        
+        return false;
+    }
 
 
 }
