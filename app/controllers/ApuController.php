@@ -47,13 +47,13 @@ for($i=0;$i<count($data["apu"]);$i++)
 	if($apu->isValid($data["apu"][$i]))
 	{
 
-		echo $apu;
+	
 		
 		array_push($arreglo, "valido");
 	}
 	else
 	{
-		echo $apu;
+		
 		array_push($arreglo, "invalido");
 		return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
 	}
