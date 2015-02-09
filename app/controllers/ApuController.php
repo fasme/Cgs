@@ -35,7 +35,7 @@ public function nuevo2()
 	
 	$data = Input::all();
 
-	//print_r($data["apu"]);
+	
 	$arreglo = Array();
 	//echo count($data["apu"]);
 
@@ -43,20 +43,27 @@ for($i=0;$i<count($data["apu"]);$i++)
 {
 	$apu = new Apu;
 	if($data["apu"][$i]["nombre"] != "")
-		
-	if($apu->isValid($data["apu"][$i]))
 	{
-
 	
+		$data["apu"][$i] = array_add($data["apu"][$i], 'cantidadpartida', $data["cantidadpartida"]);
+		$data["apu"][$i] = array_add($data["apu"][$i], 'partida_id', $data["partida_id"]);
+		$data["apu"][$i] = array_add($data["apu"][$i], 'obra_id', $data["obra_id"]);
+
+		if($apu->isValid($data["apu"][$i]))
+		{
+
 		
-		array_push($arreglo, "valido");
+			
+			array_push($arreglo, "valido");
+		}
+		else
+		{
+			
+			array_push($arreglo, "invalido");
+			return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
+		}
 	}
-	else
-	{
-		
-		array_push($arreglo, "invalido");
-		return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
-	}
+	
 
 }
 
@@ -129,14 +136,22 @@ $data = Input::all();
 
 $arreglo = Array();
 
-print_r($data["apu"]);
+//print_r($data["apu"]);
 //echo count($data["apu"]);
 //echo $data["apu"][0]["nombre"];
 for($i=0;$i<count($data["apu"]);$i++)
 {
 	$apu = new Apu;
+
+	$data["apu"][$i] = array_add($data["apu"][$i], 'cantidadpartida', $data["cantidadpartida"]);
+		$data["apu"][$i] = array_add($data["apu"][$i], 'partida_id', $data["partida_id"]);
+		$data["apu"][$i] = array_add($data["apu"][$i], 'obra_id', $data["obra_id"]);
+
+
 	if($data["apu"][$i]["nombre"] != "")
 		
+	
+
 	if($apu->isValid($data["apu"][$i]))
 	{
 
@@ -148,8 +163,9 @@ for($i=0;$i<count($data["apu"]);$i++)
 	{
 		
 		array_push($arreglo, "invalido");
-		return Redirect::to("apu/nuevo")->withInput()->withErrors($apu->errors);
+		return Redirect::to("apu/editar/".$id)->withInput()->withErrors($apu->errors);
 	}
+	
 
 }
 
@@ -182,7 +198,7 @@ else // si no existe guarda en la bd
 	}
 	
 	
-	//return Redirect::to("apu");
+	return Redirect::to("apu");
 }
 
 

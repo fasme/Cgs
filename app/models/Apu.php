@@ -19,7 +19,12 @@ public $errors;
           
             'unidad' => 'required',
             'preciou' => 'required|numeric',
-            'cantidad' => 'required|numeric'
+            'cantidad' => 'required|numeric',
+            'rendimiento' => 'required|numeric',
+            'costo'=>'required|numeric',
+            'cantidadpartida' => 'required',
+            'partida_id' =>'exists:partida,id',
+            'obra_id' => 'exists:obra,id'
             
 
             
