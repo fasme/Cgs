@@ -155,7 +155,7 @@ for($i=0;$i<count($data["apu"]);$i++)
 	if($apu->isValid($data["apu"][$i]))
 	{
 
-		echo "valido ";
+		//echo "valido ";
 		
 		array_push($arreglo, "valido");
 	}
