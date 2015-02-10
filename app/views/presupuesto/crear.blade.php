@@ -38,26 +38,20 @@
 
 
 <div class="row-fluid">
-  {{ Form::open(array('url' => 'gastogeneral/crear')) }}
+  {{ Form::open(array('url' => 'presupuesto/crear')) }}
+
+  {{Form::label("Proyecto :")}}
+  {{Form::text("proyecto",Session::get("proyecto")->nombre,array("class"=>"readonly")}}
   <div class="span3">
 
         
         
-       
-            {{Form::label('Proyecto', 'Proyecto')}}
-            {{Form::select('gg[0][proyecto_id]', $proyectos, $selected,array('class' => 'proyectos'))}}
-
+      
    
            
-            {{Form::label('Nombre', 'Nombre')}}
-            {{ Form::checkbox('agree') }}
+            
 
           
-{{ Form::checkbox('agree') }}
-<span class="lbl"> Puente 1</span>
-
-{{ Form::checkbox('agree') }}
-<span class="lbl"> Puente 2</span>
 
 
 

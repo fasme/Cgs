@@ -19,7 +19,7 @@ public function nuevo()
 
 	$proyectos = Proyecto::all()->lists("nombre","id");
 	$selected = array();
- return View::make('presupuesto.crear', compact('proyectos','selected'));
+ 	return View::make('presupuesto.crear', compact('proyectos','selected'));
 }
 
 
