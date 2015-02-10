@@ -38,38 +38,17 @@
 
 
 <div class="row-fluid">
+  <div class="span3">
   {{ Form::open(array('url' => 'presupuesto/crear')) }}
 
   {{Form::label("Proyecto :")}}
-  {{Form::text("proyecto",Session::get("proyecto")->nombre,array("class"=>"readonly")}}
-  <div class="span3">
-
-        
-        
-      
-   
-           
-            
-
-          
-
-
-
-
-
-
-
-            
-
+  {{Form::text("proyecto",Session::get("proyecto")->nombre, array("readonly"=>"readonly"))}}
+  {{Form::hidden("proyecto_id",Session::get("proyecto")->id)}}
+  {{Form::submit("Generar presupuesto")}}
+  
 
 
 </div>
-
-
-
-  <d
-
-
 
 
             {{Form::close()}}

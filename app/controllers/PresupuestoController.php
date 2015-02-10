@@ -17,15 +17,20 @@ $usuarios = Presupuesto::all();
 public function nuevo()
 {
 
-	$proyectos = Proyecto::all()->lists("nombre","id");
-	$selected = array();
- 	return View::make('presupuesto.crear', compact('proyectos','selected'));
+ 	return View::make('presupuesto.crear');
 }
 
 
 public function nuevo2()
 {
 
+	 $data = Input::all();
+
+	 $proyecto = Proyecto::Where("proyecto.id","=",$data["proyecto_id"])->get();
+
+	 //var_dump($proyecto);
+	// echo count($proyecto);
+	 return View::make('presupuesto.mostrar')->with("proyecto",$proyecto);
 }
 
 
