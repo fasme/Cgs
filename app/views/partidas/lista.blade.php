@@ -195,6 +195,7 @@ table.columns().eq( 0 ).each( function ( colIdx ) {
 $( "#proyectoactive" ).addClass( "active" );
 $( "#partidasactive" ).addClass( "active" );
 
+$(".number1").prettynumber();
 
 
 
