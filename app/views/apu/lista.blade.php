@@ -40,13 +40,11 @@
 <table id="example" class="table table-striped table-bordered table-hover">
   <thead>
           <tr >
+            <th>Orden</th>
             <th>Partida</th>
-            <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Precio U</th>
-            <th>Cantidad</th>
-            <th>Rendimiento</th>
-            <th>Costo</th>
+            <th>Obra</th>
+            <th>Suma </th>
+          
             <th>Acciones</th>
             
           </tr>
@@ -54,13 +52,10 @@
 
         <tfoot>
             <tr>
+              <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th class="number1"></th>
-                <th class="number1"></th>
-                <th></th>
-                <th class="number1"></th>
+               <th class="number1"></th>
                 <th></th>
                 
               
@@ -69,42 +64,35 @@
 
 
         <tbody>
-  @foreach($apus as $apu)
+  @foreach($partidas as $partida)
 
  
 
            <tr>
-  <td>{{ $apu->partida->nombre }} <small class="text-success">{{ $apu->partida->partidacategoria->nombre }}</small></td>
-  <td> {{$apu->nombre}}</td>
- <td> 
-  @if($apu->categoria == 1)
-  I.- MAQUINARIAS, Equipos y Herramientas
-  @elseif($apu->categoria == 2)
-  II.- MATERIALES POR UNIDAD DE OBRA
-  @elseif($apu->categoria == 3)
-  III.- MANO DE OBRA.
-  @endif
-</td>
-  <td class="number1">{{$apu->preciou}}</td>
+            <td>{{ $partida->orden }} </td>
+  <td>{{ $partida->nombre }} <small class="text-success">{{$partida->partidacategoria->nombre}}</small> </td>
+  <td>{{ $partida->obra->nombre }} </td>
+  <?php  $suma =0; ?>
+  @foreach($partida->apu as $apu)
+ <?php $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad)); 
+    ?>
+    @endforeach
+  <td class="number1">{{$suma}}</td>
 
-  <td> {{ $apu->cantidad  }} </td>
 
-  <td>{{ number_format($apu->rend,6)  }}</td>
-
-   <td class="number1">{{ $apu->costo  }}</td>
   <td class="td-actions">
                        
                      
 
 
-                          <a class="green" href= {{ 'apu/editar/'.$apu->partida_id }}>
+                          <a class="green" href= {{ 'apu/editar/'.$partida->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
-
-                          <a class="red bootbox-confirm" data-id={{$apu->id}}>
+<!--
+                          <a class="red bootbox-confirm" data-id=>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
-     
+     -->
                       </td>
 </tr>
           @endforeach
@@ -143,7 +131,7 @@ var table  = $('#example').DataTable( {
 
 
             total = api
-                .column( 6 )
+                .column( 2 )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -151,14 +139,14 @@ var table  = $('#example').DataTable( {
  
             // Total over this page
             pageTotal = api
-                .column( 6, { page: 'current'} )
+                .column( 2, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 6 ).footer() ).html(
+            $( api.column( 2 ).footer() ).html(
                 //''+pageTotal+' ($ '+ total+' total)'
                 pageTotal
             );

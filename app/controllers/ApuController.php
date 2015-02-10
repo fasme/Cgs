@@ -5,13 +5,13 @@ class ApuController extends BaseController {
 public function mostrar(){
 
 
-$apus = Apu::where("proyecto_id",'=',Session::get("proyecto")->id)->get();
 
-        
+ $partidas  = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->get();
+     
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
         
-        return View::make('apu.lista', array('apus' => $apus));
+        return View::make('apu.lista', array('partidas' => $partidas));
 
 }
 
