@@ -217,7 +217,7 @@ $ordenes = Ordencompra::find($id);
 	return $html =  View::make("ordencompra.xls")->with("ordenes",$ordenes);
 */
 
-/*
+
 Excel::create('New file', function($excel) use($id) {
 
     $excel->sheet('New sheet', function($sheet) use($id) {
@@ -232,20 +232,13 @@ $sheet->setWidth('C', 50);
 
     });
 
-})->export('xlsx');;
-
-
-*/
-
-
-Excel::create('Filename', function($excel) {
-
 })->export('xls');
 
 
-
-
 }
+
+
+
 
 
 public function copiarOrden($id){
