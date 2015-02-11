@@ -205,7 +205,7 @@ public function generarOrdenPDF($id){
 
 	   $html =  View::make("ordencompra.pdf")->with("ordenes",$ordenes);
 
-      return PDF::load($html, 'A4', 'portrait')->download();
+      return PDF::load($html, 'A4', 'portrait')->download("Orden de compra N ".$ordenes->id);
 
 
 }

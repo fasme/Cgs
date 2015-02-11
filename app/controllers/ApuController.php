@@ -223,6 +223,48 @@ public function buscarPartidas()
 }
 
 
+public function clonarApu()
+{
+
+
+	$partidas = Partida::Where('item',"=",'503-2')->Orderby('orden')->get();
+
+$apus = Array();
+	foreach ($partidas as $partida) {
+
+		
+		if(count($partida->apu) >0)
+		{
+
+				foreach ($partida->apu as $apu) {
+
+					array_push($apus, $apu);
+					
+				}
+
+			
+
+		}
+		else
+		{
+			 
+				foreach ($apus as $apu2) {
+
+					$apuclon = new Apu;
+					$apuclon->fill(array("partida_id"=>$partida->id,"nombre"=>$apu2->nombre,"unidad"=>$apu2->unidad,"preciou"=>$apu2->preciou,"cantidad"=>$apu2->cantidad,"rend"=>$apu2->rend,"costo"=>$apu2->costo,"proyecto_id"=>$apu2->proyecto_id,"categoria"=>$apu2->categoria));
+					$apuclon->save();
+					
+				}
+		
+			
+		}
+		# code...
+	}
+
+//print_r($apus);
+
+}
+
 
 
 }

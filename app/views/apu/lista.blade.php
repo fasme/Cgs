@@ -43,7 +43,7 @@
             <th>Orden</th>
             <th>Partida</th>
             <th>Obra</th>
-            <th>Suma </th>
+            <th>P unitario</th>
           
             <th>Acciones</th>
             

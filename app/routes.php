@@ -179,7 +179,7 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('apu/editar/{id}', array('uses'=>'ApuController@editar2'));
 			Route::get('apu/eliminar', array('uses'=>'ApuController@eliminar'));
 			Route::get('apu/buscarPartidas', array('uses'=>'ApuController@buscarPartidas'));
-
+			Route::get('apu/clonarApu', array('uses'=>'ApuController@clonarApu'));
 
 			// PRESUPUESTO
 
