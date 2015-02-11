@@ -240,7 +240,7 @@ $sheet->setWidth('C', 50);
 
 Excel::create('Filename', function($excel) {
 
-})->export('xls');
+})->export('xlsx');
 
 
 
