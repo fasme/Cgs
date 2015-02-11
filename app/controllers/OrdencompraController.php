@@ -238,7 +238,13 @@ $sheet->setWidth('C', 50);
 */
 
 
-return $id;
+Excel::create('Filename', function($excel) {
+
+})->export('xls');
+
+
+
+
 }
 
 
