@@ -24,7 +24,15 @@ public function nuevo()
 public function nuevo2()
 {
 
-	 $data = Input::all();
+ 
+
+
+
+    // Call writer methods here
+$data = Input::all();
+
+	
+
 
 	 $proyectos = Proyecto::Where("proyecto.id","=",$data["proyecto_id"])->get();
 
@@ -41,7 +49,7 @@ public function nuevo2()
 
 	 		echo "<tr><td bgcolor='yellow'>".$partidacategoria->nombre."</td></tr>";
 
-	 			$partidas = Partida::Where("obra_id","=",$obra->id)->get();
+	 			$partidas = Partida::Where("obra_id","=",$obra->id)->Where("categoria_id","=",$partidacategoria->id)->get();
 	 			foreach ($partidas as $partida) {
 	 				$suma =0; 
   foreach($partida->apu as $apu){
@@ -56,10 +64,15 @@ $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad));
 	 	}
 	 }
 
-	 echo "<table>";
-	 //var_dump($proyecto);
-	// echo count($proyecto);
-	 //return View::make('presupuesto.mostrar')->with("proyectos",$proyectos);
+	 echo "</table>";
+	 
+	
+	// return View::make('presupuesto.mostrar');
+
+
+
+
+
 }
 
 
