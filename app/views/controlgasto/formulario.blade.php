@@ -148,7 +148,7 @@
 
             {{Form::label('Tipo de pago')}}
         
-            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
+            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque","3"=>"Tarjeta"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
             
 
        
