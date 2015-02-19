@@ -28,7 +28,7 @@
 
 <div class="page-header position-relative">
 <h1>
-							Dashboard
+							Inicio
 							<small>
 								<i class="fa fa-angle-double-right"></i>
 
@@ -94,10 +94,10 @@ Panel de control
 							<div class="row-fluid">
 
 								<div class="span5">
-									Puente los peumos<br>
+									Contrato a suma alzada Puentes 1 y 3, Los Peumos de Peñuelas<br>
 									
 									
-									<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='200'></a>
+									<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='300'></a>
 																	</div>
 
 								<div class="span7">
