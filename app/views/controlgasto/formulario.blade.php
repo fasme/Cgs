@@ -137,7 +137,7 @@
             
             {{Form::label('Tipo de Documento','Tipo de Documento')}}
            
-            {{Form::select('documento',array("1"=>"Boleta","2"=>"Factura","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
+            {{Form::select('documento',array("1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
 
             {{Form::label('Numero de Documento','Numero de Documento')}}
             {{Form::text('numdocumento',$controlgasto->numdocumento)}}
@@ -148,7 +148,7 @@
 
             {{Form::label('Tipo de pago')}}
         
-            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque","3"=>"Tarjeta"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
+            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque","3"=>"Tarjeta","4"=>"Transferencia"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
             
 
        
