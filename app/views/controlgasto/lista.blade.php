@@ -149,7 +149,7 @@ $("#example tfoot th").eq(7).html('<input type="text" size="1" placeholder="Busc
 
 
 var table  = $('#example').DataTable( {
-"iDisplayLength": 100,
+"iDisplayLength": -1,
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf",
