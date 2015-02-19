@@ -93,16 +93,36 @@ Panel de control
 
 							<div class="row-fluid">
 
-								<div class="span5">
-									Contrato a suma alzada Puentes 1 y 3, Los Peumos de Peñuelas<br>
-									
-									
-									<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='300'></a>
-																	</div>
+								<div class="widget-box">
+											<div class="widget-header">
+												<h5 class="widget-title">Contrato a suma alzada Puentes 1 y 3, Los Peumos de Peñuelas</h5>
 
-								<div class="span7">
-							
+												<div class="widget-toolbar">
+													<div class="widget-menu">
+														<a href="#" data-action="settings" data-toggle="dropdown">
+															<i class="ace-icon fa fa-bars"></i>
+														</a>
+
+														
+													</div>
+
+													
+												</div>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main">
+														<span class="profile-picture">
+														<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='300'></a>
+														</span>
+												
+												</div>
+											</div>
+										</div>
 									</div>
+
+
+
 							</div>
 
 							<div class="hr hr32 hr-dotted"></div>
