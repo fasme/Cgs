@@ -96,9 +96,9 @@ $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad));
 public function xls(){
 $id = Input::get("proyecto_id");
 
-	Excel::create('New file', function($excel) use($id) {
+	Excel::create('Presupuesto', function($excel) use($id) {
 
-    $excel->sheet('New sheet', function($sheet) use($id) {
+    $excel->sheet('Libro 1', function($sheet) use($id) {
 
     	
         $sheet->loadView('presupuesto.xls')->with("id",$id);
