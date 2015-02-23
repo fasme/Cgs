@@ -657,12 +657,7 @@
 								</a>
 							</li>
 
-							<li>
-								<a href={{ URL::to('presupuesto') }}>
-									<i class="fa fa-angle-double-right"></i>
-									Ver/Editar
-								</a>
-							</li>
+							
 
 							
 						</ul>
