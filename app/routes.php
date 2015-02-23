@@ -186,6 +186,7 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('presupuesto', array('uses'=>'PresupuestoController@mostrar'));
 			Route::get('presupuesto/nuevo', array('uses'=>'PresupuestoController@nuevo'));
 			Route::post('presupuesto/crear', array('uses'=>'PresupuestoController@nuevo2'));
+			Route::post('presupuesto/xls', array('uses'=>'PresupuestoController@xls'));
 
 
 			// CONTROL GASTO

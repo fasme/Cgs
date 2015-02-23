@@ -1,40 +1,5 @@
 <?php
-class PresupuestoController extends BaseController {
-
-
-public function mostrar(){
-
-$usuarios = Presupuesto::all();
-        
-        // Con el método all() le estamos pidiendo al modelo de Usuario
-        // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
-        
-        return View::make('presupuesto.lista', array('usuarios' => $usuarios));
-
-}
-
-
-public function nuevo()
-{
-
- 	return View::make('presupuesto.crear');
-}
-
-
-public function nuevo2()
-{
-
- 
-
-
-
-    // Call writer methods here
-$data = Input::all();
-
-	
-
-
-	 $proyectos = Proyecto::Where("proyecto.id","=",$data["proyecto_id"])->get();
+	 $proyectos = Proyecto::Where("proyecto.id","=",$id)->get();
 $costodirecto =0;
 	 echo "<table border=1 width='100%'>";
 	 foreach ($proyectos as $proyecto) {
@@ -82,43 +47,5 @@ $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad));
 	 }
 
 	 echo "</table>";
-	 
-	
-	// return View::make('presupuesto.mostrar');
 
-
-
-
-
-}
-
-
-public function xls(){
-$id = Input::get("proyecto_id");
-
-	Excel::create('New file', function($excel) use($id) {
-
-    $excel->sheet('New sheet', function($sheet) use($id) {
-
-    	
-        $sheet->loadView('presupuesto.xls')->with("id",$id);
-//$sheet->setWidth('B', 50);
-//$sheet->setWidth('C', 50);
-        $sheet->cell('C1', function($cell) {
-//
-});
-
-    });
-
-})->export('xls');
-
-	
-
-
-}
-
-
-
-}
-
-?>
+	 ?>

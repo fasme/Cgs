@@ -44,7 +44,11 @@
   {{Form::label("Proyecto :")}}
   {{Form::text("proyecto",Session::get("proyecto")->nombre, array("readonly"=>"readonly"))}}
   {{Form::hidden("proyecto_id",Session::get("proyecto")->id)}}
-  {{Form::submit("Generar presupuesto")}}
+  {{Form::submit("Generar html")}}
+ {{Form::close()}}
+  {{ Form::open(array('url' => 'presupuesto/xls')) }}
+  {{Form::hidden("proyecto_id",Session::get("proyecto")->id)}}
+  {{Form::submit("Generar xls")}}
   
 
 
