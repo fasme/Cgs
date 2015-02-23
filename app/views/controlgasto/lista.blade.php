@@ -93,6 +93,9 @@
   @if($controlgasto->documento == 3)
   {{ "Otro" }}
   @endif
+  @if($controlgasto->documento == 4)
+  {{ "Nota de credito" }}
+  @endif
 </td>
   <td class="number1">{{$controlgasto->neto}}</td>
   <td class="number1">{{ round($controlgasto->neto*1.19) }}</td>
