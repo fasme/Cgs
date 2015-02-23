@@ -154,18 +154,17 @@ public function editar2($id)
             $data['fecha'] = "$ano-$mes-$dia";
     
     $controlgasto->fill($data);
-  //  $controlgasto->save();
+    $controlgasto->save();
 
 
 
      if($data["concepto"] == "GG")
     {
          $controlgastogg = Controlgasto::find($id)->controlgastogg()->first();
-        // echo $controlgastogg->id;
+       
        $controlgastogg = Controlgastogg::find($controlgastogg->id);
        $controlgastogg->fill($data);
        $controlgastogg->save();
-      // Controlgastogg::create(array("controlgasto_id"=>$lastid,"ggcategoria_id"=>$data["ggcategoria_id"]));
       
     }
     else if($data["concepto"] == "CD")
@@ -174,8 +173,7 @@ public function editar2($id)
         $controlgastocd = Controlgastocd::find($controlgastocd->id);
         $controlgastocd->fill($data);
         $controlgastocd->save();
-      //  Controlgastocd::create(array("controlgasto_id"=>$lastid,"partida_id"=>$data["partida_id"]));
-      
+     
     }
 
      if($data["tipopago"] == "2")
@@ -188,13 +186,13 @@ public function editar2($id)
         $cheque = Cheque::find($cheque_id);
 
         $cheque->fill($data);
-       // $cheque->save();
+        $cheque->save();
 
  
  
     }
 
-    // return Redirect::to('controlgasto');
+     return Redirect::to('controlgasto');
 
 
 
