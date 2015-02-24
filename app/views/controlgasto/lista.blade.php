@@ -156,7 +156,7 @@ var table  = $('#example').DataTable( {
 
  "columnDefs": [ {
       "targets": 0,
-      "type": 'date-eu'
+      "type": 'date-de'
     }
      ],
         dom: 'T<"clear">lfrtip',
