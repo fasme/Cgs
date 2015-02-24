@@ -157,7 +157,8 @@ var table  = $('#example').DataTable( {
  "columnDefs": [ {
       "targets": 0,
       "type": 'date-eu'
-    } ],
+    }
+     ],
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf",

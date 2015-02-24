@@ -90,7 +90,7 @@
     <?php $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad)); ?>
     
  @endforeach
-<td class="number1">{{$suma}}</td>
+<td>{{$suma}}</td>
  
 
 
@@ -123,6 +123,17 @@ $("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Busc
 
 var table = $('#example').DataTable( {
   "iDisplayLength": 100,
+   "columnDefs": [ 
+    {
+      "targets":3,
+      "render": $.fn.dataTable.render.number( '.', ',', 2, ' ' )
+    },
+    {
+      "targets":6,
+      "render": $.fn.dataTable.render.number( '.', ',', 0, '$' )
+    }
+
+     ],
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf"
@@ -165,8 +176,10 @@ var table = $('#example').DataTable( {
 
  
             // Update footer
+            var numFormat = $.fn.dataTable.render.number( '.', ',', 3, '$' ).display;
+
             $( api.column( 3 ).footer() ).html(
-                pageTotal
+                numFormat( pageTotal )
             );
           // $(api.column(6).footer()).removeClass("number1");
           // $(api.column(6).footer()).addClass("number1");
@@ -212,7 +225,7 @@ var tr = $(this).parents('tr');
               { id: id },
 
               function(data,status){ tr.fadeOut(1000); }
-).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricción de clave externa falla");});
+).fail(function(data){bootbox.alert("No se puede eliminar un registro padre: una restricci贸n de clave externa falla");});
 
      
             }

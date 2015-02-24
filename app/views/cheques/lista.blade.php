@@ -148,6 +148,12 @@
 
 $('#example').DataTable( {
   "iDisplayLength": 100,
+
+   "columnDefs": [ {
+      "targets": 4,
+      "type": 'date-eu'
+    } ],
+
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "sSwfPath": "js/TableTools/swf/copy_csv_xls_pdf.swf"
