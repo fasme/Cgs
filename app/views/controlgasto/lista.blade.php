@@ -80,7 +80,7 @@
  
 
            <tr>
-  <td>  {{ date_format(date_create($controlgasto->fecha),'d.m.Y')  }}</td>
+  <td>  {{ date_format(date_create($controlgasto->fecha),'d/m/Y')  }}</td>
   <td>{{ $controlgasto->desc }}</td>
   <td>{{ $controlgasto->proveedor }}</td>
 <td>
