@@ -1,7 +1,7 @@
 <?php
 class Controlgasto extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'controlgasto';
-    protected $fillable = array('fecha','desc','proveedor','documento', 'numdocumento', 'neto','obra_id','concepto', 'proyecto_id', 'tipopago');
+    protected $fillable = array('fecha','desc','proveedor','documento', 'numdocumento', 'neto', 'impuesto','descuento','obra_id','concepto', 'proyecto_id', 'tipopago');
 
 
 
@@ -41,7 +41,9 @@ public $errors;
             'proveedor'     => 'required',
             'numdocumento' => 'required|unique:controlgasto,numdocumento',
             'neto' => 'required|integer',
-            'obra_id' => 'exists:obra,id'
+            'obra_id' => 'exists:obra,id',
+            'impuesto' => 'integer',
+            'descuento' => 'integer'
         );
         
         $validator = Validator::make($data, $rules);

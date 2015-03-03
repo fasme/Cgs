@@ -39,6 +39,8 @@
 {{ HTML::script('js/bootbox.min.js') }}
 {{ HTML::script('js/jquery.prettynumber/jquery.prettynumber.js') }}
 
+{{ HTML::script('js/DataTables-EU-date-Plug-In-master/dataTables.dateFormat.js') }}
+
 
 
 

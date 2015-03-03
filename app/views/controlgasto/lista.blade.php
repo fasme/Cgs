@@ -47,6 +47,7 @@
             <th>Desc</th>
             <th>Prov</th>
             <th>Doc</th>
+            <th>Num Documento</th>
             <th>Neto</th>
              <th>Total</th>
              <th>Obra</th>
@@ -62,6 +63,7 @@
             <tr>
                 <th></th>
                 <th></th>
+                <th class="number1"></th>
                 <th class="number1"></th>
                 <th class="number1"></th>
                 <th class="number1"></th>
@@ -97,6 +99,7 @@
   {{ "Nota de credito" }}
   @endif
 </td>
+<td>{{$controlgasto->numdocumento}}</td>
   <td class="number1">{{$controlgasto->neto}}</td>
   <td class="number1">{{ round($controlgasto->neto*1.19) }}</td>
   <td>{{ $controlgasto->obra->nombre }} </td>
@@ -156,7 +159,7 @@ var table  = $('#example').DataTable( {
 
  "columnDefs": [ {
       "targets": 0,
-      "type": 'date-de'
+      "type": 'eu_date'
     }
      ],
         dom: 'T<"clear">lfrtip',
