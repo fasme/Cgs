@@ -141,8 +141,12 @@
             {{Form::select('documento',array("1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
 
             <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
+            <?php $ano = date("Y");
+
+$anos = array($ano=>$ano,$ano+1=>$ano+1,$ano+2=>$ano+2); ?>   
             {{Form::label('Periodo')}}
-            {{Form::select('periodo',$meses, $controlgasto->periodo,array("id"=>"periodo"))}}
+            {{Form::select('periodomes',$meses, $controlgasto->periodomes,array("id"=>"periodo"))}}
+            {{Form::select('periodoano',$anos, $controlgasto->periodoano,array("id"=>"periodo"))}}
 
             {{Form::label('Numero de Documento','Numero de Documento')}}
             {{Form::text('numdocumento',$controlgasto->numdocumento)}}

@@ -243,7 +243,7 @@ public function informecontabilidad2(){
 
 
     $rules = array(
-           "periodo"=>"required"
+           "periodomes"=>"required"
     );
  
 $validator = Validator::make($data, $rules);
@@ -273,7 +273,8 @@ else
       */
 
 
-      $controlgastos = Controlgasto::where('periodo',"=", $data["periodo"])
+      $controlgastos = Controlgasto::where('periodomes',"=", $data["periodomes"])
+      ->where("periodoano","=",$data["periodoano"])
     ->where('documento',"=",2)
     ->where("proyecto_id","=",Session::get("proyecto")->id)
     ->get();

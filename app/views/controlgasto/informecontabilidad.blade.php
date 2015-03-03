@@ -77,9 +77,14 @@
      {{ Form::open(array('url' => 'controlgasto/informecontabilidad')) }}
 
 <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
-            
-    {{Form::label("Periodo")}}
-    {{Form::select("periodo",$meses)}}
+<?php $ano = date("Y");
+
+$anos = array($ano=>$ano,$ano+1=>$ano+1,$ano+2=>$ano+2); ?>       
+    {{Form::label("Mes")}}
+    {{Form::select("periodomes",$meses)}}
+
+    {{Form::label("Año")}}
+    {{Form::select("periodoano",$anos)}}
     {{Form::submit('Enviar', array('class'=>'btn btn-small btn-success'))}}
   
     {{ Form::close() }}

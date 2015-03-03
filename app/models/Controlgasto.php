@@ -1,7 +1,7 @@
 <?php
 class Controlgasto extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'controlgasto';
-    protected $fillable = array('fecha','desc','proveedor','documento', 'numdocumento', 'neto', 'impuesto','descuento','obra_id','concepto', 'proyecto_id', 'tipopago','periodo');
+    protected $fillable = array('fecha','desc','proveedor','documento', 'numdocumento', 'neto', 'impuesto','descuento','obra_id','concepto', 'proyecto_id', 'tipopago','periodomes','periodoano');
 
 
 
