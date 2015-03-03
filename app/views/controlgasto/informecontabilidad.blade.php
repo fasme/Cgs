@@ -59,7 +59,7 @@
 
   <div class="row-fluid">
   <div class="span4">
-
+<?php /*
     {{ Form::open(array('url' => 'controlgasto/informecontabilidad')) }}
 
     {{Form::label("Desde")}}
@@ -68,6 +68,18 @@
     {{Form::label("Hasta")}}
     {{Form::text("hasta","",array("class"=>"input-mask-date"))}}
     <small class="text-success">dd/mm/yyyy</small>
+    {{Form::submit('Enviar', array('class'=>'btn btn-small btn-success'))}}
+  
+    {{ Form::close() }}
+     */ ?>
+
+
+     {{ Form::open(array('url' => 'controlgasto/informecontabilidad')) }}
+
+<?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
+            
+    {{Form::label("Periodo")}}
+    {{Form::select("periodo",$meses)}}
     {{Form::submit('Enviar', array('class'=>'btn btn-small btn-success'))}}
   
     {{ Form::close() }}

@@ -243,8 +243,7 @@ public function informecontabilidad2(){
 
 
     $rules = array(
-            'desde' => 'required|date_format:d/m/Y',
-            'hasta' => 'required|date_format:d/m/Y'
+           "periodo"=>"required"
     );
  
 $validator = Validator::make($data, $rules);
@@ -256,15 +255,27 @@ if ( $validator->fails() ){
 }
 else
 {
+ /* 
      list($dia,$mes,$ano) = explode("/",$data['desde']);
      $data['desde'] = "$ano-$mes-$dia";
 
      list($dia,$mes,$ano) = explode("/",$data['hasta']);
 
      $data['hasta'] = "$ano-$mes-$dia";
+     *
 
     $controlgastos = Controlgasto::whereBetween('fecha', array($data["desde"], $data["hasta"]))
     ->where('documento',"=",2)
+    ->get();
+     $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos);
+
+      return PDF::load($html, 'A4', 'portrait')->show();
+      */
+
+
+      $controlgastos = Controlgasto::where('periodo',"=", $data["periodo"])
+    ->where('documento',"=",2)
+    ->where("proyecto_id","=",Session::get("proyecto")->id)
     ->get();
      $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos);
 
