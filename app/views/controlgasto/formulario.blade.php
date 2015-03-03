@@ -156,10 +156,10 @@
             {{Form::text('iva','',array("id"=>"iva","disabled"=>"disabled"))}}
 
             {{Form::label('Otros Impuestos')}}
-            {{Form::text('impuesto',$controlgasto->impuesto,array("id"=>"impuestos"))}}
+            {{Form::text('impuesto',$controlgasto->impuesto ? $controlgasto->impuesto:0,array("id"=>"impuestos"))}}
 
             {{Form::label('Descuento')}}
-            {{Form::text('descuento',$controlgasto->descuento,array("id"=>"descuento"))}}
+            {{Form::text('descuento',$controlgasto->descuento ? $controlgasto->descuento:0 ,array("id"=>"descuento"))}}
 
             {{Form::label('Total')}}
             {{Form::text('total','0',array("id"=>"total", "disabled"=>"disabled"))}}
