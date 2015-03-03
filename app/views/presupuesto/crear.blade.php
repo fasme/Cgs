@@ -39,7 +39,7 @@
 
 <div class="row-fluid">
   <div class="span3">
-  {{ Form::open(array('url' => 'presupuesto/crear')) }}
+  {{ Form::open(array('url' => 'presupuesto/crear', 'target'=>"_blank")) }}
 
   {{Form::label("Proyecto :")}}
   {{Form::text("proyecto",Session::get("proyecto")->nombre, array("readonly"=>"readonly"))}}

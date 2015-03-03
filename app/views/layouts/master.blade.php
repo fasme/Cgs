@@ -644,25 +644,13 @@
 
 
 					<li id="presupuestoactive">
-						<a href="#" class="dropdown-toggle">
+						<a href={{ URL::to('presupuesto/nuevo') }} class="dropdown-toggle">
 							<i class="fa fa-list-alt"></i>
 					<span class="menu-text"> Presupuesto </span>
 
-							<b class="arrow fa fa-angle-down"></b>
 						</a>
 
-						<ul class="submenu">
-							<li>
-								<a href={{ URL::to('presupuesto/nuevo') }}>
-									<i class="fa fa-angle-double-right"></i>
-									Ingresar
-								</a>
-							</li>
-
-							
-
-							
-						</ul>
+					
 					</li>
 
 
