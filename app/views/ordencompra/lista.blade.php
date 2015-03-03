@@ -36,7 +36,7 @@
   ordenes
 
 </h1>
-        {{ HTML::link('orden/nuevo', 'Crear Orden'); }}
+        {{ HTML::link('ordencompra/nuevo', 'Crear Orden'); }}
  
 <table id="example" class="table table-striped table-bordered table-hover">
   <thead>
