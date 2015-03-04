@@ -278,7 +278,7 @@ else
     ->where('documento',"=",2)
     ->where("proyecto_id","=",Session::get("proyecto")->id)
     ->get();
-     $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos);
+     $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos)->with("mes",$data["periodomes"])->with("ano",$data["periodoano"]);
 
       return PDF::load($html, 'A4', 'portrait')->show();
 
