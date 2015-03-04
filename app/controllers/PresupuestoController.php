@@ -39,7 +39,7 @@ $costodirecto =0;
 	 echo "<table border=1 width='100%'>";
 	 foreach ($proyectos as $proyecto) {
 	 	
-	 	echo "<tr><td>Nombre</td></tr>";
+	 	echo "<tr><td >Nombre</td></tr>";
 	 	echo "<tr><td colspan='5'>".$proyecto->nombre."</td></tr>";
 	 	$obras = Obra::Where("proyecto_id","=",$proyecto->id)->get();
 
@@ -102,6 +102,17 @@ $id = Input::get("proyecto_id");
 
     	
         $sheet->loadView('presupuesto.xls')->with("id",$id);
+
+       
+
+  $sheet->setStyle(array(
+    'font' => array(
+        'name'      =>  'Arial',
+        'size'      =>  10,
+     
+    )
+));
+
 //$sheet->setWidth('B', 50);
 //$sheet->setWidth('C', 50);
         $sheet->cell('C1', function($cell) {
