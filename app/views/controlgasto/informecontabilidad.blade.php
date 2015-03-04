@@ -74,7 +74,7 @@
      */ ?>
 
 
-     {{ Form::open(array('url' => 'controlgasto/informecontabilidad')) }}
+     {{ Form::open(array('url' => 'controlgasto/informecontabilidad', "target"=>"_blank")) }}
 
 <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
 <?php $ano = date("Y");
