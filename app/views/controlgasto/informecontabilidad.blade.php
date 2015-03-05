@@ -79,7 +79,7 @@
 <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
 <?php $ano = date("Y");
 
-$anos = array($ano=>$ano,$ano+1=>$ano+1,$ano+2=>$ano+2); ?>       
+$anos = array($ano-1=>$ano-1,$ano=>$ano,$ano+1=>$ano+1,$ano+2=>$ano+2); ?>       
     {{Form::label("Mes")}}
     {{Form::select("periodomes",$meses)}}
 

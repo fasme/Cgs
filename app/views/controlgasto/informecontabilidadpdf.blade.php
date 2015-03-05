@@ -42,13 +42,17 @@ table, th, td{
 	<tr>
 <th class='oli'>N</th><th class='oli'>Fecha</th><th class='oli'>Proveedor</th><th class='oli'>Num Factura</th><th class='oli'>Neto</th><th class='oli'>IVA</th><th class='oli'>Impuestos</th><th class='oli'>Descuentos</th><th class='oli'>Total</th>
 	</tr>
-<?php $num=0; ?>
+<?php $num=0; 
+$sumatotal=0; 
+?>
 @foreach($controlgastos as $controlgasto)
 <tr>
-<?php $num++; ?>
-<td class='oli'>{{$num}}</td><td class='oli'>{{date_format(date_create($controlgasto->fecha),'d/m/Y')}}</td><td class='oli'>{{utf8_decode($controlgasto->proveedor)}}</td><td class='oli'>{{$controlgasto->numdocumento}}</td><td class='oli'>{{number_format($controlgasto->neto,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->neto)*0.19,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->impuesto,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->descuento,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->neto*1.19,0,",",".")}}</td>
+<?php $num++; 
+$sumatotal += (($controlgasto->neto*1.19) + $controlgasto->impuesto - $controlgasto->descuento);
+?>
+<td class='oli'>{{$num}}</td><td class='oli'>{{date_format(date_create($controlgasto->fecha),'d/m/Y')}}</td><td class='oli'>{{utf8_decode($controlgasto->proveedor)}}</td><td class='oli'>{{$controlgasto->numdocumento}}</td><td class='oli'>{{number_format($controlgasto->neto,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->neto)*0.19,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->impuesto,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->descuento,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->neto*1.19) + $controlgasto->impuesto - $controlgasto->descuento,0,",",".")}}</td>
 </tr>
 @endforeach
-
+<tr><td colspan="8"></td><td class='oli'>{{number_format($sumatotal,0,",",".")}}</td></tr>
 </table>
 </html>
