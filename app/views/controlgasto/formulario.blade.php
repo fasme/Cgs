@@ -143,7 +143,7 @@
             <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
             <?php $ano = date("Y");
 
-$anos = array($ano=>$ano,$ano+1=>$ano+1,$ano+2=>$ano+2); ?>   
+$anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>   
             {{Form::label('Periodo')}}
             {{Form::select('periodomes',$meses, $controlgasto->periodomes,array("id"=>"periodo"))}}
             {{Form::select('periodoano',$anos, $controlgasto->periodoano,array("id"=>"periodo"))}}
