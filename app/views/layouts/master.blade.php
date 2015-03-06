@@ -742,7 +742,7 @@
 
 					<li id="bodegaactive">
 						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-suitcase"></i>
 					<span class="menu-text"> Bodega </span>
 
 							<b class="arrow fa fa-angle-down"></b>
