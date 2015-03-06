@@ -242,6 +242,16 @@ Route::group(array('before' => 'auth'), function()
 				
 
 				});
+
+
+
+
+			Route::get("bodega",array("uses"=>"BodegaController@mostrar"));
+			Route::get('bodega/nuevo', array('uses'=>'BodegaController@nuevo'));
+			Route::post('bodega/crear', array('uses'=>'BodegaController@nuevo2'));
+			Route::get('bodega/editar/{id}', array('uses' => 'BodegaController@editar'));
+			Route::post('bodega/editar/{id}', array('uses' => 'BodegaController@editar2'));
+			Route::get('bodega/eliminar', array('uses' => 'BodegaController@eliminar'));
 		
 
 });

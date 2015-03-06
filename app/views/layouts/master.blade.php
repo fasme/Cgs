@@ -740,6 +740,37 @@
 
 
 
+					<li id="bodegaactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-user"></i>
+					<span class="menu-text"> Bodega </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href={{ URL::to('bodega/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('bodega') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+
+							
+						</ul>
+					</li>
+
+
+
 				</ul><!--/.nav-list-->
 
 				<div class="sidebar-collapse" id="sidebar-collapse">
