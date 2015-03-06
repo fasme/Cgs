@@ -280,7 +280,7 @@ else
     ->get();
      $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos)->with("mes",$data["periodomes"])->with("ano",$data["periodoano"]);
 
-      return PDF::load($html, 'A4', 'portrait')->show();
+      return PDF::load($html, 'A4', 'landscape')->show();
 
 }
       
