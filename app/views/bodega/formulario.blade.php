@@ -88,7 +88,7 @@
             {{Form::text('ubicacion',$bodega->ubicacion)}}
 
             {{Form::label('Estado')}}
-            {{Form::select('estado',array("1"=>"1","2"=>"2","3"=>"3","4"=>"4"),$bodega->estado)}}
+            {{Form::select('estado',array("1"=>"en uso","2"=>"en mantencion","3"=>"en reparacion","4"=>"malo","5"=>"obsoleto"),$bodega->estado)}}
 
             {{Form::label('Ultima revision')}}
             {{Form::text('ultimarevision', date_format(date_create($bodega->fecha),'d/m/Y'), array("class"=>"input-mask-date"))}}
@@ -111,7 +111,7 @@
 
 
                  
- {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}
+ {{Form::button("<i class='fa fa-check'></i> Guardar", array('class'=>'btn btn-small btn-success', 'type'=>'submit'))}}
         {{ Form::close() }}
 
                                

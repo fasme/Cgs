@@ -64,6 +64,33 @@
 </tr>
 </table>
 
+
+<h3 class="header smaller lighter green">TOTAL</h3>
+
+
+<table border='0' width="500">
+@foreach (Session::get("proyecto")->obra as $teoricos)
+
+@endforeach
+
+<tr>
+  <tr><th>Excavaciones</th><th>Rellenos Estructurales</th><th>Hormigones</th><th>Otros</th></tr>
+  <td><a href="{{URL::to('informes/analisiscosto/cdexcavacion/ALL')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+ <td><a href="{{URL::to('informes/analisiscosto/cdrellenos/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  <td><a href="{{URL::to('informes/analisiscosto/cdhormigon/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  <td><a href="{{URL::to('informes/analisiscosto/cdotros/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  
+</tr>
+<tr>
+  <tr><th>Acero</th><th>Moldajes</th><th>Enrocados</th></tr>
+  <td><a href="{{URL::to('informes/analisiscosto/cdacero/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+ <td><a href="{{URL::to('informes/analisiscosto/cdmoldaje/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  <td><a href="{{URL::to('informes/analisiscosto/cdenrocado/1')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  
+</tr>
+</table>
+
+
 <h3 class="header smaller lighter green">Costos Directos Puente 1</h3>
 
 

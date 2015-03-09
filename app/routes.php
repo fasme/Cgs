@@ -18,7 +18,8 @@ Route::filter('old', function()
     if (Session::get('proyecto'))
    {
 			
-   	//return Redirect::to('');
+		//	$controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")->id)->get();
+   	//	return View::make('controlgasto.lista', array('controlgastos' => $controlgastos));
 		}
 		else
 		{

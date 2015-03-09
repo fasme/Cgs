@@ -152,8 +152,8 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
        $ids = array("6","31","62","83","8","32","63","84"); 
        $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
+      ->where("obra_id","=",$obra)
+      ->Wherein("partida.id",$ids)
        ->get();
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
@@ -161,7 +161,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
        ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
+        ->Wherein("controlgastocd.partida_id",$ids)
        ->get();
 
        

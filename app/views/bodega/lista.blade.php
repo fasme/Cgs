@@ -78,18 +78,28 @@
   <td>
 
   @if ( $bodega->estado === "1")
-<span class="label label-success">
-   Revisado
+<span class="label label-success arrowed-in arrowed-in-right">
+   En uso
    </span>
 
 @elseif ( $bodega->estado === "2")
-<span class="label label-warning">
-   Revisar
+<span class="label label-info">
+   En Mantencion
    </span>
 
 @elseif ( $bodega->estado === "3")
 <span class="label label-warning">
-   Pendiente
+   En Reparacion
+   </span>
+
+   @elseif ( $bodega->estado === "4")
+<span class="label label-important">
+   Malo
+   </span>
+
+   @elseif ( $bodega->estado === "5")
+<span class="label label-inverse arrowed">
+   Obsoleto
    </span>
 
 

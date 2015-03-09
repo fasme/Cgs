@@ -44,7 +44,7 @@ public function sessionProyecto($id){
 	//Session::put('proyecto', $id);
 	$proyecto = Proyecto::find($id);
 	Session::put('proyecto', $proyecto);
-	return Redirect::to("dashboard");
+	return Redirect::to("controlgasto");
 	
 }
 

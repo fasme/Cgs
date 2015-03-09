@@ -22,12 +22,13 @@
           <?php 
           $teorico = (int)$teorico[0]->suma; 
           $real = (int)$real[0]->suma2;
+          $inicio = 0;
 
 
          
           ?>
-          ['Year', 'Real',{ role: 'annotation' }, 'Teorico',{ role: 'annotation' }],
-          ["<?php echo $titulo; ?>",  <?php echo $real; ?>, "<?php echo number_format($real,0,',','.'); ?>" , <?php echo $teorico ?>, "<?php echo number_format($teorico,0,',','.'); ?>"]
+          ['Year', 'Real',{ role: 'annotation' }, 'Teorico',{ role: 'annotation' },"inicio"],
+          ["<?php echo $titulo; ?>",  <?php echo $real; ?>, "<?php echo number_format($real,0,',','.'); ?>" , <?php echo $teorico ?>, "<?php echo number_format($teorico,0,',','.'); ?>", <?php echo $inicio; ?>]
         ]);
 
 
@@ -35,10 +36,15 @@
 
         var options = {
          // title: 'Excavaciones',
-          vAxis: {title: '',  titleTextStyle: {color: 'red'}}
+          vAxis: {title: '',  titleTextStyle: {color: 'green'}},
+           backgroundColor:"white",
+            colors:["red","Blue", "White"],
+
+
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
 
         chart.draw(data, options);
       }

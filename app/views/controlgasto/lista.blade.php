@@ -149,17 +149,21 @@
 $(document).ready(function() {
 
 $("#example tfoot th").eq(1).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-$("#example tfoot th").eq(6).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(3).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+$("#example tfoot th").eq(4).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 $("#example tfoot th").eq(7).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-
+$("#example tfoot th").eq(8).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 
 
 var table  = $('#example').DataTable( {
 "iDisplayLength": -1,
+"order": [[ 0, "desc" ]],
 
  "columnDefs": [ {
       "targets": 0,
-      "type": 'eu_date'
+      "type": 'eu_date',
+      "order": "asc"
     }
      ],
         dom: 'T<"clear">lfrtip',
@@ -198,7 +202,7 @@ var table  = $('#example').DataTable( {
  
             // Total over all pages
             total = api
-                .column( 4 )
+                .column( 6 )
                 .data()
                 .reduce( function (a, b) {
                     
@@ -210,14 +214,14 @@ var table  = $('#example').DataTable( {
  
             // Total over this page
             pageTotal = api
-                .column( 4, { page: 'current'} )
+                .column( 6, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 4 ).footer() ).html(
+            $( api.column( 6 ).footer() ).html(
                 pageTotal
             );
 
