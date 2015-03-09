@@ -152,17 +152,39 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
        $ids = array("6","31","62","83","8","32","63","84"); 
        $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-      ->where("obra_id","=",$obra)
-      ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-        ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
+
+       
 
        
 
@@ -176,19 +198,40 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     public function cdRellenos($obra){
 
       $ids = array("19","37","71","89"); 
-       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
+
 
        
 
@@ -201,17 +244,38 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
       $ids = array("27","48","79","100","15","40","70","92","12","36","67","88","30","51","82","103","55","107","23","44","75","96","9","20","24","28","33","41","45","49","64","72","76","80","85","93","97","101"); 
        $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
+
 
        
 
@@ -223,19 +287,39 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
 
     public function cdAcero($obra){
       $ids = array("10","13","21","25","29","34","38","42","46","50","54","65","68","73","77","81","86","90","94","98","102","106"); 
-       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
 
        
 
@@ -247,19 +331,39 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
 
     public function cdMoldaje($obra){
       $ids = array("11","14","22","26","35","39","43","47","53","66","69","74","78","87","91","95","99","105"); 
-       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
 
        
 
@@ -270,19 +374,40 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
 
     public function cdEnrocado($obra){
       $ids = array("56","57","58","108","109","110"); 
-       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
+
 
        
 
@@ -294,19 +419,39 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
 
     public function cdOtros($obra){
       $ids = array("52","104","59","111","60","112"); 
-       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
        ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
-       ->where("obra_id","=",$obra)
-       ->Wherein("partida.id",$ids)
-       ->get();
+       ->Wherein("partida.id",$ids);
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
        //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
        ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
-       ->where("controlgasto.obra_id","=",$obra)
-       ->Wherein("controlgastocd.partida_id",$ids)
-       ->get();
+      // ->where("controlgasto.obra_id","=",$obra)
+        ->Wherein("controlgastocd.partida_id",$ids);
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
 
        
 
