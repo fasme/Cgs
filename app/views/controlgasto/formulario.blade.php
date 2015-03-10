@@ -138,7 +138,7 @@
 
             
             {{Form::label('Tipo de Documento','Tipo de Documento')}}
-            {{Form::select('documento',array("1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
+            {{Form::select('documento',array("0"=>"Seleccione documento","1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
 
             <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
             <?php $ano = date("Y");
@@ -157,7 +157,7 @@ $anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>
 
 
             {{Form::label('IVA')}}
-            {{Form::text('iva','',array("id"=>"iva","disabled"=>"disabled"))}}
+            {{Form::text('iva',$controlgasto->iva,array("id"=>"iva","readonly"=>"readonly"))}}
 
             {{Form::label('Otros Impuestos')}}
             {{Form::text('impuesto',$controlgasto->impuesto ? $controlgasto->impuesto:0,array("id"=>"impuestos"))}}
@@ -166,7 +166,7 @@ $anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>
             {{Form::text('descuento',$controlgasto->descuento ? $controlgasto->descuento:0 ,array("id"=>"descuento"))}}
 
             {{Form::label('Total')}}
-            {{Form::text('total','0',array("id"=>"total", "disabled"=>"disabled"))}}
+            {{Form::text('total',$controlgasto->total,array("id"=>"total", "readonly"=>"readonly"))}}
 
 
             {{Form::label('Tipo de pago')}}
@@ -361,7 +361,51 @@ $.get("{{ url('controlgasto/buscarcategoriasgg')}}",
 
 
 
-// CALCULAR IVA TOTAL DESCUENTO
+
+
+
+
+
+// SI ES EDITAR
+var tipodocumento = $("#tipodocumento").val();
+
+if( tipodocumento == 1 || tipodocumento == 3) // boleta y otros
+{
+
+
+  var neto = parseFloat($("#neto").val());
+$("#impuestos").val(0);
+$("#descuento").val(0);
+$("#iva").val(0);
+var total = neto;
+total = Math.round(total);
+$("#total").val(total);
+$("#total").val(neto);
+
+
+$("#impuestos").prop('readonly', true);
+$("#descuento").prop('readonly', true);
+
+
+$("#neto").keyup(function(){
+var neto = parseFloat($("#neto").val());
+var iva = 0;
+$("#iva").val(iva);
+$("#total").val(neto);
+
+});
+
+
+
+}
+
+
+else if( tipodocumento== 2 || tipodocumento == 4) // boleta y otros
+{
+
+
+$("#impuestos").prop('readonly', false);
+$("#descuento").prop('readonly', false);
 
 var neto = parseFloat($("#neto").val());
 var iva = Math.round(neto*0.19);
@@ -407,6 +451,108 @@ var total = neto + iva + impuestos - descuento;
 total = Math.round(total);
 $("#total").val(total);
 });
+
+
+
+}
+
+// FIN SI ES EDITAR
+
+
+// CALCULAR IVA TOTAL DESCUENTO AL CAMBIAR SELECT
+$("#tipodocumento").change(function(){
+
+var tipodocumento = $("#tipodocumento").val();
+
+if( tipodocumento == 1 || tipodocumento == 3) // boleta y otros
+{
+
+
+  var neto = parseFloat($("#neto").val());
+$("#impuestos").val(0);
+$("#descuento").val(0);
+$("#iva").val(0);
+var total = neto;
+total = Math.round(total);
+$("#total").val(total);
+$("#total").val(neto);
+
+
+$("#impuestos").prop('readonly', true);
+$("#descuento").prop('readonly', true);
+
+
+$("#neto").keyup(function(){
+var neto = parseFloat($("#neto").val());
+var iva = 0;
+$("#iva").val(iva);
+$("#total").val(neto);
+
+});
+
+
+
+}
+
+
+else if( tipodocumento== 2 || tipodocumento == 4) // boleta y otros
+{
+
+
+$("#impuestos").prop('readonly', false);
+$("#descuento").prop('readonly', false);
+
+var neto = parseFloat($("#neto").val());
+var iva = Math.round(neto*0.19);
+$("#iva").val(iva);
+var impuestos = parseFloat($("#impuestos").val());
+var descuento = parseFloat($("#descuento").val());
+
+var total = neto + iva + impuestos - descuento;
+total = Math.round(total);
+$("#total").val(total);
+
+$("#neto").keyup(function(){
+var neto = parseFloat($("#neto").val());
+var iva = Math.round(neto*0.19);
+$("#iva").val(iva);
+var impuestos = parseFloat($("#impuestos").val());
+var descuento = parseFloat($("#descuento").val());
+
+var total = neto + iva + impuestos - descuento;
+total = Math.round(total);
+$("#total").val(total);
+});
+
+
+$("#impuestos").keyup(function(){
+var neto = parseFloat($("#neto").val());
+var iva = Math.round(neto*0.19);
+$("#iva").val(iva);
+var impuestos = parseFloat($("#impuestos").val());
+var descuento = parseFloat($("#descuento").val());
+var total = neto + iva + impuestos - descuento;
+total = Math.round(total);
+$("#total").val(total);
+});
+
+$("#descuento").keyup(function(){
+var neto = parseFloat($("#neto").val());
+var iva = Math.round(neto*0.19);
+$("#iva").val(iva);
+var impuestos = parseFloat($("#impuestos").val());
+var descuento = parseFloat($("#descuento").val());
+var total = neto + iva + impuestos - descuento;
+total = Math.round(total);
+$("#total").val(total);
+});
+
+
+
+}
+
+  });
+
 
 
 // FUNCION para mostrar el tab cheque

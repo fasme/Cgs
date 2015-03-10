@@ -101,7 +101,7 @@
 </td>
 <td>{{$controlgasto->numdocumento}}</td>
   <td class="number1">{{$controlgasto->neto}}</td>
-  <td class="number1">{{ round(($controlgasto->neto*1.19) + $controlgasto->impuesto - $controlgasto->descuento ) }}</td>
+  <td class="number1">{{ round($controlgasto->total) }}</td>
   <td>{{ $controlgasto->obra->nombre }} </td>
 
   <td>{{ $controlgasto->concepto }} / 

@@ -42,7 +42,7 @@ public function nuevo2()
 
     $controlgasto = new Controlgasto;
     $data = Input::all();
-   //return $data;
+  // return $data;
 
     if($controlgasto->isValid($data))
     {
@@ -106,9 +106,6 @@ return Redirect::to('controlgasto/nuevo')->withInput()->withErrors($controlgasto
 
             
 
-            
-
-   // $controlgastos = Controlgasto::create($data);
 
     
 
