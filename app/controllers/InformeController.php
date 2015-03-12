@@ -170,7 +170,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -218,7 +218,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -262,7 +262,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -307,7 +307,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -351,7 +351,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -394,7 +394,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
@@ -439,7 +439,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM((controlgasto.neto * 1.19) + impuesto - descuento) as suma2"))
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
       // ->where("controlgasto.obra_id","=",$obra)
         ->Wherein("controlgastocd.partida_id",$ids);
 
