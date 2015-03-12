@@ -87,7 +87,7 @@
         $action    = 'Crear';        
     endif;
 
-    $tiposelect = 1;
+    $tiposelect = 0;
     if($controlgasto->concepto == "CD")
      $tiposelect = $controlgasto->controlgastocd->partida->id;
   elseif($controlgasto->concepto == "GG")

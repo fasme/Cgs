@@ -17,22 +17,33 @@ $controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")-
 public function nuevo()
 {
 
+
+
+
     $controlgasto = new Controlgasto;
 	$proyectos = Proyecto::all()->lists("nombre","id");
 	$selected = array();
 
+  $obras0 = array("0"=>"-- seleccione Obra --");
     $obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-  array_unshift($obras, ' --- Seleccione una obra --- ');
+ 
+    $obras = $obras0 + $obras;
+ // array_unshift($obras, ' --- Seleccione una obra --- ');
     $selected2 = array();
 
+    $partidas0 = array("0"=>"-- seleccione partida --");
     $partidas = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-    array_unshift($partidas, ' --- Seleccione una partida --- ');
+   
+   $partidas = $partidas0 + $partidas;
 
    
-
+     $ggs0 = array("0"=>"-- seleccione categoria --");
     $ggs = Ggcategoria::all()->lists("nombre","id");
 
-    $selected3 = array();
+   
+    $ggs = $ggs0 + $ggs;
+//   array_unshift($ggs, ' --- Seleccione una partida --- ');
+
 
  //return View::make('controlgasto.crear', compact('proyectos','selected'), compact('obras','selected2'), compact('ggs','selected3'));
     return View::make('controlgasto.formulario')->with("controlgasto",$controlgasto)->with('proyectos',$proyectos)->with('obras',$obras)->with('ggs',$ggs)->with("partidas",$partidas);
@@ -127,15 +138,21 @@ public function editar($id)
     $proyectos = Proyecto::all()->lists("nombre","id");
     $selected = array();
 
+    $obras0 = array("0"=>"-- Seleccione obra --");
     $obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-  array_unshift($obras, ' --- Seleccione una obra --- ');
+  //array_unshift($obras, ' --- Seleccione una obra --- ');
+    $obras = $obras0 + $obras;
     $selected2 = array();
 
     $partidas = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
    // array_unshift($partidas, ' --- Seleccione una partida --- ');
 
+
+    $ggs0 = array("0"=>"-- Seleccione categoria --");
     $ggs = Ggcategoria::all()->lists("nombre","id");
-array_unshift($ggs, ' --- Seleccione una categoria --- ');
+
+    $ggs = $ggs0 + $ggs;
+//array_unshift($ggs, ' --- Seleccione una categoria --- ');
     $selected3 = array();
 
 return View::make('controlgasto.formulario')->with("controlgasto",$controlgasto)->with('proyectos',$proyectos)->with('obras',$obras)->with('ggs',$ggs)->with("partidas",$partidas);

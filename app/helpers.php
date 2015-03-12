@@ -7,4 +7,7 @@ function CalcularDiasCheque($fecha)
     return "(".$s." Dias)";
 }
 
+
+
+
 ?>
