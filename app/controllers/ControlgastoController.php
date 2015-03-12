@@ -130,7 +130,7 @@ public function editar($id)
     $selected2 = array();
 
     $partidas = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-    array_unshift($partidas, ' --- Seleccione una partida --- ');
+   // array_unshift($partidas, ' --- Seleccione una partida --- ');
 
     $ggs = Ggcategoria::all()->lists("nombre","id");
 array_unshift($ggs, ' --- Seleccione una categoria --- ');

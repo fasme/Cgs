@@ -89,10 +89,11 @@
 
     $tiposelect = 1;
     if($controlgasto->concepto == "CD")
-    $tiposelect = $controlgasto->controlgastocd->partida->id;
+     $tiposelect = $controlgasto->controlgastocd->partida->id;
   elseif($controlgasto->concepto == "GG")
     $tiposelect = $controlgasto->controlgastogg->ggcategoria->id;
 
+ echo $tiposelect;
 ?>
 
         {{ Form::open($form_data) }}
