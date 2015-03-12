@@ -63,9 +63,9 @@
             <tr>
                 <th></th>
                 <th></th>
-                <th class="number1"></th>
-                <th class="number1"></th>
-                <th class="number1"></th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th class="number1"></th>
                 <th class="number1"></th>
                 <th></th>

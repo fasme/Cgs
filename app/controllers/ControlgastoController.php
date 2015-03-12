@@ -28,8 +28,10 @@ public function nuevo()
     $partidas = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
     array_unshift($partidas, ' --- Seleccione una partida --- ');
 
+   
+
     $ggs = Ggcategoria::all()->lists("nombre","id");
-array_unshift($ggs, ' --- Seleccione una categoria --- ');
+
     $selected3 = array();
 
  //return View::make('controlgasto.crear', compact('proyectos','selected'), compact('obras','selected2'), compact('ggs','selected3'));
