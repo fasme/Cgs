@@ -93,7 +93,7 @@
   elseif($controlgasto->concepto == "GG")
     $tiposelect = $controlgasto->controlgastogg->ggcategoria->id;
 
- echo $tiposelect;
+ 
 ?>
 
         {{ Form::open($form_data) }}
