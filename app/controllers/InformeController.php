@@ -83,7 +83,7 @@ $sql = Proyecto::leftJoin("gg","proyecto.id","=", "gg.proyecto_id")
 $sql = Gastogeneral::where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("*, SUM(precio*cantidad) as valorneto"))->get();
 
 
-$sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->where('concepto',"=","GG")->select(DB::raw("SUM(neto*1.19) as valorneto2"))->get();
+$sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->where('concepto',"=","GG")->select(DB::raw("SUM(neto) as valorneto2"))->get();
 
 
 
@@ -116,7 +116,7 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
     $sql2 = Ggcategoria::leftjoin("controlgastogg","ggcategoria.id","=","controlgastogg.ggcategoria_id")
     ->leftjoin("controlgasto","controlgasto.id","=","controlgastogg.controlgasto_id")
     ->where("ggcategoria.proyecto_id","=", Session::get("proyecto")->id)
-    ->select(DB::raw("SUM(controlgasto.neto*1.19) as valorneto"))
+    ->select(DB::raw("SUM(controlgasto.neto) as valorneto"))
      ->groupBy('ggcategoria.id')
     ->get();
 
@@ -124,6 +124,23 @@ $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->whe
      //return $sql2;
 
       return View::make('informe.analisiscostodetalle')->with("categorias",$sql)->with("teorico", $sql1)->with("real",$sql2);
+
+    }
+
+
+    public function analisisCostoResumenMensual()
+    {
+
+      $sql = Gastogeneral::where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("*, SUM(precio*cantidad) as valorneto"))->get();
+      
+     $sql1 = Controlgasto::where('proyecto_id',"=",Session::get("proyecto")->id)->where('concepto',"=","GG")->select(DB::raw("extract(month from fecha) as mes,extract(year from fecha) as ano,SUM(neto) as valorneto2"))->groupby("mes")->groupBy("ano")->orderby("ano")->get();
+
+     
+return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)->with("real",$sql1);
+
+
+     
+
 
     }
 

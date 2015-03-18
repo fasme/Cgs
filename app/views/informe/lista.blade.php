@@ -56,10 +56,11 @@
 
 <table border='0' width="500">
 
-<tr><td>Resumen</td><td>Detalle</td></tr>
+<tr><td>Resumen</td><td>Detalle</td><td>Resumen Mensual</td></tr>
 <tr>
   <td><a href="{{URL::to('informes/analisiscosto/resumen')}}"><img src={{asset('img/graph/Goingdown128.png')}} alt="Logo"></a></td>
  <td><a href="{{URL::to('informes/analisiscosto/detalle')}}"><img src={{asset('img/graph/Goingdown128.png')}} alt="Logo"></a></td>
+  <td><a href="{{URL::to('informes/analisiscosto/resumenmensual')}}"><img src={{asset('img/graph/Goingdown128.png')}} alt="Logo"></a></td>
   
 </tr>
 </table>

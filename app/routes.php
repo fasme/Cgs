@@ -231,6 +231,7 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('informes/analisiscosto', array('uses'=>'InformeController@lista'));
 					Route::get('informes/analisiscosto/detalle', array('uses'=>'InformeController@analisisCostoDetalle'));
 					Route::get('informes/analisiscosto/resumen', array('uses'=>'InformeController@analisisCostoResumen'));
+					Route::get('informes/analisiscosto/resumenmensual',array('uses'=>'InformeController@analisisCostoResumenMensual'));
 					Route::get('informes/analisiscosto/cdexcavacion/{obra}',array('uses'=>'InformeController@cdExcavacion'));
 					Route::get('informes/analisiscosto/cdrellenos/{obra}',array('uses'=>'InformeController@cdRellenos'));
 					Route::get('informes/analisiscosto/cdhormigon/{obra}',array('uses'=>'InformeController@cdHormigon'));
@@ -238,9 +239,8 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('informes/analisiscosto/cdmoldaje/{obra}',array('uses'=>'InformeController@cdMoldaje'));
 					Route::get('informes/analisiscosto/cdenrocado/{obra}',array('uses'=>'InformeController@cdEnrocado'));
 					Route::get('informes/analisiscosto/cdotros/{obra}',array('uses'=>'InformeController@cdOtros'));
-					Route::get('informes/analisiscosto/{obra}',array('uses'=>'InformeController@analisisCostoObra'));
+					//Route::get('informes/analisiscosto/{obra}',array('uses'=>'InformeController@analisisCostoObra'));
 					
-				
 
 				});
 
