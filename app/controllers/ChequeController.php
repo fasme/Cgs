@@ -3,7 +3,7 @@ class ChequeController extends BaseController {
 
 public function mostrar(){ // vista
 
-	 $cheques = Cheque::all();
+	 $cheques = Cheque::where("proyecto_id",'=',Session::get("proyecto")->id)->get();
 
 	// echo $obra = Obra::find($cheques->obra);
 	 $cheques->proveedor = 1;
