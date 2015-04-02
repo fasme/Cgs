@@ -11,6 +11,11 @@
 |
 */
 
+
+// ERRORERS
+
+
+
 Route::get('cheques/cron', array('uses'=>'ChequeController@cron'));
 
 Route::filter('old', function()
@@ -253,6 +258,10 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('bodega/editar/{id}', array('uses' => 'BodegaController@editar'));
 			Route::post('bodega/editar/{id}', array('uses' => 'BodegaController@editar2'));
 			Route::get('bodega/eliminar', array('uses' => 'BodegaController@eliminar'));
+
+
+
+
 		
 
 });

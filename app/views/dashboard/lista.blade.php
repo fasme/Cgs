@@ -37,7 +37,18 @@
 						</h1>
 					</div>
 
+@if(isset($mensaje2))
+<div class="alert alert-block alert-warning">
+								<button type="button" class="close" data-dismiss="alert">
+									<i class="fa fa-remove"></i>
+								</button>
 
+				
+
+							{{$mensaje2}}
+
+							</div>
+@endif
 
 @if(isset(Session::get('proyecto')->nombre))
 <div class="alert alert-block alert-success">
