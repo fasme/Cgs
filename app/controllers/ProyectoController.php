@@ -49,7 +49,7 @@ if (Auth::check())
 	$iduser =  Auth::user()->id;
 }
 
-	$permiso = UsuarioProyecto::where("usuario_id","=",$iduser)->where("proyecto_id","=",$id)->get(); //revisando si tiene permiso
+	$permiso = Usuarioproyecto::where("usuario_id","=",$iduser)->where("proyecto_id","=",$id)->get(); //revisando si tiene permiso
 
 	 if(count($permiso) == 0) // no tiene permiso
 	 {
