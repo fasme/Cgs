@@ -111,11 +111,11 @@ Panel de control
 										</div>
 									</div>
 
-<!--
+
 									<div class="span6">
 								<div class="widget-box">
 											<div class="widget-header">
-												<h5 class="widget-title">Contrato</h5>
+												<h5 class="widget-title">Obra Llay Llay - San Felipe</h5>
 
 												
 											</div>
@@ -123,7 +123,7 @@ Panel de control
 											<div class="widget-body">
 												<div class="widget-main center">
 														<span class="profile-picture">
-														<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='400'></a>
+														<a href="{{URL::to('proyectos/session/2')}}"><img src={{asset('img/proyecto.jpg')}} alt="Logo" width='400'></a>
 														</span>
 												
 												</div>
@@ -131,7 +131,7 @@ Panel de control
 										</div>
 									</div>
 							</div>
--->
+
 
 
 							</div>
