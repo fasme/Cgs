@@ -3,8 +3,8 @@ class PartidaController extends BaseController {
 
 public function mostrar(){
 
-	$partidas = Partida::all();
-	//$partidas = Partida::where('proyecto_id','=',Session::get("proyecto")->id)->get();
+	//$partidas = Partida::all();
+	$partidas = Partida::where('proyecto_id','=',Session::get("proyecto")->id)->get();
 	return View::make("partidas.lista", array("partidas"=>$partidas));
 
 }
@@ -14,8 +14,10 @@ public function nuevo(){
 	$partida = new Partida;
 	//$categorias = Partidacategoria::all()->lists("nombre","id");
 	$categorias = Partidacategoria::where('proyecto_id','=',Session::get('proyecto')->id)->get()->lists("nombre","id");
+
+	 $obras0 = array("0"=>"-- seleccione obra --");
 	$obras = Obra::where('proyecto_id',"=",Session::get("proyecto")->id)->get()->lists("nombre","id");
-	  array_unshift($obras, ' --- Seleccione una obra --- ');
+	  $obras = $obras0 + $obras;
 	$selected = array();
 	return View::make("partidas.crear")->with("obras",$obras)->with("categorias",$categorias)->with("partida",$partida);
 	//return "ho";
