@@ -477,6 +477,75 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
     }
 
+
+
+
+
+    //  Presupuesto vs ingresos vs costos
+
+    public function ingresoGasto($obra){
+
+
+    
+      $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
+       ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"));
+     
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->get();
+       }
+       else
+       {
+         $sql = $sql->get();
+       }
+
+      
+
+       //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
+    
+
+       $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"));
+      // ->where("controlgasto.obra_id","=",$obra)
+      
+
+         if($obra != "ALL")
+       {
+        $sql1 = $sql1->where("controlgasto.obra_id","=",$obra);
+        $sql1 = $sql1->get();
+       }
+       else
+       {
+         $sql1 = $sql1->get();
+       }
+
+
+        $sql2 = Controlingreso::select(DB::raw("SUM(neto) as suma3"));
+      // ->where("controlgasto.obra_id","=",$obra)
+      
+
+         if($obra != "ALL")
+       {
+        $sql2 = $sql2->where("controlgasto.obra_id","=",$obra);
+        $sql2 = $sql2->get();
+       }
+       else
+       {
+         $sql2 = $sql2->get();
+       }
+
+       
+
+       $titulo = "Otros";
+       return View::make('informe.analisisingresogasto')->with("teorico", $sql)->with("real",$sql1)->with("titulo",$titulo)->with("ingreso",$sql2);
+
+
+
+    }
+
+
 }
 
 

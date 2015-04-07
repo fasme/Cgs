@@ -89,6 +89,15 @@
   <td><a href="{{URL::to('informes/analisiscosto/cdenrocado/ALL')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
   
 </tr>
+
+<tr>
+  <tr><th>Ingreso vs Costo vs Prespupuesto</th></tr>
+  <td><a href="{{URL::to('informes/analisiscosto/ingresogasto/ALL')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+
+  
+</tr>
+
+
 </table>
 
 

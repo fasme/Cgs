@@ -256,6 +256,8 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('informes/analisiscosto/cdmoldaje/{obra}',array('uses'=>'InformeController@cdMoldaje'));
 					Route::get('informes/analisiscosto/cdenrocado/{obra}',array('uses'=>'InformeController@cdEnrocado'));
 					Route::get('informes/analisiscosto/cdotros/{obra}',array('uses'=>'InformeController@cdOtros'));
+					Route::get("informes/analisiscosto/ingresogasto/{obra}",array("uses"=>"InformeController@ingresoGasto"));
+					// Presupuesto vs ingresos vs costos
 					//Route::get('informes/analisiscosto/{obra}',array('uses'=>'InformeController@analisisCostoObra'));
 					
 
