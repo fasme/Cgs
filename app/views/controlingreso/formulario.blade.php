@@ -12,13 +12,13 @@
             </li>
 
             <li>
-              <a href={{ URL::to('controlgasto') }}>Control de gasto</a>
+              <a href={{ URL::to('controlingreso') }}>Control de ingreso</a>
 
               <span class="divider">
                 <i class="icon-angle-right arrow-icon"></i>
               </span>
             </li>
-            <li>Ver Gastos</li>
+            <li>Ver ingreos</li>
           </ul><!--.breadcrumb-->
 
           @stop
@@ -27,7 +27,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Crear Control de gasto
+              Crear Control de ingreso
               <small>
                 <i class="icon-double-angle-right"></i>
                 
@@ -60,13 +60,10 @@
                       <div class="widget-toolbar no-border">
                         <ul class="nav nav-tabs" id="myTab">
                           <li id="gastoactivetab">
-                            <a data-toggle="tab" href="#home">Gasto</a>
+                            <a data-toggle="tab" href="#home">Ingreso</a>
                           </li>
 
-                          <li id="chequeactivetab">
-                            <a data-toggle="tab" href="#profile">Cheque</a>
-                          </li>
-
+                        
                           
                         </ul>
                       </div>
@@ -79,19 +76,15 @@
                             <div class="span5">
 
 <?php
-    if ($controlgasto->exists):
-        $form_data = array('url' => 'controlgasto/editar/'.$controlgasto->id);
+    if ($controlingreso->exists):
+        $form_data = array('url' => 'controlingreso/editar/'.$controlingreso->id);
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'controlgasto/crear');
+        $form_data = array('url' => 'controlingreso/crear');
         $action    = 'Crear';        
     endif;
 
-    $tiposelect = 0;
-    if($controlgasto->concepto == "CD")
-     $tiposelect = $controlgasto->controlgastocd->partida->id;
-  elseif($controlgasto->concepto == "GG")
-    $tiposelect = $controlgasto->controlgastogg->ggcategoria->id;
+
 
  
 ?>
@@ -103,76 +96,40 @@
             {{Form::hidden('proyecto_id',Session::get("proyecto")->id) }}
 
             {{Form::label('Obra', 'Obra')}}
-            {{Form::select('obra_id', $obras,$controlgasto->obra_id, array('id' => 'obras'))}}
+            {{Form::select('obra_id', $obras,$controlingreso->obra_id, array('id' => 'obras'))}}
             
-
-            {{Form::label('Concepto','Concepto')}}
-            {{Form::select('concepto',array("0"=>"Seleccione concepto","GG"=>"GG","CD"=>"CD"), $controlgasto->concepto,array("id"=>"concepto"))}}
-            <small class="text-success">GG / CD</small>
-
-            <div id="partidadiv">
-            {{Form::label('Partida','Partida')}}
-             {{Form::select('partida_id', $partidas,$tiposelect,array('id' => 'partidas'))}}
-            <small class="text-success">Ingresar solo si es CD</small>
-          </div>
-
-
-
-<div id="categoriadiv">
-             {{Form::label('Categoria', 'Categoria')}}
-             {{Form::select('ggcategoria_id', $ggs,$tiposelect,array('id' => 'categorias'))}}
-             <small class="text-success">Ingresar solo si es GG</small>
-
-             <div id="cargaGastosGenerales" class='alert alert-block alert-success'></div>
-           </div>
-
             {{Form::label('Fecha', 'Fecha')}}
-            {{Form::text('fecha', date_format(date_create($controlgasto->fecha),'d/m/Y'), array("class"=>"input-mask-date"))}}
+            {{Form::text('fecha', date_format(date_create($controlingreso->fecha),'d/m/Y'), array("class"=>"input-mask-date"))}}
             <small class="text-success">dd/mm/aaaa</small>
 
             {{Form::label('Descripcion','Descripcion')}}
-            {{Form::text('desc',$controlgasto->desc)}}
+            {{Form::text('descripcion',$controlingreso->descripcion)}}
 
-            {{Form::label('Proveedor','Proveedor')}}
-            {{Form::text('proveedor',$controlgasto->proveedor)}}
+            {{Form::label('Observacion','Observacion')}}
+            {{Form::text('observacion',$controlingreso->observacion)}}
 
 
             
             {{Form::label('Tipo de Documento','Tipo de Documento')}}
-            {{Form::select('documento',array("0"=>"Seleccione documento","1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
+            {{Form::select('documento',array("0"=>"Seleccione documento","2"=>"Factura","3"=>"Otro"), $controlingreso->documento,array("id"=>"tipodocumento"))}}
 
-            <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
-            <?php $ano = date("Y");
 
-$anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>   
-            {{Form::label('Periodo')}}
-            {{Form::select('periodomes',$meses, $controlgasto->periodomes,array("id"=>"periodo"))}}
-            {{Form::select('periodoano',$anos, $controlgasto->periodoano,array("id"=>"periodo"))}}
-
-            {{Form::label('Numero de Documento','Numero de Documento')}}
-            {{Form::text('numdocumento',$controlgasto->numdocumento)}}
 
             {{Form::label('Neto','Neto')}}
-            {{Form::text('neto',$controlgasto->neto,array("id"=>"neto"))}}
+            {{Form::text('neto',$controlingreso->neto,array("id"=>"neto"))}}
 
 
 
             {{Form::label('IVA')}}
-            {{Form::text('iva',$controlgasto->iva,array("id"=>"iva","readonly"=>"readonly"))}}
+            {{Form::text('iva',$controlingreso->iva,array("id"=>"iva","readonly"=>"readonly"))}}
 
-            {{Form::label('Otros Impuestos')}}
-            {{Form::text('impuesto',$controlgasto->impuesto ? $controlgasto->impuesto:0,array("id"=>"impuestos"))}}
-
-            {{Form::label('Descuento')}}
-            {{Form::text('descuento',$controlgasto->descuento ? $controlgasto->descuento:0 ,array("id"=>"descuento"))}}
+           
 
             {{Form::label('Total')}}
-            {{Form::text('total',$controlgasto->total,array("id"=>"total", "readonly"=>"readonly"))}}
+            {{Form::text('total',$controlingreso->total,array("id"=>"total", "readonly"=>"readonly"))}}
 
 
-            {{Form::label('Tipo de pago')}}
-        
-            {{Form::select('tipopago',array("1"=>"Efectivo","2"=>"Cheque","3"=>"Tarjeta","4"=>"Transferencia"),$controlgasto->tipopago,array("id"=>"tipopago"))}}
+       
             
 
        
@@ -185,54 +142,6 @@ $anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>
 </div>
                           </div>
 
-                          <div id="profile" class="tab-pane">
-                            <?php 
-                            if($controlgasto->cheque){
-                            
-                              $numero = $controlgasto->cheque->numero;
-                             
-                              $fechapago = $controlgasto->cheque->fechapago;
-                              $observaciones = $controlgasto->cheque->observaciones;
-                              $revision = $controlgasto->cheque->revision;
-
-                            }
-                            else
-                            {
-                              $numero = '';
-                            
-                              $fechapago ='';
-                              $observaciones = '';
-                              $revision ='';
-                            }
-                           
-                         
-                            ?> 
-
-
-                        
-            {{Form::label('N Cheque','N Cheque')}}
-            {{Form::text('numero',$numero)}}
-
-    
-          
-         
-      
-            {{Form::label('Fecha Pago', 'Fecha Pago')}}
-
-
-            {{Form::text('fechapago', date_format(date_create($fechapago),'d/m/Y'),array('id' => 'form-field-mask-1', 'class'=>'input-mask-date'))}} 
-            <small class="text-success">99/99/9999</small>
-
-
-            {{Form::label('Observaciones', 'Observaciones')}}
-            {{Form::text('observaciones', $observaciones)}}
-
-              {{Form::label('Revision', 'Revision')}}
-            {{Form::select('revision', array('1'=>'Revisado','2'=>'Revisar'),$revision)}}
-
-
-
-                          </div>
 
                  
                         </div>
@@ -340,25 +249,6 @@ $("#categoriadiv").hide();
       }
 
 
-// FUNCION para cargar en el espacio verde los items
-$("#categorias").change(function(){
-$("#cargaGastosGenerales").empty();
-$.get("{{ url('controlgasto/buscarcategoriasgg')}}",
-      { option: $(this).val() },
-      function (data){ 
-  
-
-
-        $.each(data, function(key, element) {
-
-       // alert(element);
-          $("#cargaGastosGenerales").append(element + "<br>");
-        });
-
-      }
-      );
-      
-});
 
 
 
@@ -411,10 +301,10 @@ $("#descuento").prop('readonly', false);
 var neto = parseFloat($("#neto").val());
 var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
-var impuestos = parseFloat($("#impuestos").val());
-var descuento = parseFloat($("#descuento").val());
+var impuestos = 0;
+var descuento = 0;
 
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 
@@ -422,10 +312,10 @@ $("#neto").keyup(function(){
 var neto = parseFloat($("#neto").val());
 var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
-var impuestos = parseFloat($("#impuestos").val());
-var descuento = parseFloat($("#descuento").val());
+var impuestos = 0;
+var descuento = 0;
 
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -435,9 +325,9 @@ $("#impuestos").keyup(function(){
 var neto = parseFloat($("#neto").val());
 var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
-var impuestos = parseFloat($("#impuestos").val());
-var descuento = parseFloat($("#descuento").val());
-var total = neto + iva + impuestos - descuento;
+var impuestos = 0;
+var descuento = 0;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -446,9 +336,9 @@ $("#descuento").keyup(function(){
 var neto = parseFloat($("#neto").val());
 var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
-var impuestos = parseFloat($("#impuestos").val());
-var descuento = parseFloat($("#descuento").val());
-var total = neto + iva + impuestos - descuento;
+var impuestos = 0;
+var descuento = 0;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -509,7 +399,7 @@ $("#iva").val(iva);
 var impuestos = parseFloat($("#impuestos").val());
 var descuento = parseFloat($("#descuento").val());
 
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 
@@ -520,7 +410,7 @@ $("#iva").val(iva);
 var impuestos = parseFloat($("#impuestos").val());
 var descuento = parseFloat($("#descuento").val());
 
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -532,7 +422,7 @@ var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
 var impuestos = parseFloat($("#impuestos").val());
 var descuento = parseFloat($("#descuento").val());
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -543,7 +433,7 @@ var iva = Math.round(neto*0.19);
 $("#iva").val(iva);
 var impuestos = parseFloat($("#impuestos").val());
 var descuento = parseFloat($("#descuento").val());
-var total = neto + iva + impuestos - descuento;
+var total = neto + iva;
 total = Math.round(total);
 $("#total").val(total);
 });
@@ -572,7 +462,7 @@ $("#gastoactivetab").removeClass("active");
 
 
 //
-$( "#controlgastoactive" ).addClass( "active" );
+$( "#controlingresoactive" ).addClass( "active" );
 $( "#controlcostoactive" ).addClass( "active" );
     
   });   

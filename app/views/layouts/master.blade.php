@@ -379,7 +379,7 @@
 					<li>
 						<a href={{ URL::to('dashboard')}}>
 							<i class="fa fa-dashboard"></i>
-							<span class="menu-text"> Dashboard </span>
+							<span class="menu-text"> Inicio </span>
 						</a>
 					</li>
 <!--

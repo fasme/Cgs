@@ -106,9 +106,7 @@
             {{Form::select('obra_id', $obras,$controlgasto->obra_id, array('id' => 'obras'))}}
             
 
-            {{Form::label('Concepto','Concepto')}}
-            {{Form::select('concepto',array("0"=>"Seleccione concepto","GG"=>"GG","CD"=>"CD"), $controlgasto->concepto,array("id"=>"concepto"))}}
-            <small class="text-success">GG / CD</small>
+     
 
             <div id="partidadiv">
             {{Form::label('Partida','Partida')}}
@@ -557,7 +555,7 @@ $("#total").val(total);
 
 
 // FUNCION para mostrar el tab cheque
-$("#gastoactivetab").addClass("active");
+$("#flujocajaactive").addClass("active");
 $("#tipopago").change(function(){
 
 if($(this).val() == "2")
@@ -573,7 +571,7 @@ $("#gastoactivetab").removeClass("active");
 
 //
 $( "#controlgastoactive" ).addClass( "active" );
-$( "#controlcostoactive" ).addClass( "active" );
+
     
   });   
 </script>

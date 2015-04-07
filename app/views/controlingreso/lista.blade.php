@@ -21,7 +21,7 @@
                 <i class="fa fa-angle-right arrow-fa fa"></i>
               </span>
             </li>
-            <li>Ver Control Gasto</li>
+            <li>Ver Control Ingreso</li>
           </ul><!--.breadcrumb-->
 
           @stop
@@ -33,11 +33,11 @@
 
 <div class="page-header position-relative">
         <h1>
-  Control de gastos
+  Control de Ingresos
 
 </h1>
 </div>
-        {{ HTML::link('controlgasto/nuevo', 'Crear Control de  gasto'); }}
+        {{ HTML::link('controlingreso/nuevo', 'Crear Control de  ingreso'); }}
  
 
  <table id="example" class="table table-striped table-bordered table-hover">
@@ -45,13 +45,13 @@
           <tr >
             <th>Fecha</th>
             <th>Desc</th>
-            <th>Prov</th>
+            <th>Observacion</th>
             <th>Doc</th>
-            <th>Num Documento</th>
+           
             <th>Neto</th>
              <th>Total</th>
              <th>Obra</th>
-             <th>Concepto</th>
+          
 
          
             <th>Acciones</th>
@@ -69,52 +69,40 @@
                 <th class="number1"></th>
                 <th class="number1"></th>
                 <th></th>
-                <th></th>
-                 <th></th>
+          
+                
               
             </tr>
         </tfoot>
 
 
         <tbody>
-  @foreach($controlgastos as $controlgasto)
+  @foreach($controlingresos as $controlingreso)
 
  
 
            <tr>
-  <td>  {{ date_format(date_create($controlgasto->fecha),'d/m/Y')  }}</td>
-  <td>{{ $controlgasto->desc }}</td>
-  <td>{{ $controlgasto->proveedor }}</td>
+  <td>  {{ date_format(date_create($controlingreso->fecha),'d/m/Y')  }}</td>
+  <td>{{ $controlingreso->descripcion }}</td>
+  <td>{{ $controlingreso->observacion }}</td>
 <td>
-  @if($controlgasto->documento == 1)
+  @if($controlingreso->documento == 1)
   {{ "Boleta" }}
   @endif
-  @if($controlgasto->documento == 2)
+  @if($controlingreso->documento == 2)
   {{ "Factura" }}
   @endif
-  @if($controlgasto->documento == 3)
+  @if($controlingreso->documento == 3)
   {{ "Otro" }}
   @endif
-  @if($controlgasto->documento == 4)
+  @if($controlingreso->documento == 4)
   {{ "Nota de credito" }}
   @endif
 </td>
-<td>{{$controlgasto->numdocumento}}</td>
-  <td class="number1">{{$controlgasto->neto}}</td>
-  <td class="number1">{{ round($controlgasto->total) }}</td>
-  <td>{{ $controlgasto->obra->nombre }} </td>
 
-  <td>{{ $controlgasto->concepto }} / 
-    @if($controlgasto->concepto == "GG")
-    {{ $controlgasto->controlgastogg->ggcategoria->nombre}}
-    
-    @endif
-
-    @if($controlgasto->concepto == "CD")
-    {{ $controlgasto->controlgastocd->partida->nombre}}
-    
-    @endif
-     </td>
+  <td class="number1">{{$controlingreso->neto}}</td>
+  <td class="number1">{{ round($controlingreso->total) }}</td>
+  <td>{{ $controlingreso->obra->nombre }} </td>
 
 
   <td class="td-actions">
@@ -122,11 +110,11 @@
                         
 
 
-                          <a class="green" href= {{ 'controlgasto/editar/'.$controlgasto->id }}>
+                          <a class="green" href= {{ 'controlingreso/editar/'.$controlingreso->id }}>
                             <i class="fa fa-pencil bigger-130"></i>
                           </a>
 
-                          <a class="red bootbox-confirm" data-id={{ $controlgasto->id }}>
+                          <a class="red bootbox-confirm" data-id={{ $controlingreso->id }}>
                             <i class="fa fa-trash bigger-130"></i>
                           </a>
      
@@ -151,9 +139,9 @@ $(document).ready(function() {
 $("#example tfoot th").eq(1).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 $("#example tfoot th").eq(2).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
 $("#example tfoot th").eq(3).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-$("#example tfoot th").eq(4).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-$("#example tfoot th").eq(7).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
-$("#example tfoot th").eq(8).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+
+$("#example tfoot th").eq(6).html('<input type="text" size="1" placeholder="Buscar" style="width:50px" />');
+
 
 
 var table  = $('#example').DataTable( {
@@ -202,7 +190,7 @@ var table  = $('#example').DataTable( {
  
             // Total over all pages
             total = api
-                .column( 6 )
+                .column( 4 )
                 .data()
                 .reduce( function (a, b) {
                     
@@ -214,14 +202,14 @@ var table  = $('#example').DataTable( {
  
             // Total over this page
             pageTotal = api
-                .column( 6, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
  
             // Update footer
-            $( api.column( 6 ).footer() ).html(
+            $( api.column( 4 ).footer() ).html(
                 pageTotal
             );
 
@@ -266,7 +254,7 @@ table.columns().eq( 0 ).each( function ( colIdx ) {
       });
 
 
-$( "#controlgastoactive" ).addClass( "active" );
+$( "#controlingresoactive" ).addClass( "active" );
 $( "#controlcostoactive" ).addClass( "active" );
 
 $(".number1").prettynumber();
@@ -282,7 +270,7 @@ var tr = $(this).parents('tr');
               
            
              
-             $.get("{{ url('controlgasto/eliminar')}}",
+             $.get("{{ url('controlingreso/eliminar')}}",
               { id: id },
 
               function(data,status){ tr.fadeOut(1000); }

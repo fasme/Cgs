@@ -175,6 +175,12 @@ Route::group(array('before' => 'auth'), function()
 	    return $obras->lists('nombre', 'id');
 	});
 
+			// PARTIDAS EDIFICACION
+
+			Route::get('partidasEdificacion', array('uses'=>'PartidaedificacionController@mostrar'));
+			Route::get('partidasEdificacion/nuevo', array('uses'=>'PartidaedificacionController@nuevo'));
+
+
 
 			// APU
 
@@ -193,6 +199,12 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('presupuesto/nuevo', array('uses'=>'PresupuestoController@nuevo'));
 			Route::post('presupuesto/crear', array('uses'=>'PresupuestoController@nuevo2'));
 			Route::post('presupuesto/xls', array('uses'=>'PresupuestoController@xls'));
+
+			// PRESUPUESTO EDIFICACION
+
+			Route::get('presupuestoEdificacion/nuevo', array('uses'=>'PresupuestoedificacionController@nuevo'));
+			Route::post('presupuestoEdificacion/crear', array('uses'=>'PresupuestoedificacionController@nuevo2'));
+			Route::post('presupuestoEdificacion/xls', array('uses'=>'PresupuestoedificacionController@xls'));
 
 
 			// CONTROL GASTO
@@ -259,6 +271,17 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('bodega/editar/{id}', array('uses' => 'BodegaController@editar2'));
 			Route::get('bodega/eliminar', array('uses' => 'BodegaController@eliminar'));
 
+
+			//CONTROL DE INGRESOS
+
+
+			Route::get("controlingreso",array("uses"=>"ControlingresoController@mostrar"));
+			Route::get('controlingreso/nuevo', array('uses'=>'ControlingresoController@nuevo'));
+			Route::get('controlingreso/nuevo', array('uses'=>'ControlingresoController@nuevo'));
+			Route::post('controlingreso/crear', array('uses'=>'ControlingresoController@nuevo2'));
+			Route::get('controlingreso/editar/{id}', array('uses' => 'ControlingresoController@editar'));
+			Route::post('controlingreso/editar/{id}', array('uses' => 'ControlingresoController@editar2'));
+			Route::get('controlingreso/eliminar', array('uses' => 'ControlingresoController@eliminar'));
 
 
 

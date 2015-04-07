@@ -1,7 +1,7 @@
 <?php
 class Partida extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'partida';
-   protected $fillable = array('nombre','item','unidad','cantidad','orden','obra_id','categoria_id','proyecto_id');
+   protected $fillable = array('nombre','item','unidad','cantidad','orden','obra_id','categoria_id','proyecto_id','preciomanual');
 
 
    public function partidacategoria()

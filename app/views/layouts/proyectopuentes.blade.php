@@ -152,14 +152,18 @@
 
 					
 
+<li id="controlcostoactive">
+								<a href="#" class="dropdown-toggle">
+									<i class="fa fa-adn"></i>
 
-					
+									Control de costos
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
 
-					
+								<ul class="submenu">
+									
 
-
-
-					<li id="controlgastoactive">
+									<li id="controlgastoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
 					<span class="menu-text"> Control de gastos </span>
@@ -185,6 +189,46 @@
 							
 						</ul>
 					</li>
+
+
+
+									<li id="controlingresoactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-usd"></i>
+					<span class="menu-text"> Control de Ingreso </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href={{ URL::to('controlingreso/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('controlingreso') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+						</ul>
+					</li>
+
+
+
+
+
+				</ul><!--/.nav-list-->
+			</li>
+
+
+
+
 
 
 

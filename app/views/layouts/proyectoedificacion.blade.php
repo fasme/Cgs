@@ -63,14 +63,14 @@
 
 						<ul class="submenu">
 							<li>
-								<a href={{ URL::to('partidas/nuevo') }}>
+								<a href={{ URL::to('partidasEdificacion/nuevo') }}>
 									<i class="fa fa-angle-double-right"></i>
 									Ingresar
 								</a>
 							</li>
 
 							<li>
-								<a href={{ URL::to('partidas') }}>
+								<a href={{ URL::to('partidasEdificacion') }}>
 									<i class="fa fa-angle-double-right"></i>
 									Ver/Editar
 								</a>
@@ -83,7 +83,7 @@
 
 
 
-
+<!--
 					<li id="apuactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-adn"></i>
@@ -111,7 +111,7 @@
 						</ul>
 					</li>
 
-
+-->
 
 <li id="gastogeneralactive">
 						<a href="#" class="dropdown-toggle">
@@ -148,7 +148,19 @@
 
 
 
-<li id="controlgastoactive">
+
+<li id="controlcostoactive">
+								<a href="#" class="dropdown-toggle">
+									<i class="fa fa-adn"></i>
+
+									Control de costos
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
+
+								<ul class="submenu">
+									
+
+									<li id="controlgastoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
 					<span class="menu-text"> Control de gastos </span>
@@ -174,6 +186,46 @@
 							
 						</ul>
 					</li>
+
+
+
+									<li id="controlingreso">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-usd"></i>
+					<span class="menu-text"> Control de Ingreso </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href={{ URL::to('controlingreso/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('controlingreso') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+						</ul>
+					</li>
+
+
+
+
+
+				</ul><!--/.nav-list-->
+			</li>
+
+
+
+
 
 
 <li id="chequeactive">
@@ -215,7 +267,7 @@
 
 
 							<li id="presupuestoactive">
-						<a href={{ URL::to('presupuesto/nuevo') }} class="dropdown-toggle">
+						<a href={{ URL::to('presupuestoEdificacion/nuevo') }} class="dropdown-toggle">
 							<i class="fa fa-list-alt"></i>
 					<span class="menu-text"> Presupuesto </span>
 
@@ -223,5 +275,9 @@
 
 					
 					</li>
+
+
+
+				
 
 
