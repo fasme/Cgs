@@ -111,7 +111,7 @@ Panel de control
 								<div class="span4">
 								<div class="widget-box">
 											<div class="widget-header">
-												<h5 class="widget-title">Contrato a suma alzada Puentes 1 y 3, Los Peumos de...</h5>
+												<h5 class="widget-title">{{$proyecto->nombre}}</h5>
 
 												
 											</div>

@@ -195,7 +195,7 @@
 									<li id="controlingresoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
-					<span class="menu-text"> Control de Ingreso </span>
+					<span class="menu-text">Ingresos </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>

@@ -21,7 +21,7 @@
                 <i class="fa fa-angle-right arrow-fa fa"></i>
               </span>
             </li>
-            <li>Ver Control Ingreso</li>
+            <li>Ver Ingreso</li>
           </ul><!--.breadcrumb-->
 
           @stop
@@ -37,7 +37,7 @@
 
 </h1>
 </div>
-        {{ HTML::link('controlingreso/nuevo', 'Crear Control de  ingreso'); }}
+        {{ HTML::link('controlingreso/nuevo', 'Crear Ingreso'); }}
  
 
  <table id="example" class="table table-striped table-bordered table-hover">

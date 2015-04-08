@@ -27,7 +27,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Crear Control de ingreso
+              Crear Ingreso
               <small>
                 <i class="icon-double-angle-right"></i>
                 
