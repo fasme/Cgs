@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
  
 @section('breadcrumb')
 <ul class="breadcrumb">
@@ -36,6 +36,12 @@
             {{Form::text('nombre', '')}}
             {{Form::label('apellido', 'Apellido')}}
             {{Form::text('apellido', '')}}
+            {{Form::label('Cargo', 'Cargo')}}
+            {{Form::text('cargo', '')}}
+             {{Form::label('usuario', 'Usuario')}}
+            {{Form::text('usuario', '')}}
+            {{Form::label('Contraseña', 'Contraseña')}}
+            {{Form::text('password', '')}}
             {{Form::submit('Guardar')}}
         {{ Form::close() }}
 @stop

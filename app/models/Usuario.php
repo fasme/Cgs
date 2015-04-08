@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Usuario extends Eloquent implements UserInterface,RemindableInterface { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'usuarios';
-    protected $fillable = array('nombre', 'apellido', 'password','remember_token');
+    protected $fillable = array('nombre', 'apellido', 'password', 'usuario', 'cargo', 'perfil', 'remember_token');
 
  protected $hidden = array('password', 'remember_token');
  

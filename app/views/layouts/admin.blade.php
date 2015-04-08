@@ -374,7 +374,7 @@
 					<li>
 						<a href={{ URL::to('dashboard')}}>
 							<i class="fa fa-dashboard"></i>
-							<span class="menu-text"> Inicio </span>
+							<span class="menu-text"> Ir a los proyectos </span>
 						</a>
 					</li>
 <!--
@@ -411,16 +411,100 @@
 					</li>
 			-->
 
-			<?php
-			$tipoproyecto = isset(Session::get('proyecto')->tipoproyecto) ? Session::get('proyecto')->tipoproyecto : "";
-			?>
-			@if($tipoproyecto == "puente")
-				@include("layouts.proyectopuentes")
-			@elseif($tipoproyecto == "edificacion")
-				@include("layouts.proyectoedificacion")
-			@elseif($tipoproyecto == "vial")
-				@include("layouts.proyectovial")
-			@endif
+			
+
+
+					
+
+
+
+
+
+
+
+
+
+
+					<li id="proyectoactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-list-alt"></i>
+					<span class="menu-text"> Proyectos </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							
+							<li>
+								<a href={{ URL::to('proyectos/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('proyectos') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+						</ul>
+					</li>
+
+
+
+					<li id="usuarioactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-list-alt"></i>
+					<span class="menu-text"> Usuarios </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							
+							<li>
+								<a href={{ URL::to('usuarios/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('usuarios') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+						</ul>
+					</li>
+
+
+				
+
+			
+
+
+
+
+	
+
+
+					
+
+
+				</ul><!--/.nav-list-->
+
+
+
+
+			
+			
+			
 
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="fa fa-chevron-circle-left"></i>

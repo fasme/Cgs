@@ -73,11 +73,7 @@ Route::group(array('before' => 'auth'), function()
 
 
 
-		Route::group(array('before' => 'old'), function(){
-
-
-
-			Route::get('/', array('uses'=>'DashboardController@mostrarDashboard'));
+	Route::get('/', array('uses'=>'DashboardController@mostrarDashboard'));
 
 
 	Route::get('dashboard', array('uses'=>'DashboardController@mostrarDashboard'));
@@ -102,6 +98,16 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('usuarios/editar/{id}', 'UsuariosController@editar2');
 
 	Route::get('usuarios/probando/oli', 'UsuariosController@pruebaSQL');
+
+
+	
+
+
+		Route::group(array('before' => 'old'), function(){
+
+
+
+			
 
 
 
@@ -285,6 +291,13 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('controlingreso/editar/{id}', array('uses' => 'ControlingresoController@editar2'));
 			Route::get('controlingreso/eliminar', array('uses' => 'ControlingresoController@eliminar'));
 
+
+
+
+			// ADMINISTRACION
+
+			Route::get("admin",array("uses"=>"adminController@mostrar"));
+			
 
 
 		

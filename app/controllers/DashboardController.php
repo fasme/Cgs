@@ -11,7 +11,9 @@ class DashboardController extends BaseController {
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
         
-        return View::make('dashboard.lista');
+        $proyectos = Proyecto::all();
+
+        return View::make('dashboard.lista')->with("proyectos",$proyectos);
         
         // El método make de la clase View indica cual vista vamos a mostrar al usuario
         //y también pasa como parámetro los datos que queramos pasar a la vista.

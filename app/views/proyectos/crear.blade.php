@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
  
 @section('breadcrumb')
 <ul class="breadcrumb">
@@ -57,6 +57,13 @@
         
             {{Form::text('fechatermino', '',array('id' => 'form-field-mask-2', 'class'=>'input-mask-date2'))}}
              <small class="text-success">dd/mm/aaaa</small>
+
+             {{ Form::label('photo', 'Foto') }}
+                
+                <!--así se crea un campo file en laravel-->
+                {{ Form::file('img') }}
+
+             
 
 
              {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}

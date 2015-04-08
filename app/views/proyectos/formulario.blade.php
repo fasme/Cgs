@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
  
 @section('breadcrumb')
 <ul class="breadcrumb">
@@ -43,10 +43,10 @@
            <?php
   // si existe el usuario carga los datos
     if ($proyectos->exists):
-        $form_data = array('url' => 'proyectos/editar/'.$proyectos->id);
+        $form_data = array('url' => 'proyectos/editar/'.$proyectos->id, 'files' => true);
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'proyectos/crear');
+        $form_data = array('url' => 'proyectos/crear', 'files' => true);
         $action    = 'Crear';        
     endif;
 
@@ -69,6 +69,11 @@
         
             {{Form::text('fechatermino', date_format(date_create($proyectos->fechatermino),'d/m/Y'),array('id' => 'form-field-mask-2', 'class'=>'input-mask-date2'))}}
              <small class="text-success">dd/mm/aaaa</small>
+
+             {{ Form::label('photo', 'Foto') }}
+                
+                <!--así se crea un campo file en laravel-->
+                {{ Form::file('img') }}
 
 
              {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}

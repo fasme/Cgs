@@ -1,5 +1,5 @@
 
-@extends('layouts.master')
+@extends('layouts.admin')
  
 
 
@@ -37,7 +37,7 @@
 
 </h1>
 </div>
-        {{ HTML::link('usuarios/nuevo', 'Crear Usuario'); }}
+       
 
         @if(isset($mensaje))
         <div class="alert alert-block alert-success">{{$mensaje}}</div>
@@ -73,9 +73,7 @@
   </td>
   <td class="td-actions">
                        
-                          <a class="blue" href={{'proyectos/session/'.$proyecto->id }}>
-                            <i class='fa fa-briefcase bigger-130'></i>
-                          </a>
+                        
 
 
                           <a class="green" href= {{ 'proyectos/editar/'.$proyecto->id }}>

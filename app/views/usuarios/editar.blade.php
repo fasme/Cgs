@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('contenido')
       <h1>Editar Usuario</h1>
@@ -26,7 +26,7 @@
  
                 <tr>
                     <td>
-                        {{ Form::label('apellido', 'Post') }}
+                        {{ Form::label('apellido', 'Apellido') }}
                     </td>
                     <td>
                          {{ Form::text('apellido', Input::old('apellido') ? Input::old('apellido') : $usuario->apellido) }}
@@ -34,14 +34,7 @@
                 </tr>
 
 
-                 <tr>
-                    <td>
-                        {{ Form::label('password', 'Post') }}
-                    </td>
-                    <td>
-                         {{ Form::text('password', Input::old('password') ? Input::old('password') : $usuario->password) }}
-                    </td>
-                </tr>
+        
  
                 <tr>
                     <td>

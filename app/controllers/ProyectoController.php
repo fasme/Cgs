@@ -19,6 +19,8 @@ public function nuevo(){
 
 public function nuevo2(){
 
+	$file = Input::file("img");
+
 	 $proyectos = Proyecto::create(Input::all());
 
 	 $fechainicio = Input::get("fechainicio");
@@ -32,8 +34,11 @@ public function nuevo2(){
 
 	 $proyectos->fechainicio = $fechainicio;
 	$proyectos->fechatermino = $fechatermino;
+	$proyectos->img = Input::file("img")->getClientOriginalName();
 
 	$proyectos->save();
+
+	$file->move("img",$file->getClientOriginalName());
 
 
 	return Redirect::to("proyectos");
@@ -54,7 +59,8 @@ if (Auth::check())
 	 if(count($permiso) == 0) // no tiene permiso
 	 {
 	 //	return Redirect::to("dashboard")->with("mensaje","hjolña");
-	 	return View::make("dashboard.lista", array("mensaje2"=>"NO TIENES PERMISO PARA ACCEDER A ESTE PROYECTO"));
+	 	$proyectos = Proyecto::all();
+	 	return View::make("dashboard.lista", array("mensaje2"=>"NO TIENES PERMISO PARA ACCEDER A ESTE PROYECTO", "proyectos"=>$proyectos));
 	 	//Log::warning('Algo podría ir mal.');
 	 }  
 	 else // si existe (1) tiene permiso
@@ -101,6 +107,15 @@ public function editar2($id){
 	 $proyecto->fechainicio = $fechainicio;
 	$proyecto->fechatermino = $fechatermino;
 
+
+	if(Input::hasFile('img'))
+    {
+        $file = Input::file('img');
+       // $name = time() . '-' . $file->getClientOriginalName();
+       // $file = $file->move(public_path() . '/documents/articles/', $name);
+        $proyecto->img = Input::file("img")->getClientOriginalName();
+        $file->move("img",$file->getClientOriginalName());
+    }
 
         $proyecto->save();
 

@@ -28,13 +28,14 @@ class UsuariosController extends BaseController {
     /**
      * Crear el usuario nuevo
      */
-    public function crear()
+    public function nuevo2()
     {
         //Usuario::create(Input::all());
+        $data = Input::all();
 
         $usuario = new Usuario;
-
-        $usuario->password = Hash::make(Input::get('pasword'));
+        $usuario->fill($data);
+        $usuario->password = Hash::make(Input::get('password'));
         
 
         $usuario->save();
@@ -44,7 +45,7 @@ class UsuariosController extends BaseController {
     // create recibe como parámetro un arreglo con datos de un modelo y los inserta automáticamente en la base de datos
     // en este caso el arreglo es la información que viene desde un formulario y la obtenemos con el metido Input::all()
         
-        return Redirect::to('usuarios');
+       return Redirect::to('usuarios');
     // el método redirect nos devuelve a la ruta de mostrar la lista de los usuarios
  
     }

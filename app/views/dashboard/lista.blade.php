@@ -102,8 +102,13 @@ Panel de control
 
 							<div class="hr hr32 hr-dotted"></div>
 
+
+							
+							
+
 							<div class="row-fluid">
-								<div class="span6">
+								@foreach($proyectos as $proyecto)
+								<div class="span4">
 								<div class="widget-box">
 											<div class="widget-header">
 												<h5 class="widget-title">Contrato a suma alzada Puentes 1 y 3, Los Peumos de...</h5>
@@ -114,7 +119,7 @@ Panel de control
 											<div class="widget-body">
 												<div class="widget-main center">
 														<span class="profile-picture">
-														<a href="{{URL::to('proyectos/session/1')}}"><img src={{asset('img/puente.jpg')}} alt="Logo" width='400'></a>
+														<a href="{{URL::to('proyectos/session/'.$proyecto->id)}}"><img src={{asset('img/'.$proyecto->img)}} alt="Logo" width='400'></a>
 														</span>
 												
 												</div>
@@ -122,26 +127,10 @@ Panel de control
 										</div>
 									</div>
 
-
-									<div class="span6">
-								<div class="widget-box">
-											<div class="widget-header">
-												<h5 class="widget-title">Obra Llay Llay - San Felipe</h5>
-
-												
-											</div>
-
-											<div class="widget-body">
-												<div class="widget-main center">
-														<span class="profile-picture">
-														<a href="{{URL::to('proyectos/session/2')}}"><img src={{asset('img/proyecto.jpg')}} alt="Logo" width='400'></a>
-														</span>
-												
-												</div>
-											</div>
-										</div>
-									</div>
+									@endforeach
 							</div>
+
+							
 
 
 

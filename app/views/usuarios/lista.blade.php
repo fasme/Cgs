@@ -1,5 +1,5 @@
 
-@extends('layouts.master')
+@extends('layouts.admin')
  
 
 @section('breadcrumb')
@@ -41,22 +41,22 @@
   <thead>
           <tr>
             <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Stock</th>
-            <th>Precio Commpra</th>
-            <th>Precio Venta</th>
+            <th>Cargo</th>
+            <th>Usuario</th>
+           
+            <th>Acciones</th>
             
           </tr>
         </thead>
         <tbody>
   @foreach($usuarios as $usuario)
            <tr><td>
-    {{ HTML::link( 'usuarios/'.$usuario->id , $usuario->nombre.' '.$usuario->apellido ) }}
+    {{ $usuario->nombre.' '.$usuario->apellido  }}
       
   </td>
-  <td> {{ $usuario->created_at }}</td>
-  <td></td>
-  <td></td>
+  <td> {{ $usuario->cargo }}</td>
+  <td>{{ $usuario->usuario }}</td>
+  
   <td class="td-actions">
                        
                           <a class="blue" href={{'usuarios/'.$usuario->id }}>
@@ -81,6 +81,8 @@
 
   <script type="text/javascript">
  $(document).ready(function() {
+
+$( "#usuarioactive" ).addClass( "active" );
 
 $('#example').DataTable( {
         dom: 'T<"clear">lfrtip',
