@@ -58,12 +58,13 @@ $fecha1 = strtotime($primerDia);
 
 $fecha2 = strtotime( $fecha2->fecha);
 
-
+$sumagasto =0;
+$sumaingreso=0;
 $i=0;
 
 
 echo "<table border='1' width='100%'>";
-echo "<th>Dia</th><th>Gastos</th><th>Ingresos</th><th>Total</th>";
+echo "<th>Dia</th><th>Ingresos</th><th>Gastos</th><th>Total</th>";
 
 while($fecha1 <= $fecha2)
 {
@@ -83,16 +84,25 @@ while($fecha1 <= $fecha2)
  
    echo "<tr><td>".date('d/m/Y',$fecha1)."</td>";
 
+
+     $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
+  foreach ($controlingresos as $controlingreso) {
+    $sumaingreso = $controlingreso->suma1;
+    echo "<td>$controlingreso->suma1</td>";
+  }
+
     $controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma2"))->get();
   foreach ($controlgastos as $controlgasto) {
+    $sumagasto = $controlgasto->suma2;
     echo "<td>$controlgasto->suma2</td>";
   }
 
 
-  $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
-  foreach ($controlingresos as $controlingreso) {
-    echo "<td>$controlingreso->suma1</td>";
-  }
+
+
+  echo $sumaingreso;
+  $totaldia = $sumagasto - $sumaingreso;
+  echo "<td>$totaldia</td>";
 
 
 

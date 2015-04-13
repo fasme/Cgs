@@ -28,8 +28,9 @@
 
          
           ?>
-          ['Year', 'Real',{ role: 'annotation' }, 'Teorico',{ role: 'annotation' },"Ingreso",{role: "annotation"}],
-          ["<?php echo $titulo; ?>",  <?php echo $real; ?>, "<?php echo number_format($real,0,',','.'); ?>" , <?php echo $teorico ?>, "<?php echo number_format($teorico,0,',','.'); ?>",  <?php echo $ingreso ?>, "<?php echo number_format($ingreso,0,',','.'); ?>"]
+          ['Year', 'Presupuesto',{ role: 'annotation' }, 'Gastos',{ role: 'annotation' },"Ingresos",{role: "annotation"}],
+         
+          ["<?php echo $titulo; ?>",  <?php echo $teorico; ?>, "<?php echo number_format($teorico,0,',','.'); ?>" , <?php echo $real ?>, "<?php echo number_format($real,0,',','.'); ?>",  <?php echo $ingreso ?>, "<?php echo number_format($ingreso,0,',','.'); ?>"]
         ]);
 
 
@@ -39,7 +40,7 @@
          // title: 'Excavaciones',
           vAxis: {title: '',  titleTextStyle: {color: 'green'}},
            backgroundColor:"white",
-            colors:["red","Blue", "green"],
+            colors:["blue","red", "green"],
 
 
         };
