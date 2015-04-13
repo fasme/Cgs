@@ -538,7 +538,7 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
        
 
-       $titulo = "Otros";
+       $titulo = "Presupuesto vs Gastos vs Ingresos";
        return View::make('informe.analisisingresogasto')->with("teorico", $sql)->with("real",$sql1)->with("titulo",$titulo)->with("ingreso",$sql2);
 
 
