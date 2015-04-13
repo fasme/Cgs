@@ -263,6 +263,7 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('informes/analisiscosto/cdenrocado/{obra}',array('uses'=>'InformeController@cdEnrocado'));
 					Route::get('informes/analisiscosto/cdotros/{obra}',array('uses'=>'InformeController@cdOtros'));
 					Route::get("informes/analisiscosto/ingresogasto/{obra}",array("uses"=>"InformeController@ingresoGasto"));
+					Route::get("informes/analisiscosto/flujocaja/{obra}",array("uses"=>"InformeController@flujoCaja"));
 					// Presupuesto vs ingresos vs costos
 					//Route::get('informes/analisiscosto/{obra}',array('uses'=>'InformeController@analisisCostoObra'));
 					

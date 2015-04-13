@@ -91,8 +91,9 @@
 </tr>
 
 <tr>
-  <tr><th>Ingreso vs Costo vs Prespupuesto</th></tr>
+  <tr><th>Ingreso vs Costo vs Presupuesto</th><th>Flujo Caja</th></tr>
   <td><a href="{{URL::to('informes/analisiscosto/ingresogasto/ALL')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
+  <td><a href="{{URL::to('informes/analisiscosto/flujocaja/ALL')}}"><img src={{asset('img/graph/pie1128.png')}} alt="Logo"></a></td>
 
   
 </tr>

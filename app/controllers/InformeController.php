@@ -546,6 +546,55 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
     }
 
 
+
+
+    public function flujoCaja($obra){
+
+
+      // primera fecha
+      $sql = Controlgasto::orderby("fecha")->select("fecha");
+      
+
+       if($obra != "ALL")
+       {
+        $sql = $sql->where("obra_id","=",$obra);
+        $sql = $sql->first();
+       }
+       else
+       {
+         $sql = $sql->first();
+       }
+
+
+
+       $sql1 = Controlgasto::orderby("fecha","desc")->select("fecha");
+      
+
+       if($obra != "ALL")
+       {
+        $sql1 = $sq1l->where("obra_id","=",$obra);
+        $sql1 = $sql1->first();
+       }
+       else
+       {
+         $sql1 = $sql1->first();
+       }
+
+
+
+       // ultima fecha
+
+
+
+
+
+
+
+       return View::make("informe.flujocaja")->with("fecha1",$sql)->with("fecha2",$sql1);
+
+    }
+
+
 }
 
 

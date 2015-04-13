@@ -106,7 +106,7 @@ public function nuevo2()
     }
 
 
-        return Redirect::to('controlgasto');
+        return Redirect::to('controlgasto/nuevo');
     }
      else
         {
