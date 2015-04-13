@@ -40,9 +40,7 @@
    
  
 
-{{$fecha1->fecha}}
 
-{{$fecha2->fecha}}
 <?php
 
 
@@ -52,7 +50,7 @@ $fecha1 = strtotime ( $fecha1->fecha );
 //echo $semana=date("W",mktime(0,0,0,$month,$day,$year));
  $semana=date("W",mktime(0,0,0,date("m",$fecha1),date("d",$fecha1),date("Y",$fecha1)));
  $diaSemana=date("w",mktime(0,0,0,date("m",$fecha1),date("d",$fecha1),date("Y",$fecha1)));
-echo $primerDia=date("Y-m-d",mktime(0,0,0,date("m",$fecha1),date("d",$fecha1)-$diaSemana+1,date("Y",$fecha1)));
+ $primerDia=date("Y-m-d",mktime(0,0,0,date("m",$fecha1),date("d",$fecha1)-$diaSemana+1,date("Y",$fecha1)));
 
 $fecha1 = strtotime($primerDia);
 
@@ -60,7 +58,9 @@ $fecha2 = strtotime( $fecha2->fecha);
 
 $sumagasto =0;
 $sumaingreso=0;
+$totaldia=0;
 $i=0;
+
 
 
 echo "<table border='1' width='100%'>";
@@ -81,27 +81,37 @@ while($fecha1 <= $fecha2)
 	}
    $i++;
 
- 
-   echo "<tr><td>".date('d/m/Y',$fecha1)."</td>";
+  
+  $dia=date("l",$fecha1);
+
+if ($dia=="Monday") $dia="Lunes";
+if ($dia=="Tuesday") $dia="Martes";
+if ($dia=="Wednesday") $dia="Miércoles";
+if ($dia=="Thursday") $dia="Jueves";
+if ($dia=="Friday") $dia="Viernes";
+if ($dia=="Saturday") $dia="Sabado";
+if ($dia=="Sunday") $dia="Domingo";
+
+   echo "<tr><td>$dia ".date('d/m/Y',$fecha1)."</td>";
 
 
      $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
   foreach ($controlingresos as $controlingreso) {
     $sumaingreso = $controlingreso->suma1;
-    echo "<td>$controlingreso->suma1</td>";
+    echo "<td>$sumaingreso</td>";
   }
 
     $controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma2"))->get();
   foreach ($controlgastos as $controlgasto) {
     $sumagasto = $controlgasto->suma2;
-    echo "<td>$controlgasto->suma2</td>";
+    echo "<td>$sumagasto</td>";
   }
 
 
 
 
   echo $sumaingreso;
-  $totaldia = $sumagasto - $sumaingreso;
+  $totaldia += $sumaingreso - $sumagasto;
   echo "<td>$totaldia</td>";
 
 
