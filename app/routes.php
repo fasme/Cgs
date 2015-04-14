@@ -297,7 +297,7 @@ Route::group(array('before' => 'auth'), function()
 
 			// ADMINISTRACION
 
-			Route::get("admin",array("uses"=>"adminController@mostrar"));
+			Route::get("admin",array("uses"=>"AdminController@mostrar"));
 			
 
 

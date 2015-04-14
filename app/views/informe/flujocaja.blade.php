@@ -60,26 +60,36 @@ $sumagasto =0;
 $sumaingreso=0;
 $totaldia=0;
 $i=0;
+$sumasemanaingreso=0;
+$sumasemanagasto=0;
 
 
 
-echo "<table border='1' width='100%'>";
-echo "<th>Dia</th><th>Ingresos</th><th>Gastos</th><th>Total</th>";
+echo "<table border='1' width='100%' id='example' class='table table-striped table-bordered table-hover'>";
+echo "<thead><th>Dia</th><th>Ingresos</th><th>Gastos</th><th>Total</th></thead>";
 
+echo "<tbody>";
 while($fecha1 <= $fecha2)
 {
    
   
- 
-	if($i%7==0)
-	{
-		
-	echo "<tr height='50'><td>TOTAL SEMANA</td><td>".$i."</td></tr>";
+  if($i%7==0)
+  {
+    
+    if($i>0) // para k no salga la primera fila
+    {
+      $sumasemana = $sumasemanaingreso - $sumasemanagasto;
+      echo "<tr height='50' bgcolor='#FBFBEF'><td>TOTAL SEMANA</td><td></td><td></td><td>".number_format($sumasemana,0,",",".")."</td></tr>";
+      $sumasemanaingreso =0;
+      $sumasemanagasto=0;
+    }
+  
 
 
-		
-	}
+    
+  }
    $i++;
+
 
   
   $dia=date("l",$fecha1);
@@ -98,21 +108,32 @@ if ($dia=="Sunday") $dia="Domingo";
      $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
   foreach ($controlingresos as $controlingreso) {
     $sumaingreso = $controlingreso->suma1;
-    echo "<td>$sumaingreso</td>";
-  }
+    $sumasemanaingreso += $sumaingreso;
+    echo "<td>".number_format($sumaingreso,0,",",".")."</td>";
+  
 
+}
     $controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma2"))->get();
   foreach ($controlgastos as $controlgasto) {
     $sumagasto = $controlgasto->suma2;
-    echo "<td>$sumagasto</td>";
+    $sumasemanagasto += $sumagasto;
+    echo "<td>".number_format($sumagasto,0,",",".")."</td>";
   }
 
 
 
 
-  echo $sumaingreso;
+
   $totaldia += $sumaingreso - $sumagasto;
-  echo "<td>$totaldia</td>";
+  if($totaldia <0)
+  {
+    echo "<td><font color='red'>".number_format($totaldia,0,",",".")."</font></td>";
+  }
+  else
+  {
+  echo "<td><font color='green'>".number_format($totaldia,0,",",".")."</font></td>";
+  }
+  
 
 
 
@@ -125,8 +146,11 @@ if ($dia=="Sunday") $dia="Domingo";
   $fecha1 = strtotime ( '+1 day' , $fecha1 ) ;
 //$fecha1->fecha = date ( 'Y-m-j' , $fecha1->fecha );
 	
-}
 
+
+
+}
+echo "</tbody>";
 echo "</table>";
 ?>
 
@@ -135,7 +159,18 @@ echo "</table>";
 
 $(document).ready(function() {
 
+ $('#example').DataTable( {
+"iDisplayLength": -1,
+"ordering": false,
 
+dom: 'T<"clear">lfrtip',
+        tableTools: {
+            "sSwfPath": "../../../js/TableTools/swf/copy_csv_xls_pdf.swf"
+           
+  },
+
+
+});
 
 
 }); // fin jquery

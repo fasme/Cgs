@@ -552,7 +552,7 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
 
       // primera fecha
-      $sql = Controlgasto::orderby("fecha")->select("fecha");
+      $sql = Controlgasto::orderby("fecha")->select("fecha")->where("proyecto_id","=",Session::get("proyecto")->id);
       
 
        if($obra != "ALL")
@@ -567,7 +567,7 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
 
 
-       $sql1 = Controlgasto::orderby("fecha","desc")->select("fecha");
+       $sql1 = Controlgasto::orderby("fecha","desc")->select("fecha")->where("proyecto_id","=",Session::get("proyecto")->id);
       
 
        if($obra != "ALL")
