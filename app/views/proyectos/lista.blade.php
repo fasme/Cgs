@@ -50,6 +50,7 @@
             <th>Plzao</th>
             <th>Fecha Inicio</th>
             <th>Fecha Termino</th>
+            <th>Utilidad</th>
             <th>Acciones</th>
             
           </tr>
@@ -71,6 +72,8 @@
     {{ date_format(date_create($proyecto->fechatermino),'d/m/Y')  }}
     @endif
   </td>
+
+  <td>{{$proyecto->utilidad}} %</td>
   <td class="td-actions">
                        
                         

@@ -20,7 +20,7 @@
 
         var data = google.visualization.arrayToDataTable([
           <?php 
-          $teorico = (int)$teorico[0]->suma; 
+          $teorico = $teorico[0]->suma + $gg[0]->suma4 + (($teorico[0]->suma*$utilidad[0]->utilidad)/100); 
           $real = (int)$real[0]->suma2;
           $ingreso = (int)$ingreso[0]->suma3;
           

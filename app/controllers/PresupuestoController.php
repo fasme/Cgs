@@ -66,14 +66,16 @@ $suma += round($apu->cantidad*$apu->preciou*(1/$partida->cantidad));
 	 		}
 	 	}
 
-	 	$utilidad = $costodirecto*0.12;
+	 	$utilidadproyecto = Proyecto::where("id","=",Session::get("proyecto")->id)->select("utilidad")->first();
+	 	
+	 	$utilidad = ($costodirecto*$utilidadproyecto->utilidad)/100;
 
 	 	$gastogeneral = Gastogeneral::Where("proyecto_id","=",$proyecto->id)->selectraw("SUM(cantidad * precio) as totalgastos")->take(1)->get();
 
 	 	$totalneto = $utilidad + $costodirecto + $gastogeneral[0]->totalgastos;
 
 	 	echo "<tr bgcolor='#E6E6E6'><td>VALOR COSTO DIRECTO</td><td></td><td></td><td></td><td>".number_format($costodirecto,0,",",".")."</td></tr>";
-	 	echo "<tr bgcolor='#F2F2F2'><td>UTILIDAD 12%</td><td></td><td></td><td></td><td>".number_format($utilidad,0,",",".")."</td></tr>";
+	 	echo "<tr bgcolor='#F2F2F2'><td>UTILIDAD $utilidadproyecto->utilidad%</td><td></td><td></td><td></td><td>".number_format($utilidad,0,",",".")."</td></tr>";
 		echo "<tr bgcolor='#E6E6E6'><td>GASTOS GENERALES</td><td></td><td></td><td></td><td>".number_format($gastogeneral[0]->totalgastos,0,",",".")."</td></tr>";
 		echo "<tr bgcolor='#F2F2F2'><td>TOTAL NETO</td><td></td><td></td><td></td><td>".number_format($totalneto,0,",",".")."</td></tr>";
 		echo "<tr bgcolor='#E6E6E6'><td>IVA</td><td></td><td></td><td></td><td>".number_format($totalneto*0.19,0,",",".")."</td></tr>";

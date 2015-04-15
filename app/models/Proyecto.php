@@ -1,7 +1,7 @@
 <?php
 class Proyecto extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'proyecto';
-   protected $fillable = array('nombre', 'plazo', 'fechainicio','fechatermino','img');
+   protected $fillable = array('nombre', 'plazo', 'fechainicio','fechatermino','img','utilidad');
 
    public function obra()
     {

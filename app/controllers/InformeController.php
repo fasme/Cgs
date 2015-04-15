@@ -486,9 +486,10 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
     public function ingresoGasto($obra){
 
 
-    
+          
       $sql = Partida::leftjoin("apu","apu.partida_id","=","partida.id")
-       ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"));
+       ->select(DB::raw("SUM((apu.cantidad * apu.preciou * (1/partida.cantidad))*partida.cantidad) as suma"))
+       ->where("partida.proyecto_id","=",Session::get("proyecto")->id);
      
 
        if($obra != "ALL")
@@ -501,14 +502,12 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
          $sql = $sql->get();
        }
 
-      
 
-       //$sql = Partida::whereIn("id", $ids)->where("proyecto_id","=",Session::get("proyecto")->id)->get();
     
 
        $sql1 = Controlgasto::leftjoin("controlgastocd","controlgastocd.controlgasto_id","=","controlgasto.id")
-       ->select(DB::raw("SUM(controlgasto.neto) as suma2"));
-      // ->where("controlgasto.obra_id","=",$obra)
+       ->select(DB::raw("SUM(controlgasto.neto) as suma2"))
+       ->where("controlgasto.proyecto_id","=",Session::get("proyecto")->id);
       
 
          if($obra != "ALL")
@@ -522,8 +521,8 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
        }
 
 
-        $sql2 = Controlingreso::select(DB::raw("SUM(neto) as suma3"));
-      // ->where("controlgasto.obra_id","=",$obra)
+        $sql2 = Controlingreso::select(DB::raw("SUM(neto) as suma3"))
+       ->where("proyecto_id","=",Session::get("proyecto")->id);
       
 
          if($obra != "ALL")
@@ -536,10 +535,22 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
          $sql2 = $sql2->get();
        }
 
+
+
+       $sql3 = Gastogeneral::select(DB::raw("SUM(precio * cantidad) as suma4"))
+       ->where("proyecto_id","=",Session::get("proyecto")->id);
+        $sql3 = $sql3->get();
+
+
+        $sql4 = Proyecto::where("id","=",Session::get("proyecto")->id)->select("utilidad")->get();
+
        
 
        $titulo = "Presupuesto vs Gastos vs Ingresos";
-       return View::make('informe.analisisingresogasto')->with("teorico", $sql)->with("real",$sql1)->with("titulo",$titulo)->with("ingreso",$sql2);
+       
+
+      // echo $sql;
+       return View::make('informe.analisisingresogasto')->with("teorico", $sql)->with("real",$sql1)->with("titulo",$titulo)->with("ingreso",$sql2)->with("gg",$sql3)->with("utilidad",$sql4);
 
 
 

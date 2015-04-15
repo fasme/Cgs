@@ -60,6 +60,9 @@
             {{Form::text('nombre', $proyectos->nombre)}}
             {{Form::label('Plazo', 'Plazo')}}
             {{Form::text('plazo', $proyectos->plazo)}}
+
+            {{Form::label('Utilidad', 'Utilidad')}}
+            {{Form::text('utilidad', $proyectos->utilidad)}}
          
             {{Form::label('Fecha Inicio', 'Fecha Inicio')}}
         
