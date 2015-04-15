@@ -264,6 +264,7 @@ Route::group(array('before' => 'auth'), function()
 					Route::get('informes/analisiscosto/cdotros/{obra}',array('uses'=>'InformeController@cdOtros'));
 					Route::get("informes/analisiscosto/ingresogasto/{obra}",array("uses"=>"InformeController@ingresoGasto"));
 					Route::get("informes/analisiscosto/flujocaja/{obra}",array("uses"=>"InformeController@flujoCaja"));
+
 					// Presupuesto vs ingresos vs costos
 					//Route::get('informes/analisiscosto/{obra}',array('uses'=>'InformeController@analisisCostoObra'));
 					
@@ -301,6 +302,40 @@ Route::group(array('before' => 'auth'), function()
 			
 
 
+
+			// FUNCIONES AJAX
+
+			// Informe -> flujo caja
+
+			Route::get("buscarFechaFlujo", function(){
+
+				$fecha = Input::get("fecha");
+				$html ="";
+
+				$html .= "<table border='1' width='100%'><tr><th>Descpripcion</th><th>Monto</th></tr>";
+				$controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha))->where("proyecto_id","=", Session::get("proyecto")->id)->get();
+				$html .="<tr><th colspan='2'>INGRESOS</th>";
+				foreach ($controlingresos as $controlingreso) {
+
+					$html .="<tr><td>$controlingreso->descripcion</td><td>".number_format($controlingreso->neto,0,",",".")."</td></tr>";
+					
+				}
+
+$html .="<tr><th colspan='2'>GASTOS</th>";
+$controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha))->where("proyecto_id","=", Session::get("proyecto")->id)->whereIn("tipopago",array("1","3","4","2"))->get();
+  foreach ($controlgastos as $controlgasto) {
+   
+
+   // $sumagastototal = $sumacheque + $sumagasto;
+    $html .= "<tr><td>$controlgasto->desc</td><td>".number_format($controlgasto->neto,0,",",".")."</td></tr>";
+  }
+
+
+
+				
+				$html .= "</table>";
+				return  $html;
+			});
 		
 
 });

@@ -567,6 +567,7 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
 
 
+       // ultima fecha
        $sql1 = Controlgasto::orderby("fecha","desc")->select("fecha")->where("proyecto_id","=",Session::get("proyecto")->id);
       
 
@@ -582,8 +583,9 @@ return View::make('informe.analisiscostoresumenmensual')->with("teorico", $sql)-
 
 
 
-       // ultima fecha
 
+
+       
 
 
 

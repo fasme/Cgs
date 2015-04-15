@@ -62,6 +62,8 @@ $totaldia=0;
 $i=0;
 $sumasemanaingreso=0;
 $sumasemanagasto=0;
+$sumacheque =0;
+$sumasemanacheque=0;
 
 
 
@@ -102,10 +104,10 @@ if ($dia=="Friday") $dia="Viernes";
 if ($dia=="Saturday") $dia="Sabado";
 if ($dia=="Sunday") $dia="Domingo";
 
-   echo "<tr><td>$dia ".date('d/m/Y',$fecha1)."</td>";
+   echo "<tr><td><p class='alertita text-info' data-fecha='$fecha1'>$dia ".date('d/m/Y',$fecha1)."</p></td>";
 
 
-     $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
+    $controlingresos = Controlingreso::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma1"))->get();
   foreach ($controlingresos as $controlingreso) {
     $sumaingreso = $controlingreso->suma1;
     $sumasemanaingreso += $sumaingreso;
@@ -113,12 +115,32 @@ if ($dia=="Sunday") $dia="Domingo";
   
 
 }
-    $controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma2"))->get();
+
+ // gasto con cheque
+/*
+$cheques = Controlgasto::leftjoin("cheque","cheque.controlgasto_id","=","controlgasto.id")->where("fechapago","=",date("Y-m-d",$fecha1))->where("controlgasto.proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma3"))->get();
+  foreach ($cheques as $cheque)
+  {
+    $sumacheque = $cheque->suma3;
+    $sumasemanacheque += $sumacheque;
+
+  }
+  */
+
+
+    // gastos sin cheques
+    $controlgastos = Controlgasto::where("fecha","=",date('Y-m-d',$fecha1))->where("proyecto_id","=", Session::get("proyecto")->id)->select(DB::raw("SUM(neto) as suma2"))->whereIn("tipopago",array("1","3","4","2"))->get();
   foreach ($controlgastos as $controlgasto) {
     $sumagasto = $controlgasto->suma2;
     $sumasemanagasto += $sumagasto;
+
+   // $sumagastototal = $sumacheque + $sumagasto;
     echo "<td>".number_format($sumagasto,0,",",".")."</td>";
   }
+
+  
+
+
 
 
 
@@ -171,6 +193,29 @@ dom: 'T<"clear">lfrtip',
 
 
 });
+
+
+
+
+$(".alertita").click(function(){
+
+    
+
+    ;
+    var fecha = $(this).data("fecha");
+    $.get("{{ url('buscarFechaFlujo')}}", {fecha: fecha},
+              function(data) {
+
+              bootbox.alert(data, function() {
+    })
+      });
+
+
+
+
+});
+
+
 
 
 }); // fin jquery
