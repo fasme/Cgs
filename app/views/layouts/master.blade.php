@@ -414,8 +414,8 @@
 			<?php
 			$tipoproyecto = isset(Session::get('proyecto')->tipoproyecto) ? Session::get('proyecto')->tipoproyecto : "";
 			?>
-			@if($tipoproyecto == "puente")
-				@include("layouts.proyectopuentes")
+			@if($tipoproyecto == "completo")
+				@include("layouts.proyectocompleto")
 			@elseif($tipoproyecto == "edificacion")
 				@include("layouts.proyectoedificacion")
 			@elseif($tipoproyecto == "vial")

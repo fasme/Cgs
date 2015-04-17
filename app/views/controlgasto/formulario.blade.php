@@ -139,7 +139,7 @@
 
             
             {{Form::label('Tipo de Documento','Tipo de Documento')}}
-            {{Form::select('documento',array("0"=>"Seleccione documento","1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
+            {{Form::select('documento',array("0"=>"Seleccione documento","1"=>"Boleta","2"=>"Factura","4"=>"Nota de credito","3"=>"Otro","5"=>"Boleta de Honorarios","6"=>"Factura IVA Exento"), $controlgasto->documento,array("id"=>"tipodocumento"))}}
 
             <?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
             <?php $ano = date("Y");
@@ -370,7 +370,7 @@ $.get("{{ url('controlgasto/buscarcategoriasgg')}}",
 // SI ES EDITAR
 var tipodocumento = $("#tipodocumento").val();
 
-if( tipodocumento == 1 || tipodocumento == 3) // boleta y otros
+if( tipodocumento == 1 || tipodocumento == 3 || tipodocumento == 5 || tipodocumento == 6) // boleta y otros
 {
 
 
@@ -465,7 +465,7 @@ $("#tipodocumento").change(function(){
 
 var tipodocumento = $("#tipodocumento").val();
 
-if( tipodocumento == 1 || tipodocumento == 3) // boleta y otros
+if( tipodocumento == 1 || tipodocumento == 3 || tipodocumento == 5 || tipodocumento == 6) // boleta y otros
 {
 
 

@@ -98,6 +98,9 @@
   @if($controlgasto->documento == 4)
   {{ "Nota de credito" }}
   @endif
+  @if($controlgasto->documento == 5)
+  {{ "Boleta de Honorarios" }}
+  @endif
 </td>
 <td>{{$controlgasto->numdocumento}}</td>
   <td class="number1">{{$controlgasto->neto}}</td>

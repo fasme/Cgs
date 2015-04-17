@@ -56,6 +56,7 @@ public function nuevo2()
     $controlgasto = new Controlgasto;
     $data = Input::all();
   // return $data;
+    
 
     if($controlgasto->isValid($data))
     {

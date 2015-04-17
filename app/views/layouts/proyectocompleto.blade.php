@@ -166,7 +166,7 @@
 									<li id="controlgastoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
-					<span class="menu-text"> Control de gastos </span>
+					<span class="menu-text"> Control de Gastos </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -195,7 +195,7 @@
 									<li id="controlingresoactive">
 						<a href="#" class="dropdown-toggle">
 							<i class="fa fa-usd"></i>
-					<span class="menu-text">Ingresos </span>
+					<span class="menu-text">Control de Ingresos </span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
