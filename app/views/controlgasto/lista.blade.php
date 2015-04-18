@@ -101,6 +101,9 @@
   @if($controlgasto->documento == 5)
   {{ "Boleta de Honorarios" }}
   @endif
+   @if($controlgasto->documento == 5)
+  {{ "Factura IVA Exento" }}
+  @endif
 </td>
 <td>{{$controlgasto->numdocumento}}</td>
   <td class="number1">{{$controlgasto->neto}}</td>

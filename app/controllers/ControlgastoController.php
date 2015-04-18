@@ -293,7 +293,9 @@ else
       $controlgastos = Controlgasto::where('periodomes',"=", $data["periodomes"])
       ->where("periodoano","=",$data["periodoano"])
     ->where('documento',"=",2)
+    ->orwhere("documento","=",6)
     ->where("proyecto_id","=",Session::get("proyecto")->id)
+    ->orderby("fecha")
     ->get();
      $html =  View::make("controlgasto.informecontabilidadpdf")->with("controlgastos",$controlgastos)->with("mes",$data["periodomes"])->with("ano",$data["periodoano"]);
 

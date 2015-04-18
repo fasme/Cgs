@@ -1,13 +1,8 @@
 <?php
-class Proveedor extends Eloquent { //Todos los modelos deben extender la clase Eloquent
-    protected $table = 'proveedor';
-   protected $fillable = array('proveedor_id', 'nombre','rut','fono','email','direccion','ciudad','giro','nombrecontacto');
+class Cliente extends Eloquent { //Todos los modelos deben extender la clase Eloquent
+    protected $table = 'cliente';
+   protected $fillable = array( 'nombre','rut','fono','email','direccion','ciudad','giro','nombrecontacto');
 
-
-   public function ordencompra()
-    {
-        return $this->hasMany('Ordencompra');
-    }
 
 
     public function isValid($data)

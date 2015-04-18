@@ -12,7 +12,7 @@
             </li>
 
             <li>
-              <a href={{ URL::to('proveedor') }}>Proveedor</a>
+              <a href={{ URL::to('cliente') }}>Cliente</a>
 
               <span class="divider">
                 <i class="icon-angle-right arrow-icon"></i>
@@ -27,7 +27,7 @@
      
 <div class="page-header position-relative">
             <h1>
-              Crear Proveedor
+              Crear Cliente
               <small>
                 <i class="icon-double-angle-right"></i>
                 
@@ -54,11 +54,11 @@
 
            <?php
   // si existe el usuario carga los datos
-    if ($proveedor->exists):
-        $form_data = array('url' => 'proveedor/editar/'.$proveedor->id);
+    if ($cliente->exists):
+        $form_data = array('url' => 'cliente/editar/'.$cliente->id);
         $action    = 'Editar';
     else:
-        $form_data = array('url' => 'proveedor/crear');
+        $form_data = array('url' => 'cliente/crear');
         $action    = 'Crear';        
     endif;
 
@@ -69,27 +69,27 @@
        
           
             {{Form::label('Nombre', 'Nombre')}}
-            {{Form::text('nombre', $proveedor->nombre)}}
+            {{Form::text('nombre', $cliente->nombre)}}
             {{Form::label('Rut', 'Rut')}}
-            {{Form::text('rut', $proveedor->rut)}}
+            {{Form::text('rut', $cliente->rut)}}
          
             {{Form::label('Fono')}}
-            {{Form::text('fono', $proveedor->fono)}}
+            {{Form::text('fono', $cliente->fono)}}
 
             {{Form::label('Email')}}
-            {{Form::text('email', $proveedor->email)}}
+            {{Form::text('email', $cliente->email)}}
 
             {{Form::label('Direccion')}}
-            {{Form::text('direccion', $proveedor->direccion)}}
+            {{Form::text('direccion', $cliente->direccion)}}
 
             {{Form::label('Ciudad')}}
-            {{Form::text('ciudad', $proveedor->ciudad)}}
+            {{Form::text('ciudad', $cliente->ciudad)}}
 
             {{Form::label('Giro')}}
-            {{Form::text('giro', $proveedor->giro)}}
+            {{Form::text('giro', $cliente->giro)}}
 
             {{Form::label('Nombre Contacto')}}
-            {{Form::text('nombrecontacto', $proveedor->nombrecontacto)}}
+            {{Form::text('nombrecontacto', $cliente->nombrecontacto)}}
 
              {{Form::submit('Guardar', array('class'=>'btn btn-small btn-success'))}}
         {{ Form::close() }}
@@ -113,7 +113,7 @@ $('.input-mask-date').mask('99/99/9999');
 $('.input-mask-date2').mask('99/99/9999');
 
 $( "#ordencompraactive" ).addClass( "active" );
-$( "#proveedoractive" ).addClass( "active" );
+$( "#clienteactive" ).addClass( "active" );
     
   });   
 </script>

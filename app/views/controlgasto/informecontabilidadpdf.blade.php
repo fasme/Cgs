@@ -25,7 +25,7 @@ table, th, td{
 <td rowspan="2"><img src='avatars/cgs.jpg' width='50'></td>
 
 		<td>
-{{utf8_decode("Contrato a suma alzada Puentes 1 y 3, Los Peumos de Peñuelas") }}
+{{utf8_decode(Session::get("proyecto")->nombre) }}
 </td>
 	</tr>
 
@@ -50,7 +50,7 @@ $sumatotal=0;
 <?php $num++; 
 $sumatotal += (($controlgasto->neto*1.19) + $controlgasto->impuesto - $controlgasto->descuento);
 ?>
-<td class='oli'>{{$num}}</td><td class='oli'>{{date_format(date_create($controlgasto->fecha),'d/m/Y')}}</td><td class='oli'>{{utf8_decode($controlgasto->proveedor)}}</td><td class='oli'>{{$controlgasto->numdocumento}}</td><td class='oli'>{{number_format($controlgasto->neto,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->neto)*0.19,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->impuesto,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->descuento,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->neto*1.19) + $controlgasto->impuesto - $controlgasto->descuento,0,",",".")}}</td>
+<td class='oli'>{{$num}}</td><td class='oli'>{{date_format(date_create($controlgasto->fecha),'d/m/Y')}}</td><td class='oli'>{{utf8_decode($controlgasto->proveedor)}}</td><td class='oli'>{{$controlgasto->numdocumento}}</td><td class='oli'>{{number_format($controlgasto->neto,0,",",".")}}</td><td class='oli'>{{number_format(($controlgasto->iva),0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->impuesto,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->descuento,0,",",".")}}</td><td class='oli'>{{number_format($controlgasto->total ,0,",",".")}}</td>
 </tr>
 @endforeach
 <tr><td colspan="8"></td><td class='oli'>{{number_format($sumatotal,0,",",".")}}</td></tr>

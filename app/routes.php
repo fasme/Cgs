@@ -149,9 +149,7 @@ Route::group(array('before' => 'auth'), function()
 
 	Route::get('gastogeneral', array('uses' => 'GastogeneralController@mostrar'));
 	Route::get('gastogeneral/nuevo', array('uses' => 'GastogeneralController@nuevo'));
-
 	Route::post('gastogeneral/crear', array('uses' => 'GastogeneralController@nuevo2'));
-
 	Route::get('gastogeneral/editar/{id}', array('uses' => 'GastogeneralController@editar'));
 	Route::post('gastogeneral/editar/{id}', array('uses' => 'GastogeneralController@editar2'));
 	Route::get('gastogeneral/eliminar', array('uses' => 'GastogeneralController@eliminar'));
@@ -234,6 +232,15 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('proveedor/editar/{id}', array('uses' => 'ProveedorController@editar'));
 			Route::post('proveedor/editar/{id}', array('uses' => 'ProveedorController@editar2'));
 			Route::get('proveedor/eliminar', array('uses' => 'ProveedorController@eliminar'));
+
+			// Cliente
+
+			Route::get("cliente",array("uses"=>"ClienteController@mostrar"));
+			Route::get('cliente/nuevo', array('uses'=>'ClienteController@nuevo'));
+			Route::post('cliente/crear', array('uses'=>'ClienteController@nuevo2'));
+			Route::get('cliente/editar/{id}', array('uses' => 'ClienteController@editar'));
+			Route::post('cliente/editar/{id}', array('uses' => 'ClienteController@editar2'));
+			Route::get('cliente/eliminar', array('uses' => 'ClienteController@eliminar'));
 		
 
 

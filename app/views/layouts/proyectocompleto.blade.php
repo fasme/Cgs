@@ -335,6 +335,37 @@
 					</li>
 
 
+
+					<li id="clienteactive">
+						<a href="#" class="dropdown-toggle">
+							<i class="fa fa-user"></i>
+					<span class="menu-text"> Cliente </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<ul class="submenu">
+							<li>
+								<a href={{ URL::to('cliente/nuevo') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ingresar
+								</a>
+							</li>
+
+							<li>
+								<a href={{ URL::to('cliente') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Ver/Editar
+								</a>
+							</li>
+
+							
+
+							
+						</ul>
+					</li>
+
+
 					
 
 							

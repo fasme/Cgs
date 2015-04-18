@@ -105,15 +105,20 @@
             {{Form::label('Descripcion','Descripcion')}}
             {{Form::text('descripcion',$controlingreso->descripcion)}}
 
+            {{Form::label('Cliente','Cliente')}}
+            {{Form::text('cliente',$controlingreso->cliente)}}
+
             {{Form::label('Observacion','Observacion')}}
             {{Form::text('observacion',$controlingreso->observacion)}}
 
 
             
             {{Form::label('Tipo de Documento','Tipo de Documento')}}
-            {{Form::select('documento',array("0"=>"Seleccione documento","2"=>"Factura","3"=>"Otro"), $controlingreso->documento,array("id"=>"tipodocumento"))}}
+            {{Form::select('documento',array("0"=>"Seleccione documento","2"=>"Factura","3"=>"Otro","4"=>"Nota de Credito"), $controlingreso->documento,array("id"=>"tipodocumento"))}}
 
 
+            {{Form::label('Num Documento','Num Documento')}}
+            {{Form::text('numdocumento',$controlingreso->numdocumento)}}
 
             {{Form::label('Neto','Neto')}}
             {{Form::text('neto',$controlingreso->neto,array("id"=>"neto"))}}
@@ -127,6 +132,15 @@
 
             {{Form::label('Total')}}
             {{Form::text('total',$controlingreso->total,array("id"=>"total", "readonly"=>"readonly"))}}
+
+
+<?php $meses = array("1"=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"); ?>
+            <?php $ano = date("Y");
+
+$anos = array("2014"=>"2014","2015"=>"2015","2016"=>"2016","2017"=>"2017"); ?>   
+             {{Form::label('Periodo')}}
+            {{Form::select('periodomes',$meses, $controlingreso->periodomes,array("id"=>"periodo"))}}
+            {{Form::select('periodoano',$anos, $controlingreso->periodoano,array("id"=>"periodo"))}}
 
 
        

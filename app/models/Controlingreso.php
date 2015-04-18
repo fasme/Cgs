@@ -1,7 +1,7 @@
 <?php
 class Controlingreso extends Eloquent { //Todos los modelos deben extender la clase Eloquent
     protected $table = 'controlingreso';
-    protected $fillable = array('fecha','descripcion', 'neto', 'impuesto','descuento','obra_id', 'proyecto_id','total','iva','observacion','documento');
+    protected $fillable = array('fecha','descripcion', 'neto', 'impuesto','descuento','obra_id', 'proyecto_id','total','iva','observacion','documento', 'cliente','numdocumento','periodomes','periodoano');
 
 
   public function obra()
