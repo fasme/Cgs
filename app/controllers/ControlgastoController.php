@@ -307,6 +307,62 @@ else
 
 
 
+public function informegeneralcontabilidad(){
+
+return View::make("controlgasto.informegeneralcontabilidad");
+
+}
+
+public function informegeneralcontabilidad2(){
+
+
+    $data = Input::all();
+
+    //return $data["desde"];
+
+
+    
+
+    
+
+
+
+    $rules = array(
+           "periodomes"=>"required"
+    );
+ 
+$validator = Validator::make($data, $rules);
+
+
+if ( $validator->fails() ){
+
+    return Redirect::to('controlgasto/informecontabilidad')->withInput()->withErrors($validator->errors());
+}
+else
+{
+
+      $cantfacturas = Controlgasto::where('periodomes',"=", $data["periodomes"])
+      ->where("periodoano","=",$data["periodoano"])
+    ->where('documento',"=",2)
+    ->orwhere("documento","=",6)
+    ->where("proyecto_id","=",Session::get("proyecto")->id)
+    ->orderby("fecha")
+    ->count();
+
+
+     $html =  View::make("controlgasto.informegeneralcontabilidadpdf")->with("mes",$data["periodomes"])->with("ano",$data["periodoano"])->with("retimpunico",$data["retimpunico"])->with("rettasas",$data["rettasas"]);
+
+
+     //return $html;
+     return PDF::load($html, 'A4', 'portrait')->show();
+
+}
+
+}
+
+
+
+
 }
 
 ?>

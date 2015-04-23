@@ -222,7 +222,8 @@ Route::group(array('before' => 'auth'), function()
 			Route::get('controlgasto/buscarcategoriasgg', array('uses'=>'ControlgastoController@buscarcategoriasgg'));
 			Route::get('controlgasto/informecontabilidad', array("uses"=>"ControlgastoController@informecontabilidad"));
 			Route::post('controlgasto/informecontabilidad', array("uses"=>"ControlgastoController@informecontabilidad2"));
-
+			Route::get("controlgasto/informegeneralcontabilidad", array("uses"=>"ControlgastoController@informegeneralcontabilidad"));
+			Route::post("controlgasto/informegeneralcontabilidad", array("uses"=>"ControlgastoController@informegeneralcontabilidad2"));
 
 			// PROVEEDOR
 

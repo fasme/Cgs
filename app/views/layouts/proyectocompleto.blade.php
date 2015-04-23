@@ -268,6 +268,13 @@
 								</a>
 							</li>
 
+							<li>
+								<a href={{ URL::to('controlgasto/informegeneralcontabilidad') }}>
+									<i class="fa fa-angle-double-right"></i>
+									Informe General de Contabilidad
+								</a>
+							</li>
+
 
 					<li id="presupuestoactive">
 						<a href={{ URL::to('presupuesto/nuevo') }} class="dropdown-toggle">
