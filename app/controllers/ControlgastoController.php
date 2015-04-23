@@ -353,8 +353,8 @@ else
      $html =  View::make("controlgasto.informegeneralcontabilidadpdf")->with("mes",$data["periodomes"])->with("ano",$data["periodoano"])->with("retimpunico",$data["retimpunico"])->with("rettasas",$data["rettasas"]);
 
 
-     //return $html;
-     return PDF::load($html, 'A4', 'portrait')->show();
+     return $html;
+    // return PDF::load($html, 'A4', 'portrait')->show();
 
 }
 
