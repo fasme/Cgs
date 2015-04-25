@@ -67,21 +67,9 @@
 
 
 
-<div class="alert alert-block alert-success">
-								<button type="button" class="close" data-dismiss="alert">
-									<i class="fa fa-remove"></i>
-								</button>
 
-								<i class="fa fa-ok green"></i>
 
-								Bienvenido
-								<strong class="green">
-									{{ Auth::user()->nombre }}
-									{{ Auth::user()->apellido }}
-									<small>Constructora CGS (v 0.0.1)</small>
-								</strong>
-Panel de control
-							</div>
+
 
 
 
@@ -96,6 +84,58 @@ Panel de control
 								
 
 							</div>
+
+
+							
+					
+							<div class="widget-box collapsed">
+										<div class="widget-header widget-header-small header-color-orange">
+											<h6>Actualizaciones:</h6>
+
+											<div class="widget-toolbar">
+												
+
+												
+
+												<a href="#" data-action="collapse">
+													<i class="icon-chevron-down"></i>
+												</a>
+
+												
+											</div>
+										</div>
+
+										<div class="widget-body">
+											<div class="widget-main">
+												
+													<div class="content">
+														<div class="alert alert-info">
+															<strong>24/04/2015</strong>
+															<ul class="unstyled spaced">
+
+															<li><i class="icon-ok green"> </i> Gestion de ingresos</li>
+															<li><i class="icon-ok green"> </i> Informe General de Contabilidad</li>
+															<li><i class="icon-ok green"> </i> Clientes</li>
+															<li><i class="icon-ok green"> </i> Boleta de honorarios</li>
+															<li><i class="icon-ok green"> </i> Varias facturas por cheque</li>
+															<li><i class="icon-ok green"> </i> factura iva exento</li>
+															<li><i class="icon-ok green"> </i> Modificaciones informe de contabilidad (facturas a contadora)</li>
+														</ul>
+														</div>
+														
+														
+														
+													</div>
+												
+											</div>
+										</div>
+									</div>
+							
+
+
+
+
+
 
 	@endif				
 
