@@ -85,18 +85,9 @@ table, th, td{
 
     $ppmneto = $ppm *$netofacturasIngreso;
 
-    $creditomesanterior=0;
+   
 
-    $remanente = ($ivafacturasIngreso - $ivafacturasGasto) + $creditomesanterior;
-
-    $totalcredito = $ivafacturasGasto + $remanente;
-
-    $subtotal = $retimpunico + $rettasas + $ppmneto;
-
-
-
-
-// ANTERIOR
+   // ANTERIOR
 if($mes == 1)
 {
   $mesanterior = 12;
@@ -109,6 +100,38 @@ else
 }
 
 
+$netofacturasIngresoAnterior = Controlingreso::where('periodomes',"=", $mesanterior)
+      ->where("periodoano","=",$anoanterior)
+    ->where('documento',"=",2)
+    ->orwhere("documento","=",6)
+    ->where("proyecto_id","=",Session::get("proyecto")->id)
+    ->orderby("fecha")
+    ->sum("neto");
+
+$ppmnetoAnterior = $netofacturasIngresoAnterior * $ppm;
+$subtotalAnterior = $retimpunico + $rettasas + $ppmnetoAnterior;
+
+// FIN ANTERIOR
+
+ $remanente = ($ivafacturasIngreso - $ivafacturasGasto) + $subtotalAnterior;
+
+    $totalcredito = $ivafacturasGasto + $remanente;
+
+    $subtotal = $retimpunico + $rettasas + $ppmneto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
 
@@ -118,11 +141,11 @@ else
 	<tr><th class='oli'>Glosa</th><th class='oli'>Valor</th></tr>
 <tr><td class='oli letrachica'>Cantidad facturas emitidas</td> <td class='oli'>				{{ $cantfacturasIngreso}}</td></tr>
 <tr><td class='oli letrachica'>Cant. de dctos. fact. recib. del giro</td> <td class='oli'> {{ $cantfacturasGasto }}</td></tr>
-<tr><td class='oli letrachica'>Remanente de credito fisc</td> <td class='oli'>				{{ $creditomesanterior }}</td></tr>
-<tr><td class='oli letrachica'>Ret. Imp. Unico Trab. art. 74 N Lir</td> <td class='oli'>	{{$retimpunico}}</td></tr>
-<tr><td class='oli letrachica'>Ret. Tasas de 10% sobre las rent.</td> <td class='oli'>		{{$rettasas}}</td></tr>
-<tr><td class='oli letrachica'>Base imponible</td> <td class='oli'>							{{$netofacturasIngreso}}</td></tr>
-<tr><td class='oli letrachica'>Tassa PPM 1ra categ.</td> <td class='oli'>					{{$ppm}}</td></tr>
+<tr><td class='oli letrachica'>Remanente de credito fisc</td> <td class='oli'>				{{ number_format($subtotalAnterior,0,",",".") }}</td></tr>
+<tr><td class='oli letrachica'>Ret. Imp. Unico Trab. art. 74 N Lir</td> <td class='oli'>	{{number_format($retimpunico,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'>Ret. Tasas de 10% sobre las rent.</td> <td class='oli'>		{{number_format($rettasas,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'>Base imponible</td> <td class='oli'>							{{number_format($netofacturasIngreso,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'>Tassa PPM 1ra categ.</td> <td class='oli'>					{{number_format($ppm,2,",",".")}}</td></tr>
 <tr><td class='oli letrachica'>Rem Cred Capacitacion Periodo Siguiente</td> <td class='oli'></td></tr>
 <tr><td class='oli letrachica'>Remanente Ant. Cambio Per Sgte</td> <td class='oli'></td></tr>
 </table>
@@ -131,15 +154,15 @@ else
 <div style="position: absolute;top: 100px; left: 370px;">
 <table width='100%' class='oli'>
 	<tr><th class='oli'>Glosa</th><th class='oli'>Valor</th></tr>
-<tr><td class='oli letrachica'> Debitos Facturas Emitidas</td><td class='oli'>				{{$ivafacturasIngreso}}</td></tr>
-<tr><td class='oli letrachica'> Total Debitos<td class='oli'>							{{$ivafacturasIngreso}}</td></tr>
-<tr><td class='oli letrachica'> Credito Rec. Y REeint Fact Del Giro</td><td class='oli'>		{{$ivafacturasGasto}}</td></tr>
-<tr><td class='oli letrachica'> Remanente Credito Mes Anterior</td><td class='oli'>				{{$remanente}}</td></tr>
+<tr><td class='oli letrachica'> Debitos Facturas Emitidas</td><td class='oli'>				{{number_format($ivafacturasIngreso,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'> Total Debitos<td class='oli'>							{{number_format($ivafacturasIngreso,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'> Credito Rec. Y REeint Fact Del Giro</td><td class='oli'>		{{number_format($ivafacturasGasto,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'> Remanente Credito Mes Anterior</td><td class='oli'>				{{number_format($remanente,0,",",".")}}</td></tr>
 <tr><td class='oli letrachica'> Postergacion Pago IVA</td><td class='oli'></td></tr>
-<tr><td class='oli letrachica'> Total Creditos</td><td class='oli'>								{{$totalcredito}}</td></tr>
-<tr><td class='oli letrachica'> PPM Neto Det.</td><td class='oli'>								{{$ppmneto}}</td></tr>
+<tr><td class='oli letrachica'> Total Creditos</td><td class='oli'>								{{number_format($totalcredito,0,",",".")}}</td></tr>
+<tr><td class='oli letrachica'> PPM Neto Det.</td><td class='oli'>								{{number_format($ppmneto,0,",",".")}}</td></tr>
 <tr><td class='oli letrachica'> Total Credito Capacitacion a Imputar</td><td class='oli'></td></tr>
-<tr><td class='oli letrachica'> Sub Total IMP Determinado Anverso</td><td class='oli'>			{{$subtotal}}</td></tr>
+<tr><td class='oli letrachica'> Sub Total IMP Determinado Anverso</td><td class='oli'>			{{number_format($subtotal,0,",",".")}}</td></tr>
 <tr><td class='oli letrachica'> Total Determinado</td><td class='oli'></td></tr>
 <tr><td class='oli letrachica'> Anticipo a Imputar</td><td class='oli'></td></tr>
 
