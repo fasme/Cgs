@@ -110,6 +110,16 @@
 												
 													<div class="content">
 														<div class="alert alert-info">
+
+															<strong>25/04/2015</strong>
+															<ul class="unstyled spaced">
+
+															<li><i class="icon-ok green"> </i> Filtro de fechas (para no sobrecargar pantalla gastos)</li>
+															
+														</ul>
+
+
+
 															<strong>24/04/2015</strong>
 															<ul class="unstyled spaced">
 

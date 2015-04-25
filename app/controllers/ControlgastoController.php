@@ -4,10 +4,30 @@ class ControlgastoController extends BaseController {
 
 public function mostrar(){
 
-$controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")->id)->get();
+$controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")->id);
         
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
+
+  $desde = Input::get("desde");
+  $hasta = Input::get("hasta");
+
+
+
+  if($desde && $hasta)
+  {
+    list($dia,$mes,$ano) = explode("/",$desde);
+            $desde = "$ano-$mes-$dia";
+
+            list($dia,$mes,$ano) = explode("/",$hasta);
+            $hasta = "$ano-$mes-$dia";
+
+    $controlgastos = $controlgastos->whereRaw("fecha BETWEEN '$desde' AND '$hasta'")->get();
+  }
+  else
+  {
+    $controlgastos = $controlgastos->take(10)->orderby("fecha","desc")->get();
+  }
         
         return View::make('controlgasto.lista', array('controlgastos' => $controlgastos));
 
