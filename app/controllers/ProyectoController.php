@@ -38,7 +38,7 @@ public function nuevo2(){
 
 	$proyectos->save();
 
-	$file->move("img",$file->getClientOriginalName());
+	$file->move("archivos",$file->getClientOriginalName());
 
 
 	return Redirect::to("proyectos");
