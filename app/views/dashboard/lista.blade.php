@@ -90,7 +90,7 @@
 					
 							<div class="widget-box collapsed">
 										<div class="widget-header widget-header-small header-color-orange">
-											<h6>Actualizaciones:</h6>
+											<h6>Actualizaciones: (Ultima: 06/05/2015)</h6>
 
 											<div class="widget-toolbar">
 												
