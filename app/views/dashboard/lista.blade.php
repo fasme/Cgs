@@ -111,6 +111,15 @@
 													<div class="content">
 														<div class="alert alert-info">
 
+														<strong>06/05/2015</strong>
+															<ul class="unstyled spaced">
+
+															<li><i class="icon-ok green"> </i> Gestion de Administracion</li>
+															<li><i class="icon-ok green"> </i> Gestion de usuarios</li>
+															<li><i class="icon-ok green"> </i> Gestion de Proyectos</li>
+
+														</ul>
+
 															<strong>25/04/2015</strong>
 															<ul class="unstyled spaced">
 
