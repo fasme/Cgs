@@ -23,6 +23,8 @@
 	{{HTML::style('js/TableTools/css/dataTables.tableTools.min.css')}}
 	
 
+	
+
 
 
 
@@ -40,6 +42,9 @@
 {{ HTML::script('js/jquery.prettynumber/jquery.prettynumber.js') }}
 
 {{ HTML::script('js/DataTables-EU-date-Plug-In-master/dataTables.dateFormat.js') }}
+
+{{ HTML::script('js/jquery.dataTables.bootstrap.js') }}
+
 
 
 

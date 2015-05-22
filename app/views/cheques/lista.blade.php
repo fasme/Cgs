@@ -36,7 +36,12 @@
 
 </h1>
 
- 
+ <div class="row-fluid">
+
+
+                <div class="table-header">
+                  Resultados
+                </div>
 <table id="example" class="table table-striped table-bordered table-hover">
   <thead>
           <tr >
@@ -140,7 +145,7 @@
           @endforeach
         </tbody>
   </table>
-
+</div>
 
   <script type="text/javascript">
 
