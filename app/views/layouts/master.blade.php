@@ -70,7 +70,7 @@
 					</a>
 				-->
 					<img src={{ URL::to('avatars/logo.png') }} width='50'>
-					<img src={{ URL::to('avatars/logo1.png') }} width='80'>
+					<!-- <img src={{ URL::to('avatars/logo1.png') }} width='80'> -->
 					<ul class="nav ace-nav pull-right">
 						<!--
 						<li class="grey">
