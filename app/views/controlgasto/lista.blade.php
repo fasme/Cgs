@@ -40,38 +40,6 @@
         {{ HTML::link('controlgasto/nuevo', 'Crear Control de  gasto'); }}
  
 
- <div class="row-fluid">
-  <div class="span4"></div>
-  <div class="span3">
- <div class="widget-box">
-                      <div class="widget-header widget-header-small">
-                        <h5 class="lighter">Filtros</h5>
-                      </div>
-
-                      <div class="widget-body">
-                        <div class="widget-main">
-
-                          {{ Form::open(array('url' => 'controlgasto', 'method'=>'get'))}}
-                            {{ Form::label("Desde")}}  
-                            {{ Form::text("desde",Input::get("desde"), array("class"=>"input-mask-date"))}}
-                            <small>dd/mm/yyy</small>
-
-                            {{ Form::label("Hasta")}}
-                            {{ Form::text("hasta",Input::get("hasta"), array("class"=>"input-mask-date"))}}
-                            <small>dd/mm/yyy</small>
-
-                            <button class="btn btn-purple btn-small">
-                              Filtrar
-                              <i class="icon-search icon-on-right bigger-110"></i>
-                            </button>
-
-                            {{Form::close()}}
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div> <!-- FIN ROW -->
 
 
 <div class="row-fluid">

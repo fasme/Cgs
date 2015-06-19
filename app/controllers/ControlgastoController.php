@@ -4,11 +4,12 @@ class ControlgastoController extends BaseController {
 
 public function mostrar(){
 
-$controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")->id);
+$controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")->id)->orderby("fecha","desc")->get();
         
         // Con el método all() le estamos pidiendo al modelo de Usuario
         // que busque todos los registros contenidos en esa tabla y los devuelva en un Array
 
+/*
   $desde = Input::get("desde");
   $hasta = Input::get("hasta");
 
@@ -28,6 +29,7 @@ $controlgastos = Controlgasto::where("proyecto_id",'=',Session::get("proyecto")-
   {
     $controlgastos = $controlgastos->take(10)->orderby("fecha","desc")->get();
   }
+  */
         
         return View::make('controlgasto.lista', array('controlgastos' => $controlgastos));
 
