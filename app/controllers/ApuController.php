@@ -121,7 +121,7 @@ public function editar($id){
 		$partidas  = Partida::find($id);
 
 	//$partidas = Array();
-		$obras0 = rray("0"=>"Seleccione");
+		$obras0 = Array("0"=>"Seleccione");
 	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 	 $obras = $obras0+$obras;
  return View::make('apu.editar')->with("partidas",$partidas)->with("obras",$obras);
