@@ -133,7 +133,7 @@ Route::group(array('before' => 'auth'), function()
 	// funcion para proyecto -> obra
 
 	Route::get('dropdown2', function(){
-	    $id = Input::get('option');
+	    return $id = Input::get('option');
 	    $obras = Obra::find($id)->partida;
 	    $arreglin = Array(""=>"");
 	    foreach ($obras as $obra) {

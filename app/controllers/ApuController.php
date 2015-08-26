@@ -22,8 +22,10 @@ public function nuevo()
 
 	$partidas  = Partida::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 	//$partidas = Array();
+	$obras0 = Array("0"=>"seleccione");
 	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-	 array_unshift($obras, ' --- Seleccione una obra --- ');
+	$obras = $obras0 + $obras;
+	// array_unshift($obras, ' --- Seleccione una obra --- ');
 
  return View::make('apu.crear')->with("partidas",$partidas)->with("obras",$obras);
 }
@@ -119,9 +121,9 @@ public function editar($id){
 		$partidas  = Partida::find($id);
 
 	//$partidas = Array();
+		$obras0 = rray("0"=>"Seleccione");
 	$obras = Obra::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-	 array_unshift($obras, ' --- Seleccione una obra --- ');
-
+	 $obras = $obras0+$obras;
  return View::make('apu.editar')->with("partidas",$partidas)->with("obras",$obras);
 
 }
