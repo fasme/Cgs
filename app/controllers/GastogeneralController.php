@@ -18,7 +18,7 @@ public function nuevo(){
 */
 
 
-	$ggcategorias = Ggcategoria::all()->lists("nombre","id");
+	$ggcategorias = Ggcategoria::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 	array_unshift($ggcategorias, ' --- Seleccione un Proyecto --- ');
 	$selected2 = array();
 
@@ -60,7 +60,7 @@ public function editar($id){   //get
 
 
 	$gastogeneral = Gastogeneral::find($id);
-	$ggcategorias = Ggcategoria::all()->lists("nombre","id");
+	$ggcategorias = Ggcategoria::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 	array_unshift($ggcategorias, ' --- Seleccione un Proyecto --- ');
 	$selected2 = array();
 
