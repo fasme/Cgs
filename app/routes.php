@@ -179,7 +179,7 @@ Route::group(array('before' => 'auth'), function()
 	    return $obras->lists('nombre', 'id');
 	});
 
-			Route::post("partidacategoria/crear", "PartidacategoriaController@nuevo2");
+			//Route::post("partidacategoria/crear", "PartidacategoriaController@nuevo2");
 
 			// PARTIDAS EDIFICACION
 
