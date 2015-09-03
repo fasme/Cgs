@@ -75,6 +75,11 @@
 
             {{Form::label('Categoria', 'Categoria')}}
             {{Form::select('categoria_id', $categorias, $partida->categoria_id,array('id' => 'categoria'))}}
+            
+            <a data-toggle="modal" class="botoncito" href="#" >
+                                  <i class="ace-icon fa fa-upload bigger-130"></i>
+                                </a>
+
 
             {{Form::label('Item', 'Item')}}
             {{Form::text('item', $partida->item)}}
@@ -104,6 +109,42 @@
    </div><!--/row-->
 
 
+
+
+
+
+
+<!-- Modal -->
+{{Form::open(array('url' => 'partidacategoria/crear'))}}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar nueva Categoria</h4>
+      </div>
+      <div class="modal-body">
+      {{Form::hidden("partidaid","",array("id"=>"partidaid"))}}
+  
+  {{Form::label("Nombre")}}
+      {{Form::text("nombre","")}}
+
+      
+      </div>
+      <div class="modal-footer">
+    
+        {{Form::submit("Enviar", array("class"=>"btn btn-primary"))}}
+      </div>
+    </div>
+  </div>
+</div>
+{{Form::close()}}
+
+</body>
+
+
+
+
 <script>
   $(document).ready(function(){
    
@@ -119,6 +160,7 @@ $( "#proyectoactive" ).addClass( "active" );
 
     $('#obras').change(function(){
       
+    
        $('#categoria').empty();
        $('#categoria').append("<option value='" + "0" + "'>" + "seleccione una categoria" + "</option>");
        $("#categoria").trigger("liszt:updated");
@@ -142,6 +184,27 @@ $( "#proyectoactive" ).addClass( "active" );
 
       });
     });  // fin obras change
+
+
+
+$(".botoncito").click(function(){
+
+  var id = $("#obras").val();
+
+
+  //alert(id);
+
+  if(id != 0)
+  {
+
+
+  $('#myModal').modal("show");
+}
+else
+{
+  alert("Debe seleccionar una obra");
+}
+});
 
 
 

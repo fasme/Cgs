@@ -179,6 +179,8 @@ Route::group(array('before' => 'auth'), function()
 	    return $obras->lists('nombre', 'id');
 	});
 
+			Route::post("partidacategoria/crear", "PartidacategoriaController@nuevo2");
+
 			// PARTIDAS EDIFICACION
 
 			Route::get('partidasEdificacion', array('uses'=>'PartidaedificacionController@mostrar'));
