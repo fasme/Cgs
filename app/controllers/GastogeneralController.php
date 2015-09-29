@@ -18,12 +18,17 @@ public function nuevo(){
 */
 
 
+	$ggcategorias0 = array("0"=>"--Selecione categoria--");
 	$ggcategorias = Ggcategoria::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-	array_unshift($ggcategorias, ' --- Seleccione un Proyecto --- ');
-	$selected2 = array();
 
 
-	return View::make("gastosgenerales.crear",  compact('ggcategorias','selected2'));
+	$ggcategorias = $ggcategorias0 + $ggcategorias;
+	
+
+
+
+
+	return View::make("gastosgenerales.crear")->with("ggcategorias",$ggcategorias);
 	//return "ho";
 }
 
@@ -60,9 +65,13 @@ public function editar($id){   //get
 
 
 	$gastogeneral = Gastogeneral::find($id);
+
+
+	$ggcategorias0 = array("0"=>"--Selecione categoria--");
 	$ggcategorias = Ggcategoria::Where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
-	array_unshift($ggcategorias, ' --- Seleccione un Proyecto --- ');
-	$selected2 = array();
+
+
+	$ggcategorias = $ggcategorias0 + $ggcategorias;
 
 
 	return View::make("gastosgenerales.editar")->with('ggcategorias',$ggcategorias)->with("gastogeneral",$gastogeneral);
