@@ -343,6 +343,7 @@ $("#categoriadiv").hide();
 // FUNCION para cargar en el espacio verde los items
 $("#categorias").change(function(){
 $("#cargaGastosGenerales").empty();
+alert($(this).val());
 $.get("{{ url('controlgasto/buscarcategoriasgg')}}",
       { option: $(this).val() },
       function (data){ 

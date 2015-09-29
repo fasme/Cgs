@@ -60,7 +60,7 @@ public function nuevo()
 
    
      $ggs0 = array("0"=>"-- seleccione categoria --");
-    $ggs = Ggcategoria::all()->lists("nombre","id");
+    $ggs = Ggcategoria::where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
 
    
     $ggs = $ggs0 + $ggs;
@@ -172,7 +172,8 @@ public function editar($id)
 
 
     $ggs0 = array("0"=>"-- Seleccione categoria --");
-    $ggs = Ggcategoria::all()->lists("nombre","id");
+    $ggs = Ggcategoria::where("proyecto_id","=",Session::get("proyecto")->id)->lists("nombre","id");
+
 
     $ggs = $ggs0 + $ggs;
 //array_unshift($ggs, ' --- Seleccione una categoria --- ');
@@ -240,7 +241,7 @@ public function editar2($id)
 
 public function buscarcategoriasgg()
 {
-    $id = Input::get("option");
+     $id = Input::get("option");
     $categoriagg = Ggcategoria::find($id);
 
    // Gastogeneral::
